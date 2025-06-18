@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowDown, Download, Mail, ExternalLink, Github, Linkedin, Menu, X } from 'lucide-react';
+import { ArrowDown, Download, Mail, ExternalLink, Instagram, Linkedin, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -157,7 +157,13 @@ const Index = () => {
                   <Linkedin className="w-5 h-5" />
                 </Button>
                 <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400">
-                  <Github className="w-5 h-5" />
+                  <Instagram className="w-5 h-5" />
+                </Button>
+                <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400">
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z"/>
+                    <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z"/>
+                  </svg>
                 </Button>
                 <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400">
                   <Mail className="w-5 h-5" />
@@ -192,7 +198,7 @@ const Index = () => {
             </div>
             <div className="animate-fade-in animation-delay-300">
               <h3 className="text-3xl font-bold mb-6">Creating Digital Solutions</h3>
-              <p className="text-gray-400 text-lg mb-6 leading-relaxed">I'm fresher  in UI/UX design, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
+              <p className="text-gray-400 text-lg mb-6 leading-relaxed">I'm fresher  in UI/UX design, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed">
                 I believe in the power of good design to transform businesses and improve people's lives. Every project I work on is an opportunity to learn, grow, and create something meaningful.
               </p>
@@ -231,9 +237,14 @@ const Index = () => {
                   <h4 className="text-lg text-gray-300 mb-3">{project.subtitle}</h4>
                   <p className="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
                   <p className="text-sm text-green-400 mb-4">{project.tools}</p>
-                  <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300">
-                    View Project
-                  </Button>
+                  <div className="flex flex-col gap-2">
+                    <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300">
+                      View Project
+                    </Button>
+                    <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300">
+                      View Case Study
+                    </Button>
+                  </div>
                 </div>
               </div>)}
           </div>
@@ -322,7 +333,13 @@ const Index = () => {
                     <Linkedin className="w-5 h-5" />
                   </Button>
                   <Button variant="outline" size="icon" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900">
-                    <Github className="w-5 h-5" />
+                    <Instagram className="w-5 h-5" />
+                  </Button>
+                  <Button variant="outline" size="icon" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900">
+                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z"/>
+                      <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z"/>
+                    </svg>
                   </Button>
                 </div>
               </div>
