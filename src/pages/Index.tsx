@@ -180,7 +180,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center my-0 px-[12px] mx-[113px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center my-0 px-[12px] mx-[58px]">
             <div className="animate-fade-in">
               
             </div>
@@ -203,7 +203,7 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 bg-gray-800/50">
+      <section id="projects" className="py-20 px-4 bg-gray-800/50 mx-0">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured <span className="text-green-400">Projects</span></h2>
@@ -216,7 +216,7 @@ const Index = () => {
           }}>
                 <div className="relative overflow-hidden">
                   <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                  <div className="absolute inset-0 bg-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center mx-0">
                     <ExternalLink className="w-8 h-8 text-white" />
                   </div>
                 </div>
