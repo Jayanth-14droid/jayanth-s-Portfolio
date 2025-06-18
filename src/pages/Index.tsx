@@ -180,13 +180,13 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mx-[25px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center my-0 px-[12px] mx-[113px]">
             <div className="animate-fade-in">
               
             </div>
             <div className="animate-fade-in animation-delay-300">
               <h3 className="text-3xl font-bold mb-6">Creating Digital Solutions</h3>
-              <p className="text-gray-400 text-lg mb-6 leading-relaxed">I'm fresher  in UI/UX design, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
+              <p className="text-gray-400 text-lg mb-6 leading-relaxed mx-[11px] my-0">I'm fresher  in UI/UX design, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed">
                 I believe in the power of good design to transform businesses and improve people's lives. Every project I work on is an opportunity to learn, grow, and create something meaningful.
               </p>
