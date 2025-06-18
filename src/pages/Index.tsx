@@ -4,7 +4,6 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -58,40 +57,29 @@ const Index = () => {
       [e.target.name]: e.target.value
     });
   };
-  const projects = [
-    {
-      title: "COMFORT WEAR",
-      subtitle: "Mobile E-Commerce App",
-      description: "Keep yourself in style by purchasing product from 'comfort wear'",
-      tools: "UI/UX Design, Prototyping",
-      image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-      link: "#"
-    },
-    {
-      title: "FINTECH DASHBOARD",
-      subtitle: "Web Application Design",
-      description: "Modern financial dashboard with intuitive user experience and real-time data visualization",
-      tools: "UI/UX Design, User Research",
-      image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-      link: "#"
-    },
-    {
-      title: "HEALTHCARE APP",
-      subtitle: "Mobile Health Platform",
-      description: "Comprehensive health tracking app with appointment booking and telemedicine features",
-      tools: "UI/UX Design, Wireframing",
-      image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-      link: "#"
-    }
-  ];
-
-  const skills = [
-    "Web Designing",
-    "UI/UX Design", 
-    "Front-End Technology",
-    "Editing and Design"
-  ];
-
+  const projects = [{
+    title: "COMFORT WEAR",
+    subtitle: "Mobile E-Commerce App",
+    description: "Keep yourself in style by purchasing product from 'comfort wear'",
+    tools: "UI/UX Design, Prototyping",
+    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
+    link: "#"
+  }, {
+    title: "FINTECH DASHBOARD",
+    subtitle: "Web Application Design",
+    description: "Modern financial dashboard with intuitive user experience and real-time data visualization",
+    tools: "UI/UX Design, User Research",
+    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
+    link: "#"
+  }, {
+    title: "HEALTHCARE APP",
+    subtitle: "Mobile Health Platform",
+    description: "Comprehensive health tracking app with appointment booking and telemedicine features",
+    tools: "UI/UX Design, Wireframing",
+    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
+    link: "#"
+  }];
+  const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
   return <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
@@ -161,8 +149,8 @@ const Index = () => {
                 </Button>
                 <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400">
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z"/>
-                    <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z"/>
+                    <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z" />
+                    <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z" />
                   </svg>
                 </Button>
                 <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400">
@@ -173,7 +161,7 @@ const Index = () => {
           </div>
           <div className="relative animate-fade-in animation-delay-300">
             <div className="w-80 h-80 mx-auto rounded-full overflow-hidden border-4 border-green-400/20 shadow-2xl">
-              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Profile" className="w-full h-full object-cover" />
+              <img alt="Profile" src="/lovable-uploads/681759b3-ea0b-419e-b9da-8d674b8d5052.jpg" className="w-full h-full object-fill" />
             </div>
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-green-400 rounded-full flex items-center justify-center animate-pulse">
               <ArrowDown className="w-8 h-8 text-gray-900" />
@@ -290,13 +278,11 @@ const Index = () => {
                 <span className="text-green-400">Skills</span>
               </h2>
               <div className="space-y-6">
-                {skills.map((skill, index) => (
-                  <div key={index} className="group hover:-translate-y-2 transition-all duration-300 bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50">
+                {skills.map((skill, index) => <div key={index} className="group hover:-translate-y-2 transition-all duration-300 bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50">
                     <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors text-center">
                       {skill}
                     </h3>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
           </div>
@@ -337,8 +323,8 @@ const Index = () => {
                   </Button>
                   <Button variant="outline" size="icon" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900">
                     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z"/>
-                      <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z"/>
+                      <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z" />
+                      <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z" />
                     </svg>
                   </Button>
                 </div>
@@ -378,5 +364,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;
