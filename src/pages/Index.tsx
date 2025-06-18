@@ -180,9 +180,9 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mx-[25px]">
             <div className="animate-fade-in">
-              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Working" className="rounded-lg shadow-xl" />
+              
             </div>
             <div className="animate-fade-in animation-delay-300">
               <h3 className="text-3xl font-bold mb-6">Creating Digital Solutions</h3>
