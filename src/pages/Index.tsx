@@ -87,7 +87,7 @@ const Index = () => {
 
   const skills = [
     "Web Designing",
-    "UI/UX Design",
+    "UI/UX Design", 
     "Front-End Technology",
     "Editing and Design"
   ];
@@ -278,7 +278,7 @@ const Index = () => {
               <h2 className="text-4xl font-bold mb-12 text-center lg:text-left">
                 <span className="text-green-400">Skills</span>
               </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="space-y-6">
                 {skills.map((skill, index) => (
                   <div key={index} className="group hover:-translate-y-2 transition-all duration-300 bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50">
                     <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors text-center">
