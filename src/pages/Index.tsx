@@ -1,22 +1,20 @@
-
 import { useState, useEffect } from 'react';
 import { ArrowDown, Download, Mail, ExternalLink, Github, Linkedin, Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'projects', 'education', 'skills', 'contact'];
@@ -30,70 +28,71 @@ const Index = () => {
       });
       if (current) setActiveSection(current);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
-    element?.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({
+      behavior: 'smooth'
+    });
     setIsMenuOpen(false);
   };
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Form submitted:', formData);
     toast({
       title: "Message sent!",
-      description: "Thank you for reaching out. I'll get back to you soon.",
+      description: "Thank you for reaching out. I'll get back to you soon."
     });
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({
+      name: '',
+      email: '',
+      message: ''
+    });
   };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-
-  const projects = [
-    {
-      title: "COMFORT WEAR",
-      subtitle: "Mobile E-Commerce App",
-      description: "Keep yourself in style by purchasing product from 'comfort wear'",
-      tools: "UI/UX Design, Prototyping",
-      image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-      link: "#"
-    },
-    {
-      title: "FINTECH DASHBOARD",
-      subtitle: "Web Application Design",
-      description: "Modern financial dashboard with intuitive user experience and real-time data visualization",
-      tools: "UI/UX Design, User Research",
-      image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-      link: "#"
-    },
-    {
-      title: "HEALTHCARE APP",
-      subtitle: "Mobile Health Platform",
-      description: "Comprehensive health tracking app with appointment booking and telemedicine features",
-      tools: "UI/UX Design, Wireframing",
-      image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-      link: "#"
-    }
-  ];
-
-  const skills = [
-    { name: "Web Designing", level: 95 },
-    { name: "UI/UX Design", level: 90 },
-    { name: "Front-End Technology", level: 85 },
-    { name: "Editing and Design", level: 88 }
-  ];
-
-  return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
+  const projects = [{
+    title: "COMFORT WEAR",
+    subtitle: "Mobile E-Commerce App",
+    description: "Keep yourself in style by purchasing product from 'comfort wear'",
+    tools: "UI/UX Design, Prototyping",
+    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
+    link: "#"
+  }, {
+    title: "FINTECH DASHBOARD",
+    subtitle: "Web Application Design",
+    description: "Modern financial dashboard with intuitive user experience and real-time data visualization",
+    tools: "UI/UX Design, User Research",
+    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
+    link: "#"
+  }, {
+    title: "HEALTHCARE APP",
+    subtitle: "Mobile Health Platform",
+    description: "Comprehensive health tracking app with appointment booking and telemedicine features",
+    tools: "UI/UX Design, Wireframing",
+    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
+    link: "#"
+  }];
+  const skills = [{
+    name: "Web Designing",
+    level: 95
+  }, {
+    name: "UI/UX Design",
+    level: 90
+  }, {
+    name: "Front-End Technology",
+    level: 85
+  }, {
+    name: "Editing and Design",
+    level: 88
+  }];
+  return <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -102,63 +101,36 @@ const Index = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`text-sm font-medium transition-colors hover:text-green-400 ${
-                    activeSection === item.toLowerCase() ? 'text-green-400' : 'text-gray-300'
-                  }`}
-                >
+              {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-colors hover:text-green-400 ${activeSection === item.toLowerCase() ? 'text-green-400' : 'text-gray-300'}`}>
                   {item}
-                </button>
-              ))}
+                </button>)}
             </div>
 
             <div className="hidden md:flex items-center space-x-4">
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900"
-              >
+              <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900">
                 <Download className="w-4 h-4 mr-2" />
                 Download CV
               </Button>
             </div>
 
             {/* Mobile menu button */}
-            <button
-              className="md:hidden"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
+            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
 
           {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden absolute top-16 left-0 w-full bg-gray-900 border-b border-gray-800">
+          {isMenuOpen && <div className="md:hidden absolute top-16 left-0 w-full bg-gray-900 border-b border-gray-800">
               <div className="px-4 py-6 space-y-4">
-                {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item.toLowerCase())}
-                    className="block w-full text-left text-gray-300 hover:text-green-400 transition-colors"
-                  >
+                {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className="block w-full text-left text-gray-300 hover:text-green-400 transition-colors">
                     {item}
-                  </button>
-                ))}
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 w-full"
-                >
+                  </button>)}
+                <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 w-full">
                   <Download className="w-4 h-4 mr-2" />
                   Download CV
                 </Button>
               </div>
-            </div>
-          )}
+            </div>}
         </div>
       </nav>
 
@@ -176,10 +148,7 @@ const Index = () => {
               I am a passionate UI/UX designer with a love for creating beautiful and functional user experiences. I have strong foundation in UI/UX design.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button 
-                size="lg" 
-                className="bg-green-400 text-gray-900 hover:bg-green-500 transition-all duration-300 transform hover:scale-105"
-              >
+              <Button size="lg" className="bg-green-400 text-gray-900 hover:bg-green-500 transition-all duration-300 transform hover:scale-105">
                 <Download className="w-5 h-5 mr-2" />
                 Download CV
               </Button>
@@ -198,11 +167,7 @@ const Index = () => {
           </div>
           <div className="relative animate-fade-in animation-delay-300">
             <div className="w-80 h-80 mx-auto rounded-full overflow-hidden border-4 border-green-400/20 shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" 
-                alt="Profile" 
-                className="w-full h-full object-cover"
-              />
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face" alt="Profile" className="w-full h-full object-cover" />
             </div>
             <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-green-400 rounded-full flex items-center justify-center animate-pulse">
               <ArrowDown className="w-8 h-8 text-gray-900" />
@@ -223,28 +188,19 @@ const Index = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="animate-fade-in">
-              <img 
-                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" 
-                alt="Working" 
-                className="rounded-lg shadow-xl"
-              />
+              <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop" alt="Working" className="rounded-lg shadow-xl" />
             </div>
             <div className="animate-fade-in animation-delay-300">
               <h3 className="text-3xl font-bold mb-6">Creating Digital Solutions</h3>
-              <p className="text-gray-400 text-lg mb-6 leading-relaxed">
-                With over 3 years of experience in UI/UX design, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.
-              </p>
+              <p className="text-gray-400 text-lg mb-6 leading-relaxed">I'm fresher  in UI/UX design, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed">
                 I believe in the power of good design to transform businesses and improve people's lives. Every project I work on is an opportunity to learn, grow, and create something meaningful.
               </p>
               <div className="grid grid-cols-2 gap-8">
+                
                 <div>
-                  <h4 className="text-green-400 text-2xl font-bold mb-2">50+</h4>
-                  <p className="text-gray-400">Projects Completed</p>
-                </div>
-                <div>
-                  <h4 className="text-green-400 text-2xl font-bold mb-2">30+</h4>
-                  <p className="text-gray-400">Happy Clients</p>
+                  
+                  
                 </div>
               </div>
             </div>
@@ -261,18 +217,11 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div 
-                key={index}
-                className="group bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
+            {projects.map((project, index) => <div key={index} className="group bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in" style={{
+            animationDelay: `${index * 200}ms`
+          }}>
                 <div className="relative overflow-hidden">
-                  <img 
-                    src={project.image} 
-                    alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <ExternalLink className="w-8 h-8 text-white" />
                   </div>
@@ -282,25 +231,11 @@ const Index = () => {
                   <h4 className="text-lg text-gray-300 mb-3">{project.subtitle}</h4>
                   <p className="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
                   <p className="text-sm text-green-400 mb-4">{project.tools}</p>
-                  <div className="flex flex-col gap-2">
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300"
-                    >
-                      View Project
-                    </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm"
-                      className="border-gray-600 text-gray-300 hover:bg-gray-600 hover:text-white transition-all duration-300"
-                    >
-                      View Case Study
-                    </Button>
-                  </div>
+                  <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300">
+                    View Project
+                  </Button>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -344,11 +279,7 @@ const Index = () => {
                 <span className="text-green-400">Skills</span>
               </h2>
               <div className="space-y-8">
-                {skills.map((skill, index) => (
-                  <div 
-                    key={index}
-                    className="group hover:-translate-y-1 transition-transform duration-300"
-                  >
+                {skills.map((skill, index) => <div key={index} className="group hover:-translate-y-1 transition-transform duration-300">
                     <div className="flex justify-between items-center mb-2">
                       <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors">
                         {skill.name}
@@ -356,13 +287,11 @@ const Index = () => {
                       <span className="text-green-400 font-medium">{skill.level}%</span>
                     </div>
                     <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                      <div 
-                        className="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full transition-all duration-1000 ease-out"
-                        style={{ width: `${skill.level}%` }}
-                      />
+                      <div className="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full transition-all duration-1000 ease-out" style={{
+                    width: `${skill.level}%`
+                  }} />
                     </div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
           </div>
@@ -408,46 +337,18 @@ const Index = () => {
             <div className="animate-fade-in animation-delay-300">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400"
-                  />
+                  <Input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400" />
                 </div>
                 
                 <div>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400"
-                  />
+                  <Input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleInputChange} required className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400" />
                 </div>
                 
                 <div>
-                  <Textarea
-                    name="message"
-                    placeholder="Your Message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={5}
-                    className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400"
-                  />
+                  <Textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleInputChange} required rows={5} className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400" />
                 </div>
                 
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full bg-green-400 text-gray-900 hover:bg-green-500 transition-all duration-300 transform hover:scale-105"
-                >
+                <Button type="submit" size="lg" className="w-full bg-green-400 text-gray-900 hover:bg-green-500 transition-all duration-300 transform hover:scale-105">
                   Send Message
                 </Button>
               </form>
@@ -464,8 +365,6 @@ const Index = () => {
           </p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
