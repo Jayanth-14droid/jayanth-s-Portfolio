@@ -282,13 +282,22 @@ const Index = () => {
                   <h4 className="text-lg text-gray-300 mb-3">{project.subtitle}</h4>
                   <p className="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
                   <p className="text-sm text-green-400 mb-4">{project.tools}</p>
-                  <Button 
-                    variant="outline" 
-                    size="sm"
-                    className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300"
-                  >
-                    View Project
-                  </Button>
+                  <div className="flex flex-col gap-2">
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300"
+                    >
+                      View Project
+                    </Button>
+                    <Button 
+                      variant="outline" 
+                      size="sm"
+                      className="border-gray-600 text-gray-300 hover:bg-gray-600 hover:text-white transition-all duration-300"
+                    >
+                      View Case Study
+                    </Button>
+                  </div>
                 </div>
               </div>
             ))}
