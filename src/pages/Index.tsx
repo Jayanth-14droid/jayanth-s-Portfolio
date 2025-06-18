@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -57,41 +58,40 @@ const Index = () => {
       [e.target.name]: e.target.value
     });
   };
-  const projects = [{
-    title: "COMFORT WEAR",
-    subtitle: "Mobile E-Commerce App",
-    description: "Keep yourself in style by purchasing product from 'comfort wear'",
-    tools: "UI/UX Design, Prototyping",
-    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-    link: "#"
-  }, {
-    title: "FINTECH DASHBOARD",
-    subtitle: "Web Application Design",
-    description: "Modern financial dashboard with intuitive user experience and real-time data visualization",
-    tools: "UI/UX Design, User Research",
-    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-    link: "#"
-  }, {
-    title: "HEALTHCARE APP",
-    subtitle: "Mobile Health Platform",
-    description: "Comprehensive health tracking app with appointment booking and telemedicine features",
-    tools: "UI/UX Design, Wireframing",
-    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-    link: "#"
-  }];
-  const skills = [{
-    name: "Web Designing",
-    level: 95
-  }, {
-    name: "UI/UX Design",
-    level: 90
-  }, {
-    name: "Front-End Technology",
-    level: 85
-  }, {
-    name: "Editing and Design",
-    level: 88
-  }];
+  const projects = [
+    {
+      title: "COMFORT WEAR",
+      subtitle: "Mobile E-Commerce App",
+      description: "Keep yourself in style by purchasing product from 'comfort wear'",
+      tools: "UI/UX Design, Prototyping",
+      image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
+      link: "#"
+    },
+    {
+      title: "FINTECH DASHBOARD",
+      subtitle: "Web Application Design",
+      description: "Modern financial dashboard with intuitive user experience and real-time data visualization",
+      tools: "UI/UX Design, User Research",
+      image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
+      link: "#"
+    },
+    {
+      title: "HEALTHCARE APP",
+      subtitle: "Mobile Health Platform",
+      description: "Comprehensive health tracking app with appointment booking and telemedicine features",
+      tools: "UI/UX Design, Wireframing",
+      image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
+      link: "#"
+    }
+  ];
+
+  const skills = [
+    "Web Designing",
+    "UI/UX Design",
+    "Front-End Technology",
+    "Editing and Design"
+  ];
+
   return <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
@@ -278,20 +278,14 @@ const Index = () => {
               <h2 className="text-4xl font-bold mb-12 text-center lg:text-left">
                 <span className="text-green-400">Skills</span>
               </h2>
-              <div className="space-y-8">
-                {skills.map((skill, index) => <div key={index} className="group hover:-translate-y-1 transition-transform duration-300">
-                    <div className="flex justify-between items-center mb-2">
-                      <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors">
-                        {skill.name}
-                      </h3>
-                      <span className="text-green-400 font-medium">{skill.level}%</span>
-                    </div>
-                    <div className="w-full bg-gray-700 rounded-full h-3 overflow-hidden">
-                      <div className="h-full bg-gradient-to-r from-green-400 to-green-500 rounded-full transition-all duration-1000 ease-out" style={{
-                    width: `${skill.level}%`
-                  }} />
-                    </div>
-                  </div>)}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {skills.map((skill, index) => (
+                  <div key={index} className="group hover:-translate-y-2 transition-all duration-300 bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50">
+                    <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors text-center">
+                      {skill}
+                    </h3>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
@@ -367,4 +361,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;
