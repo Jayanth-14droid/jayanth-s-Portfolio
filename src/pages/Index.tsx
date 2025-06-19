@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
-
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -17,7 +16,6 @@ const Index = () => {
     email: '',
     message: ''
   });
-
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'projects', 'education', 'skills', 'contact'];
@@ -31,11 +29,9 @@ const Index = () => {
       });
       if (current) setActiveSection(current);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
@@ -43,20 +39,19 @@ const Index = () => {
     });
     setIsMenuOpen(false);
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const result = await emailjs.send(
-        'service_6r6956i', // Your EmailJS service ID
-        'template_c7s8ghz', // Your EmailJS template ID
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_name: 'Jayanti Kotapati'
-        },
-        'g1iMpZw27FIrnlHs5' // Your EmailJS public key
+      const result = await emailjs.send('service_6r6956i',
+      // Your EmailJS service ID
+      'template_c7s8ghz',
+      // Your EmailJS template ID
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: 'Jayanti Kotapati'
+      }, 'g1iMpZw27FIrnlHs5' // Your EmailJS public key
       );
       console.log('Email sent successfully:', result);
       toast({
@@ -77,48 +72,39 @@ const Index = () => {
       });
     }
   };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-
-  const projects = [
-    {
-      title: "COMFORT WEAR",
-      subtitle: "Mobile E-Commerce App",
-      description: "Keep yourself in style by purchasing product from 'comfort wear'",
-      tools: "UI/UX Design, Prototyping",
-      image: "/lovable-uploads/d7a8394a-de60-472f-a442-a4a00fb85a6d.png",
-      projectLink: "https://www.figma.com/proto/FJ3Qk2lOf1IdK3hTwJtFT8/E-commerces--website?node-id=0-1&t=AS6M5J5ddNFiF2YQ-1",
-      caseStudyLink: "https://www.behance.net/gallery/227358245/Comfort-Wear-case-study"
-    },
-    {
-      title: "FOOD RE-DESIGN",
-      subtitle: "Web Application Design",
-      description: "Modern food application with intuitive user experience and real-time data visualization",
-      tools: "UI/UX Design, User Research",
-      image: "/lovable-uploads/c4af3f37-96b8-4dbd-8237-f997d6f6d458.png",
-      projectLink: "https://www.figma.com/proto/anL4j8dj13EGFYcUifEZ4y/food?node-id=0-1&t=Ddw3t1jlgVxW9JOn-1",
-      caseStudyLink: "#"
-    },
-    {
-      title: "NIKE RE-DESIGN",
-      subtitle: "Web Application",
-      description: "Modern shoe web application with intuitive user experience",
-      tools: "UI/UX Design, Wireframing",
-      image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
-      projectLink: "https://www.figma.com/proto/6HFtUNU5pppQWUZAGwRDxK/Nike-Sneaker-Website--Community-?node-id=0-1&t=L68Lf60Bqu0tWWMs-1",
-      caseStudyLink: "#"
-    }
-  ];
-
+  const projects = [{
+    title: "COMFORT WEAR",
+    subtitle: "Mobile E-Commerce App",
+    description: "Keep yourself in style by purchasing product from 'comfort wear'",
+    tools: "UI/UX Design, Prototyping",
+    image: "/lovable-uploads/d7a8394a-de60-472f-a442-a4a00fb85a6d.png",
+    projectLink: "https://www.figma.com/proto/FJ3Qk2lOf1IdK3hTwJtFT8/E-commerces--website?node-id=0-1&t=AS6M5J5ddNFiF2YQ-1",
+    caseStudyLink: "https://www.behance.net/gallery/227358245/Comfort-Wear-case-study"
+  }, {
+    title: "FOOD RE-DESIGN",
+    subtitle: "Web Application Design",
+    description: "Modern food application with intuitive user experience and real-time data visualization",
+    tools: "UI/UX Design, User Research",
+    image: "/lovable-uploads/c4af3f37-96b8-4dbd-8237-f997d6f6d458.png",
+    projectLink: "https://www.figma.com/proto/anL4j8dj13EGFYcUifEZ4y/food?node-id=0-1&t=Ddw3t1jlgVxW9JOn-1",
+    caseStudyLink: "#"
+  }, {
+    title: "NIKE RE-DESIGN",
+    subtitle: "Web Application",
+    description: "Modern shoe web application with intuitive user experience",
+    tools: "UI/UX Design, Wireframing",
+    image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
+    projectLink: "https://www.figma.com/proto/6HFtUNU5pppQWUZAGwRDxK/Nike-Sneaker-Website--Community-?node-id=0-1&t=L68Lf60Bqu0tWWMs-1",
+    caseStudyLink: "#"
+  }];
   const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
-
-  return (
-    <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
+  return <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -127,17 +113,9 @@ const Index = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map(item => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase())}
-                  className={`text-sm font-medium transition-colors hover:text-green-400 ${
-                    activeSection === item.toLowerCase() ? 'text-green-400' : 'text-gray-300'
-                  }`}
-                >
+              {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-colors hover:text-green-400 ${activeSection === item.toLowerCase() ? 'text-green-400' : 'text-gray-300'}`}>
                   {item}
-                </button>
-              ))}
+                </button>)}
             </div>
 
             <div className="hidden md:flex items-center space-x-4">
@@ -154,25 +132,17 @@ const Index = () => {
           </div>
 
           {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden absolute top-16 left-0 w-full bg-gray-900 border-b border-gray-800">
+          {isMenuOpen && <div className="md:hidden absolute top-16 left-0 w-full bg-gray-900 border-b border-gray-800">
               <div className="px-4 py-6 space-y-4">
-                {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map(item => (
-                  <button
-                    key={item}
-                    onClick={() => scrollToSection(item.toLowerCase())}
-                    className="block w-full text-left text-gray-300 hover:text-green-400 transition-colors"
-                  >
+                {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className="block w-full text-left text-gray-300 hover:text-green-400 transition-colors">
                     {item}
-                  </button>
-                ))}
+                  </button>)}
                 <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 w-full">
                   <Download className="w-4 h-4 mr-2" />
                   Download CV
                 </Button>
               </div>
-            </div>
-          )}
+            </div>}
         </div>
       </nav>
 
@@ -217,9 +187,7 @@ const Index = () => {
             <div className="w-80 h-80 mx-auto rounded-full overflow-hidden border-4 border-green-400/20 shadow-2xl">
               <img alt="Profile" src="/lovable-uploads/681759b3-ea0b-419e-b9da-8d674b8d5052.jpg" className="w-full h-full object-fill" />
             </div>
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-green-400 rounded-full flex items-center justify-center animate-pulse">
-              <ArrowDown className="w-8 h-8 text-gray-900" />
-            </div>
+            
           </div>
         </div>
       </section>
@@ -255,18 +223,11 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <div
-                key={index}
-                className="group bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in"
-                style={{ animationDelay: `${index * 200}ms` }}
-              >
+            {projects.map((project, index) => <div key={index} className="group bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in" style={{
+            animationDelay: `${index * 200}ms`
+          }}>
                 <div className="relative overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
+                  <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <ExternalLink className="w-8 h-8 text-white" />
                   </div>
@@ -277,27 +238,15 @@ const Index = () => {
                   <p className="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
                   <p className="text-sm text-green-400 mb-4">{project.tools}</p>
                   <div className="flex flex-col gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300"
-                      onClick={() => window.open(project.projectLink, '_blank')}
-                    >
+                    <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open(project.projectLink, '_blank')}>
                       View Project
                     </Button>
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300"
-                      onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')}
-                      disabled={project.caseStudyLink === "#"}
-                    >
+                    <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')} disabled={project.caseStudyLink === "#"}>
                       View Case Study
                     </Button>
                   </div>
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -341,16 +290,11 @@ const Index = () => {
                 <span className="text-green-400">Skills</span>
               </h2>
               <div className="space-y-6">
-                {skills.map((skill, index) => (
-                  <div
-                    key={index}
-                    className="group hover:-translate-y-2 transition-all duration-300 bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50"
-                  >
+                {skills.map((skill, index) => <div key={index} className="group hover:-translate-y-2 transition-all duration-300 bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50">
                     <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors text-center">
                       {skill}
                     </h3>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
           </div>
@@ -402,46 +346,18 @@ const Index = () => {
             <div className="animate-fade-in animation-delay-300">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <Input
-                    type="text"
-                    name="name"
-                    placeholder="Your Name"
-                    value={formData.name}
-                    onChange={handleInputChange}
-                    required
-                    className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400"
-                  />
+                  <Input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400" />
                 </div>
                 
                 <div>
-                  <Input
-                    type="email"
-                    name="email"
-                    placeholder="Your Email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400"
-                  />
+                  <Input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleInputChange} required className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400" />
                 </div>
                 
                 <div>
-                  <Textarea
-                    name="message"
-                    placeholder="Your Message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    required
-                    rows={5}
-                    className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400"
-                  />
+                  <Textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleInputChange} required rows={5} className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400" />
                 </div>
                 
-                <Button
-                  type="submit"
-                  size="lg"
-                  className="w-full bg-green-400 text-gray-900 hover:bg-green-500 transition-all duration-300 transform hover:scale-105"
-                >
+                <Button type="submit" size="lg" className="w-full bg-green-400 text-gray-900 hover:bg-green-500 transition-all duration-300 transform hover:scale-105">
                   Send Message
                 </Button>
               </form>
@@ -458,8 +374,6 @@ const Index = () => {
           </p>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
