@@ -81,22 +81,25 @@ const Index = () => {
     subtitle: "Mobile E-Commerce App",
     description: "Keep yourself in style by purchasing product from 'comfort wear'",
     tools: "UI/UX Design, Prototyping",
-    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-    link: "#"
+    image: "/lovable-uploads/d7a8394a-de60-472f-a442-a4a00fb85a6d.png",
+    projectLink: "https://www.figma.com/proto/FJ3Qk2lOf1IdK3hTwJtFT8/E-commerces--website?node-id=0-1&t=AS6M5J5ddNFiF2YQ-1",
+    caseStudyLink: "https://www.behance.net/gallery/227358245/Comfort-Wear-case-study"
   }, {
-    title: "FINTECH DASHBOARD",
+    title: "FOOD RE-DESIGN",
     subtitle: "Web Application Design",
-    description: "Modern financial dashboard with intuitive user experience and real-time data visualization",
+    description: "Modern food application with intuitive user experience and real-time data visualization",
     tools: "UI/UX Design, User Research",
-    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-    link: "#"
+    image: "/lovable-uploads/c4af3f37-96b8-4dbd-8237-f997d6f6d458.png",
+    projectLink: "https://www.figma.com/proto/anL4j8dj13EGFYcUifEZ4y/food?node-id=0-1&t=Ddw3t1jlgVxW9JOn-1",
+    caseStudyLink: "#"
   }, {
-    title: "HEALTHCARE APP",
-    subtitle: "Mobile Health Platform",
-    description: "Comprehensive health tracking app with appointment booking and telemedicine features",
+    title: "NIKE RE-DESIGN",
+    subtitle: "Web Application",
+    description: "Modern shoe web application with intuitive user experience",
     tools: "UI/UX Design, Wireframing",
-    image: "/lovable-uploads/da0c0674-eb8a-4e9f-a0ec-949b5e534711.png",
-    link: "#"
+    image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
+    projectLink: "https://www.figma.com/proto/6HFtUNU5pppQWUZAGwRDxK/Nike-Sneaker-Website--Community-?node-id=0-1&t=L68Lf60Bqu0tWWMs-1",
+    caseStudyLink: "#"
   }];
   const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
   return <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
@@ -255,7 +258,7 @@ const Index = () => {
           }}>
                 <div className="relative overflow-hidden">
                   <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center mx-0">
+                  <div className="absolute inset-0 bg-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <ExternalLink className="w-8 h-8 text-white" />
                   </div>
                 </div>
@@ -265,10 +268,21 @@ const Index = () => {
                   <p className="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
                   <p className="text-sm text-green-400 mb-4">{project.tools}</p>
                   <div className="flex flex-col gap-2">
-                    <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300"
+                      onClick={() => window.open(project.projectLink, '_blank')}
+                    >
                       View Project
                     </Button>
-                    <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300">
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300"
+                      onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')}
+                      disabled={project.caseStudyLink === "#"}
+                    >
                       View Case Study
                     </Button>
                   </div>
