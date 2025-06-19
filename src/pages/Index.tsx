@@ -44,17 +44,16 @@ const Index = () => {
     e.preventDefault();
     
     try {
-      // Replace these with your actual EmailJS credentials
       const result = await emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        'service_6r6956i', // Your EmailJS service ID
+        'template_c7s8ghz', // Your EmailJS template ID
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
           to_name: 'Jayanti Kotapati',
         },
-        'YOUR_PUBLIC_KEY' // Replace with your EmailJS public key
+        'g1iMpZw27FIrnlHs5' // Your EmailJS public key
       );
 
       console.log('Email sent successfully:', result);
