@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
-
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -42,26 +41,23 @@ const Index = () => {
   };
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     try {
-      const result = await emailjs.send(
-        'service_6r6956i', // Your EmailJS service ID
-        'template_c7s8ghz', // Your EmailJS template ID
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_name: 'Jayanti Kotapati',
-        },
-        'g1iMpZw27FIrnlHs5' // Your EmailJS public key
+      const result = await emailjs.send('service_6r6956i',
+      // Your EmailJS service ID
+      'template_c7s8ghz',
+      // Your EmailJS template ID
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: 'Jayanti Kotapati'
+      }, 'g1iMpZw27FIrnlHs5' // Your EmailJS public key
       );
-
       console.log('Email sent successfully:', result);
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon."
       });
-      
       setFormData({
         name: '',
         email: '',
@@ -276,21 +272,21 @@ const Index = () => {
               <div className="space-y-8">
                 <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 transition-colors duration-300">
                   <h3 className="text-xl font-bold text-green-400 mb-2">Bachelor of Computer Science (CSE)</h3>
-                  <p className="text-gray-300 mb-2">Dnyy College of Engineering and Technology</p>
+                  <p className="text-gray-300 mb-2">Eluru College of Engineering and Technology</p>
                   <p className="text-gray-400 text-sm mb-2">CGPA: 7.0/10</p>
                   <p className="text-gray-500 text-sm">2020 - 2024</p>
                 </div>
                 
                 <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 transition-colors duration-300">
                   <h3 className="text-xl font-bold text-green-400 mb-2">Intermediate (M.P.C)</h3>
-                  <p className="text-gray-300 mb-2">Tirru Vani Junior College</p>
+                  <p className="text-gray-300 mb-2">Vidya Vikas Junior College</p>
                   <p className="text-gray-400 text-sm mb-2">Percentage: 94.2%</p>
                   <p className="text-gray-500 text-sm">2018 - 2020</p>
                 </div>
 
                 <div className="bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 transition-colors duration-300">
                   <h3 className="text-xl font-bold text-green-400 mb-2">S.S.C</h3>
-                  <p className="text-gray-300 mb-2">Zp High School</p>
+                  <p className="text-gray-300 mb-2">Vidya Vikas High School</p>
                   <p className="text-gray-400 text-sm mb-2">CGPA: 9.5/10</p>
                   <p className="text-gray-500 text-sm">2017 - 2018</p>
                 </div>
