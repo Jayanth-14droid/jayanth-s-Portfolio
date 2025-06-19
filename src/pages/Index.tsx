@@ -85,7 +85,7 @@ const Index = () => {
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="text-xl font-bold text-green-400">Portfolio</div>
+            <div className="text-xl font-bold text-green-400 rounded-sm">JK</div>
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
