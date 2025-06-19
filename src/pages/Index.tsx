@@ -140,10 +140,15 @@ const Index = () => {
                 {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className="block w-full text-left text-gray-300 hover:text-green-400 transition-colors">
                     {item}
                   </button>)}
-                <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 w-full">
-                  <Download className="w-4 h-4 mr-2" />
-                  Download CV
-                </Button>
+               <a
+  href="/Jayanth%20Kotapati__UIUX_.pdf"
+  download
+  className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 px-4 py-2 rounded flex items-center transition-colors border outline-none"
+  target="_blank" rel="noopener noreferrer"
+>
+  <Download className="w-4 h-4 mr-2" />
+  Download CV
+</a>>
               </div>
             </div>}
         </div>
