@@ -160,10 +160,7 @@ const Index = () => {
               I am a passionate UI/UX designer with a love for creating beautiful and functional user experiences. I have strong foundation in UI/UX design.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button size="lg" className="bg-green-400 text-gray-900 hover:bg-green-500 transition-all duration-300 transform hover:scale-105">
-                <Download className="w-5 h-5 mr-2" />
-                Download CV
-              </Button>
+              
               <div className="flex space-x-4">
                 <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
                   <Linkedin className="w-5 h-5" />
