@@ -118,12 +118,15 @@ const Index = () => {
                 </button>)}
             </div>
 
-            <div className="hidden md:flex items-center space-x-4">
-              <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900">
-                <Download className="w-4 h-4 mr-2" />
-                Download CV
-              </Button>
-            </div>
+            <a
+  href="/Jayanth%20Kotapati__UIUX_.pdf"
+  download
+  className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 px-4 py-2 rounded flex items-center transition-colors border outline-none"
+  target="_blank" rel="noopener noreferrer"
+>
+  <Download className="w-4 h-4 mr-2" />
+  Download CV
+</a>
 
             {/* Mobile menu button */}
             <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
