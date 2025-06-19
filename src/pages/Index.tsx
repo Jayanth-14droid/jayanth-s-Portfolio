@@ -5,6 +5,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
+import CV from '../../Jayanth Kotapati__UIUX_.pdf';
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -118,15 +119,14 @@ const Index = () => {
                 </button>)}
             </div>
 
-            <a
-  href="/Jayanth%20Kotapati__UIUX_.pdf"
-  download
-  className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 px-4 py-2 rounded flex items-center transition-colors border outline-none"
-  target="_blank" rel="noopener noreferrer"
->
-  <Download className="w-4 h-4 mr-2" />
-  Download CV
-</a>
+          <div className="hidden md:flex items-center space-x-4">
+              <a href={CV} download="Jayanth Kotapati__UIUX_.pdf">
+                <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900">
+                  <Download className="w-4 h-4 mr-2" />
+                  Download CV
+                </Button>
+              </a>
+            </div>
 
             {/* Mobile menu button */}
             <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -140,15 +140,12 @@ const Index = () => {
                 {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className="block w-full text-left text-gray-300 hover:text-green-400 transition-colors">
                     {item}
                   </button>)}
-               <a
-  href="/Jayanth%20Kotapati__UIUX_.pdf"
-  download
-  className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 px-4 py-2 rounded flex items-center transition-colors border outline-none"
-  target="_blank" rel="noopener noreferrer"
->
-  <Download className="w-4 h-4 mr-2" />
-  Download CV
-</a>>
+                <a href={CV} download="Jayanth Kotapati__UIUX_.pdf" className="w-full">
+                  <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 w-full">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download CV
+                  </Button>
+                </a>
               </div>
             </div>}
         </div>
