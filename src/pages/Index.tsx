@@ -180,11 +180,11 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center my-0 mx-[39px] px-0">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center my-0 px-0 mx-[79px]">
             <div className="animate-fade-in">
               
             </div>
-            <div className="animate-fade-in animation-delay-300">
+            <div className="animate-fade-in animation-delay-300 mx-0 px-0">
               <h3 className="text-3xl font-bold mb-6">Creating Digital Solutions</h3>
               <p className="text-gray-400 text-lg mb-6 leading-relaxed mx-[11px] my-0 text-justify">I'm fresher  in UI/UX design, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed mx-[11px] text-justify py-[21px]">
