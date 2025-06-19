@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
-
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -43,24 +42,27 @@ const Index = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const result = await emailjs.send(
-        'service_6r6956i', // Your EmailJS service ID
-        'template_c7s8ghz', // Your EmailJS template ID
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_name: 'Jayanti Kotapati'
-        },
-        'g1iMpZw27FIrnlHs5' // Your EmailJS public key
+      const result = await emailjs.send('service_6r6956i',
+      // Your EmailJS service ID
+      'template_c7s8ghz',
+      // Your EmailJS template ID
+      {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        to_name: 'Jayanti Kotapati'
+      }, 'g1iMpZw27FIrnlHs5' // Your EmailJS public key
       );
-
       console.log('Email sent successfully:', result);
       toast({
         title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon."
       });
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({
+        name: '',
+        email: '',
+        message: ''
+      });
     } catch (error) {
       console.error('Email sending failed:', error);
       toast({
@@ -163,39 +165,19 @@ const Index = () => {
                 Download CV
               </Button>
               <div className="flex space-x-4">
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="border-gray-600 hover:border-green-400 hover:text-green-400"
-                  onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}
-                >
+                <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
                   <Linkedin className="w-5 h-5" />
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="border-gray-600 hover:border-green-400 hover:text-green-400"
-                  onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}
-                >
+                <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
                   <Instagram className="w-5 h-5" />
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="border-gray-600 hover:border-green-400 hover:text-green-400"
-                  onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}
-                >
+                <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z" />
                     <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z" />
                   </svg>
                 </Button>
-                <Button 
-                  variant="outline" 
-                  size="icon" 
-                  className="border-gray-600 hover:border-green-400 hover:text-green-400"
-                  onClick={() => window.open('mailto:jayanthkotapati14@gmail.com', '_blank')}
-                >
+                <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com', '_blank')}>
                   <Mail className="w-5 h-5" />
                 </Button>
               </div>
@@ -222,7 +204,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center my-0 px-0 mx-[76px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center my-0 px-0 mx-[153px]">
             <div className="animate-fade-in">
               
             </div>
@@ -268,21 +250,10 @@ const Index = () => {
                   <p className="text-gray-400 mb-4 leading-relaxed">{project.description}</p>
                   <p className="text-sm text-green-400 mb-4">{project.tools}</p>
                   <div className="flex flex-col gap-2">
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300"
-                      onClick={() => window.open(project.projectLink, '_blank')}
-                    >
+                    <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open(project.projectLink, '_blank')}>
                       View Project
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      size="sm" 
-                      className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300"
-                      onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')}
-                      disabled={project.caseStudyLink === "#"}
-                    >
+                    <Button variant="outline" size="sm" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')} disabled={project.caseStudyLink === "#"}>
                       View Case Study
                     </Button>
                   </div>
@@ -368,28 +339,13 @@ const Index = () => {
                 </div>
                 
                 <div className="flex space-x-4">
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900"
-                    onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}
-                  >
+                  <Button variant="outline" size="icon" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
                     <Linkedin className="w-5 h-5" />
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900"
-                    onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}
-                  >
+                  <Button variant="outline" size="icon" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
                     <Instagram className="w-5 h-5" />
                   </Button>
-                  <Button 
-                    variant="outline" 
-                    size="icon" 
-                    className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900"
-                    onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}
-                  >
+                  <Button variant="outline" size="icon" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
                     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z" />
                       <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z" />
@@ -432,5 +388,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;
