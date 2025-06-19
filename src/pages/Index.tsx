@@ -201,7 +201,7 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center my-0 px-0 mx-[79px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center my-0 px-0 mx-[76px]">
             <div className="animate-fade-in">
               
             </div>
