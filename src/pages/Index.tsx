@@ -105,7 +105,7 @@ const Index = () => {
     description: "Modern shoe web application with intuitive user experience",
     tools: "UI/UX Design, Wireframing",
     image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
-    projectLink: "https://www.figma.com/proto/6HFtUNU5pppQWZAGwRDxK/Nike-Sneaker-Website--Community-?node-id=0-1&t=L68Lf60Bqu0tWWMs-1",
+    projectLink: "https://www.figma.com/proto/6HFtUNU5pppQWUZAGwRDxK/Nike-Sneaker-Website--Community-?page-id=0%3A1&node-id=4-87&p=f&viewport=105%2C426%2C0.16&t=OashFw0tSbEbYNys-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=4%3A87",
     caseStudyLink: "#"
   }];
   const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
