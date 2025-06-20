@@ -6,7 +6,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati__UIUX_.pdf';
-
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -106,12 +105,16 @@ const Index = () => {
     caseStudyLink: "#"
   }];
   const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
-  const technologies = [
-    { name: "Figma", icon: Figma },
-    { name: "Photoshop", icon: null },
-    { name: "Canva", icon: null }
-  ];
-
+  const technologies = [{
+    name: "Figma",
+    icon: Figma
+  }, {
+    name: "Photoshop",
+    icon: null
+  }, {
+    name: "Canva",
+    icon: null
+  }];
   return <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
@@ -221,27 +224,7 @@ const Index = () => {
             </div>
 
             {/* Technologies & Tools Section */}
-            <div className="w-full max-w-4xl mt-12">
-              <h3 className="text-3xl font-bold mb-8 text-center">Technologies & <span className="text-green-400">Tools</span></h3>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {technologies.map((tech, index) => (
-                  <div key={index} className="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 transition-all duration-300 hover:-translate-y-2">
-                    <div className="flex flex-col items-center space-y-4">
-                      {tech.icon ? (
-                        <tech.icon className="w-12 h-12 text-green-400 group-hover:scale-110 transition-transform duration-300" />
-                      ) : (
-                        <div className="w-12 h-12 bg-green-400/20 rounded-full flex items-center justify-center">
-                          <span className="text-green-400 font-bold text-lg">{tech.name.charAt(0)}</span>
-                        </div>
-                      )}
-                      <h4 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors">
-                        {tech.name}
-                      </h4>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -335,22 +318,16 @@ const Index = () => {
           <div className="w-full max-w-4xl mx-auto mt-20">
             <h2 className="text-4xl font-bold mb-12 text-center">Technologies & <span className="text-green-400">Tools</span></h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {technologies.map((tech, index) => (
-                <div key={index} className="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 transition-all duration-300 hover:-translate-y-2">
+              {technologies.map((tech, index) => <div key={index} className="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 transition-all duration-300 hover:-translate-y-2">
                   <div className="flex flex-col items-center space-y-4">
-                    {tech.icon ? (
-                      <tech.icon className="w-12 h-12 text-green-400 group-hover:scale-110 transition-transform duration-300" />
-                    ) : (
-                      <div className="w-12 h-12 bg-green-400/20 rounded-full flex items-center justify-center">
+                    {tech.icon ? <tech.icon className="w-12 h-12 text-green-400 group-hover:scale-110 transition-transform duration-300" /> : <div className="w-12 h-12 bg-green-400/20 rounded-full flex items-center justify-center">
                         <span className="text-green-400 font-bold text-lg">{tech.name.charAt(0)}</span>
-                      </div>
-                    )}
+                      </div>}
                     <h4 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors">
                       {tech.name}
                     </h4>
                   </div>
-                </div>
-              ))}
+                </div>)}
             </div>
           </div>
         </div>
