@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { ArrowDown, Download, Mail, ExternalLink, Instagram, Linkedin, Menu, X } from 'lucide-react';
+import { ArrowDown, Download, Mail, ExternalLink, Instagram, Linkedin, Menu, X, Figma } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati__UIUX_.pdf';
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -105,6 +106,12 @@ const Index = () => {
     caseStudyLink: "#"
   }];
   const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
+  const technologies = [
+    { name: "Figma", icon: Figma },
+    { name: "Photoshop", icon: null },
+    { name: "Canva", icon: null }
+  ];
+
   return <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
@@ -206,11 +213,34 @@ const Index = () => {
           
           <div className="flex flex-col items-center justify-center text-center">
             <div className="animate-fade-in">
-              <h3 className="text-3xl font-bold mb-6">Creating Digital Solutions</h3>
+              <h3 className="text-3xl font-bold mb-6 text-center">Creating Digital Solutions</h3>
               <p className="text-gray-400 text-lg mb-6 leading-relaxed text-justify max-w-3xl">I'm fresher in UI/UX design, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed text-justify max-w-3xl">
                 I believe in the power of good design to transform businesses and improve people's lives. Every project I work on is an opportunity to learn, grow, and create something meaningful.
               </p>
+            </div>
+
+            {/* Technologies & Tools Section */}
+            <div className="w-full max-w-4xl mt-12">
+              <h3 className="text-3xl font-bold mb-8 text-center">Technologies & <span className="text-green-400">Tools</span></h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {technologies.map((tech, index) => (
+                  <div key={index} className="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 transition-all duration-300 hover:-translate-y-2">
+                    <div className="flex flex-col items-center space-y-4">
+                      {tech.icon ? (
+                        <tech.icon className="w-12 h-12 text-green-400 group-hover:scale-110 transition-transform duration-300" />
+                      ) : (
+                        <div className="w-12 h-12 bg-green-400/20 rounded-full flex items-center justify-center">
+                          <span className="text-green-400 font-bold text-lg">{tech.name.charAt(0)}</span>
+                        </div>
+                      )}
+                      <h4 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors">
+                        {tech.name}
+                      </h4>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
