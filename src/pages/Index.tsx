@@ -198,10 +198,7 @@ const Index = () => {
                   <Instagram className="w-5 h-5" />
                 </Button>
                 <Button variant="outline" size="icon" className="border-green-400 text-green-400 bg-gray-800/50 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
-                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z" />
-                    <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z" />
-                  </svg>
+                  <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />
                 </Button>
                 <Button variant="outline" size="icon" className="border-green-400 text-green-400 bg-gray-800/50 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com', '_blank')}>
                   <Mail className="w-5 h-5" />
@@ -460,10 +457,7 @@ const Index = () => {
                     <Instagram className="w-5 h-5" />
                   </Button>
                   <Button variant="outline" size="icon" className="border-green-400 text-green-400 bg-gray-800/50 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z" />
-                      <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z" />
-                    </svg>
+                    <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />
                   </Button>
                 </div>
               </div>
