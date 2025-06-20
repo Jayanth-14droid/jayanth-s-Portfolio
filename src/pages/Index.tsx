@@ -167,19 +167,19 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               
               <div className="flex space-x-4">
-                <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
+                <Button variant="outline" size="icon" className="border-green-400 text-green-400 bg-gray-800/50 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
                   <Linkedin className="w-5 h-5" />
                 </Button>
-                <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
+                <Button variant="outline" size="icon" className="border-green-400 text-green-400 bg-gray-800/50 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
                   <Instagram className="w-5 h-5" />
                 </Button>
-                <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
+                <Button variant="outline" size="icon" className="border-green-400 text-green-400 bg-gray-800/50 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
                   <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z" />
                     <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z" />
                   </svg>
                 </Button>
-                <Button variant="outline" size="icon" className="border-gray-600 hover:border-green-400 hover:text-green-400" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com', '_blank')}>
+                <Button variant="outline" size="icon" className="border-green-400 text-green-400 bg-gray-800/50 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com', '_blank')}>
                   <Mail className="w-5 h-5" />
                 </Button>
               </div>
@@ -329,13 +329,13 @@ const Index = () => {
                 </div>
                 
                 <div className="flex space-x-4">
-                  <Button variant="outline" size="icon" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
+                  <Button variant="outline" size="icon" className="border-green-400 text-green-400 bg-gray-800/50 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
                     <Linkedin className="w-5 h-5" />
                   </Button>
-                  <Button variant="outline" size="icon" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
+                  <Button variant="outline" size="icon" className="border-green-400 text-green-400 bg-gray-800/50 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
                     <Instagram className="w-5 h-5" />
                   </Button>
-                  <Button variant="outline" size="icon" className="border-green-400 text-green-400 hover:bg-green-400 hover:text-gray-900" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
+                  <Button variant="outline" size="icon" className="border-green-400 text-green-400 bg-gray-800/50 hover:bg-green-400 hover:text-gray-900 transition-all duration-300" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
                     <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M7.5 2.5C7.5 1.119 8.619 0 10 0h11C22.881 0 24 1.119 24 2.5v19c0 1.381-1.119 2.5-2.5 2.5H10c-1.381 0-2.5-1.119-2.5-2.5v-19zM8.5 2.5v19c0 .827.673 1.5 1.5 1.5h11c.827 0 1.5-.673 1.5-1.5v-19c0-.827-.673-1.5-1.5-1.5H10c-.827 0-1.5.673-1.5 1.5z" />
                       <path d="M12 6.5c-.828 0-1.5-.672-1.5-1.5S11.172 3.5 12 3.5s1.5.672 1.5 1.5S12.828 6.5 12 6.5z" />
