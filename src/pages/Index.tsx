@@ -102,7 +102,7 @@ const Index = () => {
     description: "Modern shoe web application with intuitive user experience",
     tools: "UI/UX Design, Wireframing",
     image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
-    projectLink: "https://www.figma.com/proto/6HFtUNU5pppQWUZAGwRDxK/Nike-Sneaker-Website--Community-?node-id=0-1&t=L68Lf60Bqu0tWWMs-1",
+    projectLink: "https://www.figma.com/proto/6HFtUNU5pppQWZAGwRDxK/Nike-Sneaker-Website--Community-?node-id=0-1&t=L68Lf60Bqu0tWWMs-1",
     caseStudyLink: "#"
   }];
   const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
@@ -328,6 +328,29 @@ const Index = () => {
                     </h3>
                   </div>)}
               </div>
+            </div>
+          </div>
+
+          {/* Technologies & Tools Section */}
+          <div className="w-full max-w-4xl mx-auto mt-20">
+            <h2 className="text-4xl font-bold mb-12 text-center">Technologies & <span className="text-green-400">Tools</span></h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {technologies.map((tech, index) => (
+                <div key={index} className="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 transition-all duration-300 hover:-translate-y-2">
+                  <div className="flex flex-col items-center space-y-4">
+                    {tech.icon ? (
+                      <tech.icon className="w-12 h-12 text-green-400 group-hover:scale-110 transition-transform duration-300" />
+                    ) : (
+                      <div className="w-12 h-12 bg-green-400/20 rounded-full flex items-center justify-center">
+                        <span className="text-green-400 font-bold text-lg">{tech.name.charAt(0)}</span>
+                      </div>
+                    )}
+                    <h4 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors">
+                      {tech.name}
+                    </h4>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
