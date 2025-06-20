@@ -4,19 +4,28 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati__UIUX_.pdf';
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const {
-    toast
-  } = useToast();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
+
+  // Scroll animation hooks for different sections
+  const aboutAnimation = useScrollAnimation(0.2);
+  const projectsAnimation = useScrollAnimation(0.1);
+  const educationAnimation = useScrollAnimation(0.2);
+  const skillsAnimation = useScrollAnimation(0.2);
+  const techAnimation = useScrollAnimation(0.2);
+  const contactAnimation = useScrollAnimation(0.2);
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'projects', 'education', 'skills', 'contact'];
@@ -33,6 +42,7 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
@@ -40,20 +50,18 @@ const Index = () => {
     });
     setIsMenuOpen(false);
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
       const result = await emailjs.send('service_6r6956i',
-      // Your EmailJS service ID
       'template_c7s8ghz',
-      // Your EmailJS template ID
       {
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
         to_name: 'Jayanti Kotapati'
-      }, 'g1iMpZw27FIrnlHs5' // Your EmailJS public key
-      );
+      }, 'g1iMpZw27FIrnlHs5');
       console.log('Email sent successfully:', result);
       toast({
         title: "Message sent!",
@@ -73,37 +81,42 @@ const Index = () => {
       });
     }
   };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-  const projects = [{
-    title: "COMFORT WEAR",
-    subtitle: "Mobile E-Commerce App",
-    description: "Keep yourself in style by purchasing product from 'comfort wear'",
-    tools: "UI/UX Design, Prototyping",
-    image: "/lovable-uploads/d7a8394a-de60-472f-a442-a4a00fb85a6d.png",
-    projectLink: "https://www.figma.com/proto/FJ3Qk2lOf1IdK3hTwJtFT8/E-commerces--website?node-id=0-1&t=AS6M5J5ddNFiF2YQ-1",
-    caseStudyLink: "https://www.behance.net/gallery/227358245/Comfort-Wear-case-study"
-  }, {
-    title: "FOOD RE-DESIGN",
-    subtitle: "Web Application Design",
-    description: "Modern food application with intuitive user experience and real-time data visualization",
-    tools: "UI/UX Design, User Research",
-    image: "/lovable-uploads/c4af3f37-96b8-4dbd-8237-f997d6f6d458.png",
-    projectLink: "https://www.figma.com/proto/anL4j8dj13EGFYcUifEZ4y/food?node-id=0-1&t=Ddw3t1jlgVxW9JOn-1",
-    caseStudyLink: "#"
-  }, {
-    title: "NIKE RE-DESIGN",
-    subtitle: "Web Application",
-    description: "Modern shoe web application with intuitive user experience",
-    tools: "UI/UX Design, Wireframing",
-    image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
-    projectLink: "https://www.figma.com/proto/6HFtUNU5pppQWZAGwRDxK/Nike-Sneaker-Website--Community-?node-id=0-1&t=L68Lf60Bqu0tWWMs-1",
-    caseStudyLink: "#"
-  }];
+
+  const projects = [
+    {
+      title: "COMFORT WEAR",
+      subtitle: "Mobile E-Commerce App",
+      description: "Keep yourself in style by purchasing product from 'comfort wear'",
+      tools: "UI/UX Design, Prototyping",
+      image: "/lovable-uploads/d7a8394a-de60-472f-a442-a4a00fb85a6d.png",
+      projectLink: "https://www.figma.com/proto/FJ3Qk2lOf1IdK3hTwJtFT8/E-commerces--website?node-id=0-1&t=AS6M5J5ddNFiF2YQ-1",
+      caseStudyLink: "https://www.behance.net/gallery/227358245/Comfort-Wear-case-study"
+    }, {
+      title: "FOOD RE-DESIGN",
+      subtitle: "Web Application Design",
+      description: "Modern food application with intuitive user experience and real-time data visualization",
+      tools: "UI/UX Design, User Research",
+      image: "/lovable-uploads/c4af3f37-96b8-4dbd-8237-f997d6f6d458.png",
+      projectLink: "https://www.figma.com/proto/anL4j8dj13EGFYcUifEZ4y/food?node-id=0-1&t=Ddw3t1jlgVxW9JOn-1",
+      caseStudyLink: "#"
+    }, {
+      title: "NIKE RE-DESIGN",
+      subtitle: "Web Application",
+      description: "Modern shoe web application with intuitive user experience",
+      tools: "UI/UX Design, Wireframing",
+      image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
+      projectLink: "https://www.figma.com/proto/6HFtUNU5pppQWZAGwRDxK/Nike-Sneaker-Website--Community-?node-id=0-1&t=L68Lf60Bqu0tWWMs-1",
+      caseStudyLink: "#"
+    }
+  ];
+
   const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
   const technologies = [{
     name: "Figma",
@@ -115,6 +128,7 @@ const Index = () => {
     name: "Canva",
     icon: null
   }];
+
   return <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
@@ -207,24 +221,34 @@ const Index = () => {
       {/* About Section */}
       <section id="about" className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div 
+            ref={aboutAnimation.ref}
+            className={`text-center mb-16 transition-all duration-1000 ${
+              aboutAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">About <span className="text-green-400">Me</span></h2>
             <p className="text-gray-400 text-lg max-w-2xl mx-auto">
               Passionate about creating meaningful digital experiences that solve real-world problems through thoughtful design and user-centered approaches.
             </p>
           </div>
           
-          <div className="flex flex-col items-center justify-center text-center">
-            <div className="animate-fade-in">
+          <div 
+            className={`flex flex-col items-center justify-center text-center transition-all duration-1000 delay-300 ${
+              aboutAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
+            <div>
               <h3 className="text-3xl font-bold mb-6 text-center">Creating Digital Solutions</h3>
               <p className="text-gray-400 text-lg mb-6 leading-relaxed text-justify max-w-3xl">I'm fresher in UI/UX design, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed text-justify max-w-3xl">
                 I believe in the power of good design to transform businesses and improve people's lives. Every project I work on is an opportunity to learn, grow, and create something meaningful.
               </p>
             </div>
-
-            {/* Technologies & Tools Section */}
-            
           </div>
         </div>
       </section>
@@ -232,15 +256,30 @@ const Index = () => {
       {/* Projects Section */}
       <section id="projects" className="py-20 px-4 bg-gray-800/50 mx-0">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div 
+            ref={projectsAnimation.ref}
+            className={`text-center mb-16 transition-all duration-1000 ${
+              projectsAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured <span className="text-green-400">Projects</span></h2>
             <p className="text-gray-400 text-lg">A selection of my recent work showcasing various design disciplines</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => <div key={index} className="group bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 animate-fade-in" style={{
-            animationDelay: `${index * 200}ms`
-          }}>
+            {projects.map((project, index) => <div 
+                key={index} 
+                className={`group bg-gray-800 rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-1000 hover:-translate-y-2 ${
+                  projectsAnimation.isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-10'
+                }`}
+                style={{
+                  transitionDelay: projectsAnimation.isVisible ? `${index * 200 + 300}ms` : '0ms'
+                }}
+              >
                 <div className="relative overflow-hidden">
                   <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
@@ -271,7 +310,14 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Education */}
-            <div className="animate-fade-in">
+            <div 
+              ref={educationAnimation.ref}
+              className={`transition-all duration-1000 ${
+                educationAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 -translate-x-10'
+              }`}
+            >
               <h2 className="text-4xl font-bold mb-12 text-center lg:text-left">
                 <span className="text-green-400">Education</span>
               </h2>
@@ -300,12 +346,30 @@ const Index = () => {
             </div>
 
             {/* Skills */}
-            <div id="skills" className="animate-fade-in animation-delay-300">
+            <div 
+              id="skills" 
+              ref={skillsAnimation.ref}
+              className={`transition-all duration-1000 ${
+                skillsAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-10'
+              }`}
+            >
               <h2 className="text-4xl font-bold mb-12 text-center lg:text-left">
                 <span className="text-green-400">Skills</span>
               </h2>
               <div className="space-y-6">
-                {skills.map((skill, index) => <div key={index} className="group hover:-translate-y-2 transition-all duration-300 bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50">
+                {skills.map((skill, index) => <div 
+                    key={index} 
+                    className={`group hover:-translate-y-2 transition-all duration-1000 bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 ${
+                      skillsAnimation.isVisible 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-10'
+                    }`}
+                    style={{
+                      transitionDelay: skillsAnimation.isVisible ? `${index * 150}ms` : '0ms'
+                    }}
+                  >
                     <h3 className="text-lg font-semibold text-white group-hover:text-green-400 transition-colors text-center">
                       {skill}
                     </h3>
@@ -315,10 +379,27 @@ const Index = () => {
           </div>
 
           {/* Technologies & Tools Section */}
-          <div className="w-full max-w-4xl mx-auto mt-20">
+          <div 
+            ref={techAnimation.ref}
+            className={`w-full max-w-4xl mx-auto mt-20 transition-all duration-1000 ${
+              techAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
             <h2 className="text-4xl font-bold mb-12 text-center">Technologies & <span className="text-green-400">Tools</span></h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {technologies.map((tech, index) => <div key={index} className="group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 transition-all duration-300 hover:-translate-y-2">
+              {technologies.map((tech, index) => <div 
+                  key={index} 
+                  className={`group bg-gray-800 p-6 rounded-xl border border-gray-700 hover:border-green-400/50 transition-all duration-1000 hover:-translate-y-2 ${
+                    techAnimation.isVisible 
+                      ? 'opacity-100 translate-y-0' 
+                      : 'opacity-0 translate-y-10'
+                  }`}
+                  style={{
+                    transitionDelay: techAnimation.isVisible ? `${index * 200 + 300}ms` : '0ms'
+                  }}
+                >
                   <div className="flex flex-col items-center space-y-4">
                     {tech.icon ? <tech.icon className="w-12 h-12 text-green-400 group-hover:scale-110 transition-transform duration-300" /> : <div className="w-12 h-12 bg-green-400/20 rounded-full flex items-center justify-center">
                         <span className="text-green-400 font-bold text-lg">{tech.name.charAt(0)}</span>
@@ -336,13 +417,26 @@ const Index = () => {
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4 bg-gray-800/50">
         <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+          <div 
+            ref={contactAnimation.ref}
+            className={`text-center mb-16 transition-all duration-1000 ${
+              contactAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-10'
+            }`}
+          >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In <span className="text-green-400">Touch</span></h2>
             <p className="text-gray-400 text-lg">Ready to start your next project? Let's create something amazing together.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className="animate-fade-in">
+            <div 
+              className={`transition-all duration-1000 delay-300 ${
+                contactAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 -translate-x-10'
+              }`}
+            >
               <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed">
                 What's next? Feel free to reach out to me if you're looking for a UI/UX Designer, have a query, or simply want to connect.
@@ -375,7 +469,13 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="animate-fade-in animation-delay-300">
+            <div 
+              className={`transition-all duration-1000 delay-500 ${
+                contactAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 translate-x-10'
+              }`}
+            >
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
                   <Input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required className="bg-gray-800 border-gray-700 text-white placeholder-gray-400 focus:border-green-400 focus:ring-green-400" />
@@ -408,4 +508,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;
