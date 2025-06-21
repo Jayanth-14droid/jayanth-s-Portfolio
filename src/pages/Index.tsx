@@ -198,8 +198,16 @@ const Index = () => {
           </div>
           <div className="relative animate-fade-in animation-delay-300">
             <div className="w-80 h-80 mx-auto rounded-full overflow-hidden border-4 border-green-400/20 relative">
+              {/* Background blur effect */}
               <div className="absolute inset-0 bg-green-400/30 blur-3xl rounded-full transform scale-110"></div>
-              <img alt="Profile" src="/lovable-uploads/681759b3-ea0b-419e-b9da-8d674b8d5052.jpg" className="w-full h-full object-fill relative z-10 shadow-[0_0_80px_rgba(16,185,129,0.6)] hover:shadow-[0_0_120px_rgba(16,185,129,0.8)] transition-all duration-500" />
+              {/* Additional shadow layers for stronger effect */}
+              <div className="absolute inset-0 bg-green-400/20 blur-2xl rounded-full transform scale-125"></div>
+              <div className="absolute inset-0 bg-green-400/40 blur-xl rounded-full transform scale-105"></div>
+              <img 
+                alt="Profile" 
+                src="/lovable-uploads/681759b3-ea0b-419e-b9da-8d674b8d5052.jpg" 
+                className="w-full h-full object-fill relative z-10 shadow-[0_0_100px_rgba(16,185,129,0.8),0_0_200px_rgba(16,185,129,0.4),0_0_300px_rgba(16,185,129,0.2)] hover:shadow-[0_0_150px_rgba(16,185,129,1),0_0_250px_rgba(16,185,129,0.6),0_0_350px_rgba(16,185,129,0.3)] transition-all duration-500" 
+              />
             </div>
             
           </div>
