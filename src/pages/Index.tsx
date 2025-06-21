@@ -198,8 +198,9 @@ const Index = () => {
             </div>
           </div>
           <div className="relative animate-fade-in animation-delay-300">
-            <div className="w-80 h-80 mx-auto rounded-full overflow-hidden border-4 border-green-400/20 shadow-2xl">
-              <img alt="Profile" src="/lovable-uploads/681759b3-ea0b-419e-b9da-8d674b8d5052.jpg" className="w-full h-full object-fill shadow-[0_0_50px_rgba(16,185,129,0.3)] hover:shadow-[0_0_80px_rgba(16,185,129,0.5)] transition-shadow duration-500" />
+            <div className="w-80 h-80 mx-auto rounded-full overflow-hidden border-4 border-green-400/20 relative">
+              <div className="absolute inset-0 bg-green-400/30 blur-3xl rounded-full transform scale-110"></div>
+              <img alt="Profile" src="/lovable-uploads/681759b3-ea0b-419e-b9da-8d674b8d5052.jpg" className="w-full h-full object-fill relative z-10 shadow-[0_0_80px_rgba(16,185,129,0.6)] hover:shadow-[0_0_120px_rgba(16,185,129,0.8)] transition-all duration-500" />
             </div>
             
           </div>
