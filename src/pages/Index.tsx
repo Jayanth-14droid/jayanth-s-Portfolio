@@ -7,7 +7,6 @@ import { useToast } from '@/hooks/use-toast';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati__UIUX.pdf';
-
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -244,7 +243,7 @@ const Index = () => {
                 <div className="relative overflow-hidden">
                   <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-green-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <ExternalLink className="w-8 h-8 text-white" />
+                    
                   </div>
                 </div>
                 <div className="p-6">
@@ -409,5 +408,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;
