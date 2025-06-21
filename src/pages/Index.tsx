@@ -7,6 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati__UIUX.pdf';
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -26,6 +27,7 @@ const Index = () => {
   const skillsAnimation = useScrollAnimation(0.2);
   const techAnimation = useScrollAnimation(0.2);
   const contactAnimation = useScrollAnimation(0.2);
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'projects', 'education', 'skills', 'contact'];
@@ -42,6 +44,7 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
@@ -49,6 +52,7 @@ const Index = () => {
     });
     setIsMenuOpen(false);
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -77,12 +81,14 @@ const Index = () => {
       });
     }
   };
+
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
+
   const projects = [{
     title: "COMFORT WEAR",
     subtitle: "Mobile E-Commerce App",
@@ -108,6 +114,7 @@ const Index = () => {
     projectLink: "https://www.figma.com/proto/xP8Vr0T8VDP5bUo9j73AV4/NIKE?page-id=0%3A1&node-id=1-254&starting-point-node-id=81%3A100&t=hw1eFjUB446gOPip-1",
     caseStudyLink: "#"
   }];
+
   const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
   const technologies = [{
     name: "Figma",
@@ -119,6 +126,7 @@ const Index = () => {
     name: "Canva",
     icon: null
   }];
+
   return <div className="min-h-screen bg-gray-900 text-white overflow-x-hidden">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-800">
@@ -207,7 +215,7 @@ const Index = () => {
               <div className="absolute inset-0 bg-green-400/40 blur-xl rounded-full transform scale-105"></div>
               <img 
                 alt="Profile" 
-                src="/lovable-uploads/681759b3-ea0b-419e-b9da-8d674b8d5052.jpg" 
+                src="/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png" 
                 className="w-full h-full object-fill relative z-10 shadow-[0_0_100px_rgba(16,185,129,0.8),0_0_200px_rgba(16,185,129,0.4),0_0_300px_rgba(16,185,129,0.2)] hover:shadow-[0_0_150px_rgba(16,185,129,1),0_0_250px_rgba(16,185,129,0.6),0_0_350px_rgba(16,185,129,0.3)] transition-all duration-500" 
               />
             </div>
@@ -418,4 +426,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;
