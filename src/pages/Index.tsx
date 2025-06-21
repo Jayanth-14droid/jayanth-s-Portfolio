@@ -7,6 +7,7 @@ import { useToast } from '@/hooks/use-toast';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati__UIUX.pdf';
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -198,7 +199,7 @@ const Index = () => {
           </div>
           <div className="relative animate-fade-in animation-delay-300">
             <div className="w-80 h-80 mx-auto rounded-full overflow-hidden border-4 border-green-400/20 shadow-2xl">
-              <img alt="Profile" src="/lovable-uploads/681759b3-ea0b-419e-b9da-8d674b8d5052.jpg" className="w-full h-full object-fill" />
+              <img alt="Profile" src="/lovable-uploads/681759b3-ea0b-419e-b9da-8d674b8d5052.jpg" className="w-full h-full object-fill shadow-[0_0_50px_rgba(16,185,129,0.3)] hover:shadow-[0_0_80px_rgba(16,185,129,0.5)] transition-shadow duration-500" />
             </div>
             
           </div>
@@ -407,4 +408,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;
