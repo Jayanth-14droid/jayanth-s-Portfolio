@@ -255,7 +255,7 @@ const Index = () => {
           <div className={`flex flex-col items-center justify-center text-center transition-all duration-1000 delay-300 ${aboutAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div>
               <h3 className="text-3xl font-bold mb-6 text-center">Creating Digital Solutions</h3>
-              <p className="text-gray-400 text-lg mb-6 leading-relaxed text-justify max-w-3xl">I'm fresher in UI/UX design, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
+              <p className="text-gray-400 text-lg mb-6 leading-relaxed text-justify max-w-3xl">I'm an UI/UX designer, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
               <p className="text-gray-400 text-lg mb-8 leading-relaxed text-justify max-w-3xl">
                 I believe in the power of good design to transform businesses and improve people's lives. Every project I work on is an opportunity to learn, grow, and create something meaningful.
               </p>
