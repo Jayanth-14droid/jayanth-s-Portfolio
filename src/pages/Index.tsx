@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { ArrowDown, Download, Mail, ExternalLink, Instagram, Linkedin, Menu, X, Figma } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -90,6 +91,22 @@ const Index = () => {
   };
 
   const projects = [{
+    title: "BURGER HUNT",
+    subtitle: "Food Delivery App with Parallax",
+    description: "Modern food delivery application featuring stunning parallax effects and intuitive user experience. Crunchy meat all day makes the pain go away.",
+    tools: "UI/UX Design, Parallax Effects, Prototyping",
+    image: "/lovable-uploads/b61558b7-dd40-4118-84e0-ae2951483f27.png",
+    projectLink: "https://www.figma.com/proto/tvmtFRMvBELvrbyr95bXh5/Untitled?node-id=12-4&t=NTL4kx4Ioeq8iFFv-1",
+    caseStudyLink: "#"
+  }, {
+    title: "CLASSIC CARS MUSTANG",
+    subtitle: "Automotive Showcase with Parallax",
+    description: "Elegant automotive showcase featuring the iconic Mustang 1954 with smooth parallax scrolling effects and premium design aesthetics.",
+    tools: "UI/UX Design, Parallax Design, Visual Design",
+    image: "/lovable-uploads/f5c380d6-db4d-48a6-9b61-0eaf4e978ff4.png",
+    projectLink: "https://www.figma.com/proto/tvmtFRMvBELvrbyr95bXh5/Untitled?node-id=75-831&t=30jv7tUduRR6vyRF-1",
+    caseStudyLink: "#"
+  }, {
     title: "COMFORT WEAR",
     subtitle: "Mobile E-Commerce App",
     description: "Keep yourself in style by purchasing product from 'comfort wear'",
