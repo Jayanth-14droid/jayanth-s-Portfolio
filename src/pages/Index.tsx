@@ -1,4 +1,5 @@
 
+
 import { useState, useEffect } from 'react';
 import { ArrowDown, Download, Mail, ExternalLink, Instagram, Linkedin, Menu, X, Figma } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -91,6 +92,14 @@ const Index = () => {
   };
 
   const projects = [{
+    title: "COMFORT WEAR",
+    subtitle: "Mobile E-Commerce App",
+    description: "Keep yourself in style by purchasing product from 'comfort wear'",
+    tools: "UI/UX Design, Prototyping",
+    image: "/lovable-uploads/d7a8394a-de60-472f-a442-a4a00fb85a6d.png",
+    projectLink: "https://www.figma.com/proto/FJ3Qk2lOf1IdK3hTwJtFT8/E-commerces--website?node-id=0-1&t=AS6M5J5ddNFiF2YQ-1",
+    caseStudyLink: "https://www.behance.net/gallery/227358245/Comfort-Wear-case-study"
+  }, {
     title: "BURGER HUNT",
     subtitle: "Food Delivery App with Parallax",
     description: "Modern food delivery application featuring stunning parallax effects and intuitive user experience. Crunchy meat all day makes the pain go away.",
@@ -106,14 +115,6 @@ const Index = () => {
     image: "/lovable-uploads/f5c380d6-db4d-48a6-9b61-0eaf4e978ff4.png",
     projectLink: "https://www.figma.com/proto/tvmtFRMvBELvrbyr95bXh5/Untitled?node-id=75-831&t=30jv7tUduRR6vyRF-1",
     caseStudyLink: "#"
-  }, {
-    title: "COMFORT WEAR",
-    subtitle: "Mobile E-Commerce App",
-    description: "Keep yourself in style by purchasing product from 'comfort wear'",
-    tools: "UI/UX Design, Prototyping",
-    image: "/lovable-uploads/d7a8394a-de60-472f-a442-a4a00fb85a6d.png",
-    projectLink: "https://www.figma.com/proto/FJ3Qk2lOf1IdK3hTwJtFT8/E-commerces--website?node-id=0-1&t=AS6M5J5ddNFiF2YQ-1",
-    caseStudyLink: "https://www.behance.net/gallery/227358245/Comfort-Wear-case-study"
   }, {
     title: "FOOD RE-DESIGN",
     subtitle: "Web Application Design",
@@ -445,3 +446,4 @@ const Index = () => {
 };
 
 export default Index;
+
