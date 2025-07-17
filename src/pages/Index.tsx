@@ -100,6 +100,14 @@ const Index = () => {
     projectLink: "https://www.figma.com/proto/FJ3Qk2lOf1IdK3hTwJtFT8/E-commerces--website?node-id=0-1&t=AS6M5J5ddNFiF2YQ-1",
     caseStudyLink: "https://www.behance.net/gallery/227358245/Comfort-Wear-case-study"
   }, {
+    title: "COURSE-ONLINE",
+    subtitle: "Learning Platform App",
+    description: "Modern online learning platform designed to provide seamless educational experiences with intuitive course navigation and engaging user interface for students and mentors.",
+    tools: "UI/UX Design, Mobile App Design, User Research",
+    image: "/lovable-uploads/389d16d0-93cb-443e-b3dc-653543ff3a3e.png",
+    projectLink: "https://www.figma.com/proto/Y8lve28Tl1xh2cGNUiXDKj/Course-online--Learning?node-id=0-1&t=pFtA5ZSBwInYw6L4-1",
+    caseStudyLink: "https://www.behance.net/gallery/230532382/Course-online-case-study"
+  }, {
     title: "BURGER HUNT",
     subtitle: "Food Delivery App with Parallax",
     description: "Modern food delivery application featuring stunning parallax effects and intuitive user experience. Crunchy meat all day makes the pain go away.",
