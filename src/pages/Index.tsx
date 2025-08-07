@@ -7,15 +7,12 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { removeBackground, loadImageFromUrl } from '@/utils/backgroundRemoval';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati__UIUX.pdf';
 
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const [profileImageSrc, setProfileImageSrc] = useState('/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png');
-  const [isProcessingImage, setIsProcessingImage] = useState(false);
   const {
     toast
   } = useToast();
@@ -32,34 +29,6 @@ const Index = () => {
   const skillsAnimation = useScrollAnimation(0.2);
   const techAnimation = useScrollAnimation(0.2);
   const contactAnimation = useScrollAnimation(0.2);
-
-  // Process background removal on component mount
-  useEffect(() => {
-    const processImage = async () => {
-      try {
-        setIsProcessingImage(true);
-        const img = await loadImageFromUrl('/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png');
-        const processedBlob = await removeBackground(img);
-        const processedUrl = URL.createObjectURL(processedBlob);
-        setProfileImageSrc(processedUrl);
-        toast({
-          title: "Background removed!",
-          description: "Profile picture background has been successfully removed."
-        });
-      } catch (error) {
-        console.error('Failed to remove background:', error);
-        toast({
-          title: "Background removal failed",
-          description: "Using original image instead.",
-          variant: "destructive"
-        });
-      } finally {
-        setIsProcessingImage(false);
-      }
-    };
-
-    processImage();
-  }, [toast]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -272,14 +241,9 @@ const Index = () => {
               <div className="absolute inset-0 bg-green-400/40 blur-xl rounded-full transform scale-105"></div>
               <img 
                 alt="Profile" 
-                src={profileImageSrc}
-                className={`w-full h-full object-fill relative z-10 shadow-[0_0_120px_rgba(16,185,129,0.9),0_0_240px_rgba(16,185,129,0.5),0_0_360px_rgba(16,185,129,0.3)] hover:shadow-[0_0_180px_rgba(16,185,129,1),0_0_300px_rgba(16,185,129,0.7),0_0_420px_rgba(16,185,129,0.4)] transition-all duration-500 ${isProcessingImage ? 'opacity-50' : 'opacity-100'}`}
+                src="/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png" 
+                className="w-full h-full object-fill relative z-10 shadow-[0_0_120px_rgba(16,185,129,0.9),0_0_240px_rgba(16,185,129,0.5),0_0_360px_rgba(16,185,129,0.3)] hover:shadow-[0_0_180px_rgba(16,185,129,1),0_0_300px_rgba(16,185,129,0.7),0_0_420px_rgba(16,185,129,0.4)] transition-all duration-500" 
               />
-              {isProcessingImage && (
-                <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 rounded-full z-20">
-                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-green-400"></div>
-                </div>
-              )}
             </div>
             
           </div>
