@@ -242,7 +242,7 @@ const Index = () => {
               <img 
                 alt="Profile" 
                 src="/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png" 
-                className="w-full h-full object-fill relative z-10 animate-float shadow-[0_0_120px_rgba(16,185,129,0.9),0_0_240px_rgba(16,185,129,0.5),0_0_360px_rgba(16,185,129,0.3)] hover:shadow-[0_0_180px_rgba(16,185,129,1),0_0_300px_rgba(16,185,129,0.7),0_0_420px_rgba(16,185,129,0.4)] transition-all duration-500" 
+                className="w-full h-full object-fill relative z-10 shadow-[0_0_120px_rgba(16,185,129,0.9),0_0_240px_rgba(16,185,129,0.5),0_0_360px_rgba(16,185,129,0.3)] hover:shadow-[0_0_180px_rgba(16,185,129,1),0_0_300px_rgba(16,185,129,0.7),0_0_420px_rgba(16,185,129,0.4)] transition-all duration-500" 
               />
             </div>
             
