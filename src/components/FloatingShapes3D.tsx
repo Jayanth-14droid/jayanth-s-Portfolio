@@ -1,6 +1,5 @@
 import { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Sphere, Float, MeshDistortMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 
 function FloatingShape({ position, color, scale = 1 }: { position: [number, number, number], color: string, scale?: number }) {
@@ -10,33 +9,24 @@ function FloatingShape({ position, color, scale = 1 }: { position: [number, numb
     if (meshRef.current) {
       meshRef.current.rotation.x += delta * 0.3
       meshRef.current.rotation.y += delta * 0.2
+      meshRef.current.position.y += Math.sin(state.clock.elapsedTime + position[0]) * 0.01
     }
   })
 
   return (
-    <Float
-      speed={2}
-      rotationIntensity={0.5}
-      floatIntensity={1}
-      floatingRange={[1, 2]}
+    <mesh
+      ref={meshRef}
+      position={position}
+      scale={scale}
     >
-      <Sphere
-        ref={meshRef}
-        position={position}
-        scale={scale}
-        args={[1, 32, 32]}
-      >
-        <MeshDistortMaterial
-          color={color}
-          attach="material"
-          distort={0.4}
-          speed={2}
-          roughness={0.1}
-          transparent
-          opacity={0.6}
-        />
-      </Sphere>
-    </Float>
+      <sphereGeometry args={[1, 32, 32]} />
+      <meshStandardMaterial
+        color={color}
+        transparent
+        opacity={0.6}
+        roughness={0.1}
+      />
+    </mesh>
   )
 }
 

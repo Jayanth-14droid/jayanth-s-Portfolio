@@ -1,40 +1,48 @@
 import { useRef, useMemo } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Points, PointMaterial } from '@react-three/drei'
 import * as THREE from 'three'
 
 function Particles() {
-  const ref = useRef<THREE.Points>(null!)
+  const pointsRef = useRef<THREE.Points>(null!)
   
-  const particlesPosition = useMemo(() => {
-    const positions = new Float32Array(2000 * 3)
-    for (let i = 0; i < 2000; i++) {
-      positions[i * 3] = (Math.random() - 0.5) * 20
-      positions[i * 3 + 1] = (Math.random() - 0.5) * 20
-      positions[i * 3 + 2] = (Math.random() - 0.5) * 20
+  const { positions, count } = useMemo(() => {
+    const count = 1000
+    const positions = new Float32Array(count * 3)
+    
+    for (let i = 0; i < count; i++) {
+      positions[i * 3] = (Math.random() - 0.5) * 10
+      positions[i * 3 + 1] = (Math.random() - 0.5) * 10
+      positions[i * 3 + 2] = (Math.random() - 0.5) * 10
     }
-    return positions
+    
+    return { positions, count }
   }, [])
 
   useFrame((state, delta) => {
-    if (ref.current) {
-      ref.current.rotation.x -= delta / 20
-      ref.current.rotation.y -= delta / 30
+    if (pointsRef.current) {
+      pointsRef.current.rotation.x -= delta / 10
+      pointsRef.current.rotation.y -= delta / 15
     }
   })
 
   return (
-    <group rotation={[0, 0, Math.PI / 4]}>
-      <Points ref={ref} positions={particlesPosition} stride={3} frustumCulled={false}>
-        <PointMaterial
-          transparent
-          color="#10b981"
-          size={0.005}
-          sizeAttenuation={true}
-          depthWrite={false}
+    <points ref={pointsRef}>
+      <bufferGeometry>
+        <bufferAttribute
+          attach="attributes-position"
+          count={count}
+          array={positions}
+          itemSize={3}
         />
-      </Points>
-    </group>
+      </bufferGeometry>
+      <pointsMaterial
+        color="#10b981"
+        size={0.02}
+        sizeAttenuation={true}
+        transparent
+        opacity={0.6}
+      />
+    </points>
   )
 }
 
