@@ -10,6 +10,8 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { FloatingShapes3D } from '@/components/FloatingShapes3D';
 import { ParticleField } from '@/components/ParticleField';
+import { FeaturedProjectsCarousel } from '@/components/FeaturedProjectsCarousel';
+import { ProminentContactSection } from '@/components/ProminentContactSection';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati__UIUX.pdf';
 
@@ -94,7 +96,7 @@ const Index = () => {
     });
   };
 
-  const projects = [{
+  const allProjects = [{
     title: "COMFORT WEAR",
     subtitle: "Mobile E-Commerce App",
     description: "Keep yourself in style by purchasing product from 'comfort wear'",
@@ -134,16 +136,11 @@ const Index = () => {
     image: "/lovable-uploads/c4af3f37-96b8-4dbd-8237-f997d6f6d458.png",
     projectLink: "https://www.figma.com/proto/anL4j8dj13EGFYcUifEZ4y/food?node-id=0-1&t=Ddw3t1jlgVxW9JOn-1",
     caseStudyLink: "#"
-  }, {
-    title: "NIKE RE-DESIGN",
-    subtitle: "Web Application",
-    description: "Modern shoe web application with intuitive user experience",
-    tools: "UI/UX Design, Wireframing",
-    image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
-    projectLink: "https://www.figma.com/proto/xP8Vr0T8VDP5bUo9j73AV4/NIKE?page-id=0%3A1&node-id=1-254&starting-point-node-id=81%3A100&t=hw1eFjUB446gOPip-1",
-    caseStudyLink: "#"
   }];
 
+  // Select top 5 flagship projects for the carousel
+  const featuredProjects = allProjects.slice(0, 5);
+  
   const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
   const technologies = [{
     name: "Figma",
@@ -285,39 +282,22 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 bg-muted/50 mx-0">
+      {/* Featured Projects Section */}
+      <section id="projects" className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div ref={projectsAnimation.ref} className={`text-center mb-16 transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured <span className="text-primary">Projects</span></h2>
-            <p className="text-muted-foreground text-lg">A selection of my recent work showcasing various design disciplines</p>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+              Discover my flagship works showcasing innovative design solutions across various industries and platforms
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => <div key={index} className={`group bg-card rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-1000 hover:-translate-y-2 border border-border ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
-            transitionDelay: projectsAnimation.isVisible ? `${index * 200 + 300}ms` : '0ms'
-          }}>
-                <div className="relative overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    
-                  </div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-primary">{project.title}</h3>
-                  <h4 className="text-lg text-foreground mb-3">{project.subtitle}</h4>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
-                  <p className="text-sm text-primary mb-4">{project.tools}</p>
-                  <div className="flex flex-col gap-2">
-                    <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open(project.projectLink, '_blank')}>
-                      View Project
-                    </Button>
-                    <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')} disabled={project.caseStudyLink === "#"}>
-                      View Case Study
-                    </Button>
-                  </div>
-                </div>
-              </div>)}
+          <div className={`transition-all duration-1000 delay-300 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <FeaturedProjectsCarousel 
+              projects={featuredProjects} 
+              autoPlay={true} 
+              autoPlayInterval={5000} 
+            />
           </div>
         </div>
       </section>
@@ -394,66 +374,9 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 bg-muted/50">
-        <div className="max-w-4xl mx-auto">
-          <div ref={contactAnimation.ref} className={`text-center mb-16 transition-all duration-1000 ${contactAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In <span className="text-primary">Touch</span></h2>
-            <p className="text-muted-foreground text-lg">Ready to start your next project? Let's create something amazing together.</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className={`transition-all duration-1000 delay-300 ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
-              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                What's next? Feel free to reach out to me if you're looking for a UI/UX Designer, have a query, or simply want to connect.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <p className="text-foreground font-medium">jayanthkotapati14@gmail.com</p>
-                  </div>
-                </div>
-                
-                <div className="flex space-x-4">
-                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
-                    <Linkedin className="w-5 h-5" />
-                  </Button>
-                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
-                    <Instagram className="w-5 h-5" />
-                  </Button>
-                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
-                    <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            <div className={`transition-all duration-1000 delay-500 ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required className="bg-input border-border text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring" />
-                </div>
-                
-                <div>
-                  <Input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleInputChange} required className="bg-input border-border text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring" />
-                </div>
-                
-                <div>
-                  <Textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleInputChange} required rows={5} className="bg-input border-border text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring" />
-                </div>
-                
-                <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 transform hover:scale-105">
-                  Send Message
-                </Button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
+      <div id="contact">
+        <ProminentContactSection />
+      </div>
 
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-border">
