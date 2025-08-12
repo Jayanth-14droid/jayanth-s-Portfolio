@@ -20,7 +20,7 @@ interface FeaturedProjectsCarouselProps {
 
 export function FeaturedProjectsCarousel({ 
   projects, 
-  autoPlay = true, 
+  autoPlay = false, 
   autoPlayInterval = 4000 
 }: FeaturedProjectsCarouselProps) {
   const [currentIndex, setCurrentIndex] = useState(0)
