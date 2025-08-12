@@ -429,12 +429,13 @@ const Index = () => {
               </p>
               
               <div className="space-y-6">
-                <div className="flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/10 hover:border-primary/20 transition-all duration-300">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-lg">
-                    <Mail className="w-6 h-6 text-white" />
+                <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 p-4 sm:p-6 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/10 hover:border-primary/20 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                    <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
                   </div>
-                  <div>
-                    <p className="text-foreground font-medium hover:text-primary transition-colors cursor-pointer" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com')}>
+                  <div className="flex-1 min-w-0">
+                    <label className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-1 block">Email</label>
+                    <p className="text-foreground font-medium hover:text-primary transition-colors cursor-pointer break-all sm:break-normal text-sm sm:text-base" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com')}>
                       jayanthkotapati14@gmail.com
                     </p>
                   </div>
