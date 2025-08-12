@@ -409,59 +409,98 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 bg-muted/50">
-        <div className="max-w-4xl mx-auto">
+      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-primary/5 via-background to-secondary/5 relative overflow-hidden">
+        {/* Premium background elements */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-secondary/10"></div>
+        <div className="absolute top-0 left-0 w-72 h-72 bg-primary/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-0 w-72 h-72 bg-secondary/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_50%)]"></div>
+        <div className="max-w-4xl mx-auto relative z-10">
           <div ref={contactAnimation.ref} className={`text-center mb-16 transition-all duration-1000 ${contactAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In <span className="text-primary">Touch</span></h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Touch</span></h2>
             <p className="text-muted-foreground text-lg">Ready to start your next project? Let's create something amazing together.</p>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className={`transition-all duration-1000 delay-300 ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <h3 className="text-2xl font-bold mb-6">Let's Connect</h3>
+            <div className={`transition-all duration-1000 delay-300 backdrop-blur-sm bg-card/40 p-8 rounded-2xl border border-primary/10 shadow-2xl hover:shadow-primary/10 ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Let's Connect</h3>
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                 What's next? Feel free to reach out to me if you're looking for a UI/UX Designer, have a query, or simply want to connect.
               </p>
               
               <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-primary" />
+                <div className="flex items-center space-x-4 p-4 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/10 hover:border-primary/20 transition-all duration-300">
+                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-lg">
+                    <Mail className="w-6 h-6 text-white" />
                   </div>
                   <div>
-                    <p className="text-foreground font-medium">jayanthkotapati14@gmail.com</p>
+                    <p className="text-foreground font-medium hover:text-primary transition-colors cursor-pointer" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com')}>
+                      jayanthkotapati14@gmail.com
+                    </p>
                   </div>
                 </div>
                 
                 <div className="flex space-x-4">
-                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
+                  <Button variant="outline" size="icon" className="border-primary/20 bg-gradient-to-br from-primary/10 to-primary/5 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
                     <Linkedin className="w-5 h-5" />
                   </Button>
-                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
+                  <Button variant="outline" size="icon" className="border-secondary/20 bg-gradient-to-br from-secondary/10 to-secondary/5 text-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-lg hover:shadow-secondary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
                     <Instagram className="w-5 h-5" />
                   </Button>
-                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
+                  <Button variant="outline" size="icon" className="border-primary/20 bg-gradient-to-br from-primary/10 to-secondary/10 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
                     <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />
                   </Button>
                 </div>
               </div>
             </div>
 
-            <div className={`transition-all duration-1000 delay-500 ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+            <div className={`transition-all duration-1000 delay-500 backdrop-blur-sm bg-card/40 p-8 rounded-2xl border border-primary/10 shadow-2xl hover:shadow-primary/10 ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Send a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div>
-                  <Input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required className="bg-input border-border text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring" />
+                <div className="relative group">
+                  <Input 
+                    type="text" 
+                    name="name" 
+                    placeholder="Your Name" 
+                    value={formData.name} 
+                    onChange={handleInputChange} 
+                    required 
+                    className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
                 
-                <div>
-                  <Input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleInputChange} required className="bg-input border-border text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring" />
+                <div className="relative group">
+                  <Input 
+                    type="email" 
+                    name="email" 
+                    placeholder="Your Email" 
+                    value={formData.email} 
+                    onChange={handleInputChange} 
+                    required 
+                    className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
                 
-                <div>
-                  <Textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleInputChange} required rows={5} className="bg-input border-border text-foreground placeholder-muted-foreground focus:border-ring focus:ring-ring" />
+                <div className="relative group">
+                  <Textarea 
+                    name="message" 
+                    placeholder="Your Message" 
+                    value={formData.message} 
+                    onChange={handleInputChange} 
+                    required 
+                    rows={5} 
+                    className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40 resize-none" 
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
                 
-                <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 transform hover:scale-105">
+                <Button 
+                  type="submit" 
+                  size="lg" 
+                  className="w-full bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 font-semibold"
+                >
                   Send Message
                 </Button>
               </form>
