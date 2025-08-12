@@ -210,21 +210,25 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 relative">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden">
+        {/* Premium Gradient Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/3 to-transparent"></div>
+        
         {/* 3D Floating Shapes */}
         <div className="absolute inset-0 w-full h-full pointer-events-none">
           <FloatingShapes3D />
         </div>
         
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-          <div className="animate-fade-in">
-            <p className="text-primary mb-4 my-[33px] text-left mx-[6px] font-bold text-4xl">Hi, I'm JAYANTH KOTAPATI</p>
+          <div className="animate-fade-in backdrop-blur-sm bg-background/20 p-8 rounded-2xl border border-primary/10 shadow-2xl">
+            <p className="text-primary mb-4 my-[33px] text-left mx-[6px] font-bold text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Hi, I'm JAYANTH KOTAPATI</p>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               I'M A UI/UX
               <br />
-              <span className="text-primary">DESIGNER</span>
+              <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-pulse">DESIGNER</span>
             </h1>
-            <p className="text-muted-foreground text-lg mb-8 max-w-md">
+            <p className="text-muted-foreground text-lg mb-8 max-w-md leading-relaxed">
               I am a passionate UI/UX designer with a love for creating beautiful and functional user experiences. I have strong foundation in UI/UX design.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
@@ -246,16 +250,20 @@ const Index = () => {
             </div>
           </div>
           <div className="relative animate-fade-in animation-delay-300">
-            <div className="w-80 h-80 mx-auto rounded-full overflow-hidden border-4 border-primary/20 relative">
-              {/* Background blur effect */}
-              <div className="absolute inset-0 bg-primary/30 blur-3xl rounded-full transform scale-110"></div>
-              {/* Additional shadow layers for stronger effect */}
-              <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full transform scale-125"></div>
-              <div className="absolute inset-0 bg-primary/40 blur-xl rounded-full transform scale-105"></div>
+            <div className="w-80 h-80 mx-auto rounded-full overflow-hidden relative group">
+              {/* Premium layered background effects */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-secondary/40 to-primary/40 blur-3xl rounded-full transform scale-110 animate-pulse"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-transparent blur-2xl rounded-full transform scale-125"></div>
+              <div className="absolute inset-0 bg-gradient-to-tl from-secondary/30 to-transparent blur-xl rounded-full transform scale-105"></div>
+              
+              {/* Floating border effect */}
+              <div className="absolute inset-0 rounded-full border-2 border-gradient-to-r from-primary via-secondary to-primary opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div className="absolute inset-2 rounded-full border border-primary/30 opacity-40"></div>
+              
               <img 
                 alt="Profile" 
                 src="/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png" 
-                className="w-full h-full object-fill relative z-10 shadow-[0_0_120px_hsl(var(--primary)/0.9),0_0_240px_hsl(var(--primary)/0.5),0_0_360px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_180px_hsl(var(--primary)/1),0_0_300px_hsl(var(--primary)/0.7),0_0_420px_hsl(var(--primary)/0.4)] transition-all duration-500" 
+                className="w-full h-full object-fill relative z-10 rounded-full shadow-[0_0_120px_hsl(var(--primary)/0.9),0_0_240px_hsl(var(--primary)/0.5),0_0_360px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_180px_hsl(var(--primary)/1),0_0_300px_hsl(var(--primary)/0.7),0_0_420px_hsl(var(--primary)/0.4)] group-hover:scale-105 transition-all duration-700" 
               />
             </div>
             
@@ -286,33 +294,40 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 bg-muted/50 mx-0">
+      <section id="projects" className="py-20 px-4 bg-gradient-to-b from-muted/30 via-muted/50 to-background relative overflow-hidden mx-0">
+        {/* Premium background patterns */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
         <div className="max-w-7xl mx-auto">
           <div ref={projectsAnimation.ref} className={`text-center mb-16 transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured <span className="text-primary">Projects</span></h2>
             <p className="text-muted-foreground text-lg">A selection of my recent work showcasing various design disciplines</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => <div key={index} className={`group bg-card rounded-xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-1000 hover:-translate-y-2 border border-border ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+            {projects.map((project, index) => <div key={index} className={`group bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.1),0_0_0_1px_hsl(var(--primary)/0.1)] transition-all duration-700 hover:-translate-y-3 border border-primary/10 hover:border-primary/20 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
             transitionDelay: projectsAnimation.isVisible ? `${index * 200 + 300}ms` : '0ms'
           }}>
                 <div className="relative overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    
+                  <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+                    <div className="bg-primary/20 backdrop-blur-sm rounded-full p-2">
+                      <ExternalLink className="w-4 h-4 text-primary" />
+                    </div>
                   </div>
                 </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-primary">{project.title}</h3>
-                  <h4 className="text-lg text-foreground mb-3">{project.subtitle}</h4>
-                  <p className="text-muted-foreground mb-4 leading-relaxed">{project.description}</p>
-                  <p className="text-sm text-primary mb-4">{project.tools}</p>
+                <div className="p-6 relative">
+                  <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{project.title}</h3>
+                  <h4 className="text-lg text-foreground/90 mb-3 font-medium">{project.subtitle}</h4>
+                  <p className="text-muted-foreground mb-4 leading-relaxed text-sm">{project.description}</p>
+                  <div className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium mb-4">{project.tools}</div>
                   <div className="flex flex-col gap-2">
-                    <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open(project.projectLink, '_blank')}>
+                    <Button variant="outline" size="sm" className="border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 backdrop-blur-sm" onClick={() => window.open(project.projectLink, '_blank')}>
                       View Project
                     </Button>
-                    <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')} disabled={project.caseStudyLink === "#"}>
+                    <Button variant="outline" size="sm" className="border-primary/20 bg-secondary/5 text-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-lg hover:shadow-secondary/25 transition-all duration-300 backdrop-blur-sm" onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')} disabled={project.caseStudyLink === "#"}>
                       View Case Study
                     </Button>
                   </div>
