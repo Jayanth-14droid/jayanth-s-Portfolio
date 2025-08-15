@@ -306,30 +306,92 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-            {projects.map((project, index) => <div key={index} className={`group bg-gradient-to-br from-card/80 to-card/60 backdrop-blur-sm rounded-2xl overflow-hidden shadow-2xl hover:shadow-[0_20px_40px_rgba(0,0,0,0.1),0_0_0_1px_hsl(var(--primary)/0.1)] transition-all duration-700 hover:-translate-y-3 border border-primary/10 hover:border-primary/20 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
+            {projects.map((project, index) => <div key={index} className={`group relative bg-gradient-to-br from-card/90 via-card/80 to-card/70 backdrop-blur-xl rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.25),0_0_40px_hsl(var(--primary)/0.15),0_0_80px_hsl(var(--primary)/0.1)] transition-all duration-700 hover:-translate-y-6 hover:rotate-1 border border-primary/20 hover:border-primary/40 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
             transitionDelay: projectsAnimation.isVisible ? `${index * 200 + 300}ms` : '0ms'
           }}>
-                <div className="relative overflow-hidden">
-                  <img src={project.image} alt={project.title} className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                {/* Premium floating background effects */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-700"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                
+                {/* Project number badge */}
+                <div className="absolute top-4 left-4 z-20">
+                  <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-primary-foreground text-sm font-bold shadow-lg">
+                    {String(index + 1).padStart(2, '0')}
+                  </div>
+                </div>
+                
+                <div className="relative overflow-hidden rounded-t-3xl">
+                  <img src={project.image} alt={project.title} className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700" />
+                  
+                  {/* Premium overlay gradients */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                  
+                  {/* Floating action button */}
                   <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
-                    <div className="bg-primary/20 backdrop-blur-sm rounded-full p-2">
-                      <ExternalLink className="w-4 h-4 text-primary" />
+                    <div className="bg-background/20 backdrop-blur-md rounded-full p-3 border border-primary/30 hover:border-primary/60 hover:bg-primary/20 transition-all duration-300">
+                      <ExternalLink className="w-5 h-5 text-primary" />
+                    </div>
+                  </div>
+                  
+                  {/* Bottom project info overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background/90 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                    <div className="flex items-center justify-between">
+                      <div className="bg-primary/20 backdrop-blur-sm rounded-full px-3 py-1">
+                        <span className="text-primary text-xs font-medium">{project.tools}</span>
+                      </div>
+                      <div className="flex space-x-2">
+                        <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
+                        <div className="w-2 h-2 bg-secondary rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                        <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="p-6 relative">
-                  <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{project.title}</h3>
-                  <h4 className="text-lg text-foreground/90 mb-3 font-medium">{project.subtitle}</h4>
-                  <p className="text-muted-foreground mb-4 leading-relaxed text-sm">{project.description}</p>
-                  <div className="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium mb-4">{project.tools}</div>
-                  <div className="flex flex-col gap-2">
-                    <Button variant="outline" size="sm" className="border-primary/20 bg-primary/5 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/25 transition-all duration-300 backdrop-blur-sm" onClick={() => window.open(project.projectLink, '_blank')}>
-                      View Project
-                    </Button>
-                    <Button variant="outline" size="sm" className="border-primary/20 bg-secondary/5 text-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-lg hover:shadow-secondary/25 transition-all duration-300 backdrop-blur-sm" onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')} disabled={project.caseStudyLink === "#"}>
-                      View Case Study
-                    </Button>
+                
+                <div className="p-8 relative">
+                  {/* Premium content background */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 rounded-b-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="mb-4">
+                      <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent group-hover:from-secondary group-hover:via-primary group-hover:to-secondary transition-all duration-700">{project.title}</h3>
+                      <h4 className="text-lg text-foreground/90 font-medium">{project.subtitle}</h4>
+                    </div>
+                    
+                    <p className="text-muted-foreground mb-6 leading-relaxed text-sm">{project.description}</p>
+                    
+                    {/* Enhanced tools badge */}
+                    <div className="mb-6">
+                      <div className="inline-flex items-center bg-gradient-to-r from-primary/10 to-secondary/10 text-primary px-4 py-2 rounded-full text-xs font-medium border border-primary/20 backdrop-blur-sm">
+                        <div className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></div>
+                        {project.tools}
+                      </div>
+                    </div>
+                    
+                    {/* Premium button layout */}
+                    <div className="flex flex-col gap-3">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/30 text-primary hover:bg-gradient-to-r hover:from-primary hover:to-primary/90 hover:text-primary-foreground hover:shadow-[0_8px_24px_hsl(var(--primary)/0.35)] hover:border-primary/60 transition-all duration-500 backdrop-blur-sm group-hover:scale-105" 
+                        onClick={() => window.open(project.projectLink, '_blank')}
+                      >
+                        <span className="relative z-10">View Project</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-md"></div>
+                      </Button>
+                      
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="bg-gradient-to-r from-secondary/10 to-secondary/5 border-secondary/30 text-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-secondary/90 hover:text-secondary-foreground hover:shadow-[0_8px_24px_hsl(var(--secondary)/0.35)] hover:border-secondary/60 transition-all duration-500 backdrop-blur-sm group-hover:scale-105" 
+                        onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')} 
+                        disabled={project.caseStudyLink === "#"}
+                      >
+                        <span className="relative z-10">Case Study</span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-md"></div>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>)}
