@@ -1,7 +1,7 @@
 
 
 import { useState, useEffect } from 'react';
-import { ArrowDown, Download, Mail, ExternalLink, Instagram, Linkedin, Menu, X, Figma } from 'lucide-react';
+import { ArrowDown, Download, Mail, ExternalLink, Instagram, Linkedin, Menu, X, Figma, FileText, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -294,51 +294,104 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 bg-gradient-to-b from-muted/30 via-muted/50 to-background relative overflow-hidden mx-0">
-        {/* Premium background patterns */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+      <section id="projects" className="py-20 px-4 bg-gradient-to-b from-muted/30 via-muted/50 to-background relative overflow-hidden mx-0" aria-labelledby="projects-heading">
+        {/* Premium animated background patterns */}
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5 animate-pulse"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+        
         <div className="max-w-7xl mx-auto">
-          <div ref={projectsAnimation.ref} className={`text-center mb-16 transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured <span className="text-primary">Projects</span></h2>
-            <p className="text-muted-foreground text-lg">A selection of my recent work showcasing various design disciplines</p>
+          <div ref={projectsAnimation.ref} className={`text-center mb-20 transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="inline-flex items-center justify-center mb-6">
+              <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary mr-4"></div>
+              <div className="bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium border border-primary/20 backdrop-blur-sm">
+                Portfolio Showcase
+              </div>
+              <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary ml-4"></div>
+            </div>
+            <h2 id="projects-heading" className="text-4xl md:text-6xl font-bold mb-6">
+              Featured <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">Projects</span>
+            </h2>
+            <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
+              Discover my premium design solutions that blend creativity with functionality, crafted with attention to detail and user experience
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
-            {projects.map((project, index) => <div key={index} className={`group relative bg-gradient-to-br from-card/90 via-card/80 to-card/70 backdrop-blur-xl rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.25),0_0_40px_hsl(var(--primary)/0.15),0_0_80px_hsl(var(--primary)/0.1)] transition-all duration-700 hover:-translate-y-6 hover:rotate-1 border border-primary/20 hover:border-primary/40 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
-            transitionDelay: projectsAnimation.isVisible ? `${index * 200 + 300}ms` : '0ms'
-          }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-10 relative z-10">
+            {projects.map((project, index) => (
+              <article 
+                key={index} 
+                className={`group relative bg-gradient-to-br from-card/95 via-card/90 to-card/85 backdrop-blur-2xl rounded-3xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.08)] hover:shadow-[0_32px_64px_rgba(0,0,0,0.25),0_0_60px_hsl(var(--primary)/0.20),0_0_120px_hsl(var(--primary)/0.10)] transition-all duration-700 hover:-translate-y-8 hover:rotate-1 border border-primary/20 hover:border-primary/50 cursor-pointer focus-within:ring-2 focus-within:ring-primary/50 focus-within:ring-offset-2 focus-within:ring-offset-background ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} 
+                style={{
+                  transitionDelay: projectsAnimation.isVisible ? `${index * 200 + 300}ms` : '0ms'
+                }}
+                tabIndex={0}
+                role="button"
+                aria-label={`View details for ${project.title} project`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    window.open(project.projectLink, '_blank');
+                  }
+                }}
+              >
                 {/* Premium floating background effects */}
-                <div className="absolute -inset-1 bg-gradient-to-r from-primary via-secondary to-primary rounded-3xl blur-xl opacity-0 group-hover:opacity-30 transition-all duration-700"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-primary rounded-3xl blur-xl opacity-0 group-hover:opacity-40 transition-all duration-700 animate-pulse"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-tl from-secondary/10 via-transparent to-primary/10 rounded-3xl opacity-0 group-hover:opacity-80 transition-all duration-700"></div>
                 
-                {/* Project number badge */}
-                <div className="absolute top-4 left-4 z-20">
-                  <div className="w-8 h-8 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-primary-foreground text-sm font-bold shadow-lg">
-                    {String(index + 1).padStart(2, '0')}
+                {/* Enhanced project number badge */}
+                <div className="absolute top-6 left-6 z-30">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-full blur-sm opacity-60"></div>
+                    <div className="relative w-10 h-10 bg-gradient-to-r from-primary to-secondary rounded-full flex items-center justify-center text-primary-foreground text-sm font-bold shadow-lg border border-primary/30 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
+                      {String(index + 1).padStart(2, '0')}
+                    </div>
                   </div>
                 </div>
                 
-                <div className="relative overflow-hidden rounded-t-3xl">
-                  <img src={project.image} alt={project.title} className="w-full h-56 object-cover group-hover:scale-110 transition-transform duration-700" />
-                  
-                  {/* Premium overlay gradients */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
-                  
-                  {/* Floating action button */}
-                  <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
-                    <div className="bg-background/20 backdrop-blur-md rounded-full p-3 border border-primary/30 hover:border-primary/60 hover:bg-primary/20 transition-all duration-300">
-                      <ExternalLink className="w-5 h-5 text-primary" />
+                {/* Premium status indicator */}
+                <div className="absolute top-6 right-6 z-30 opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md rounded-full px-3 py-1 border border-green-500/30">
+                    <div className="flex items-center space-x-2">
+                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <span className="text-green-400 text-xs font-medium">Live</span>
                     </div>
                   </div>
+                </div>
+                
+                <div className="relative overflow-hidden rounded-t-3xl group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-secondary/20 z-10 opacity-0 group-hover:opacity-100 transition-all duration-700"></div>
+                  <img 
+                    src={project.image} 
+                    alt={`Screenshot of ${project.title} project showing ${project.subtitle}`} 
+                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-700 filter group-hover:brightness-110 group-hover:contrast-105" 
+                    loading="lazy"
+                  />
                   
-                  {/* Bottom project info overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-background/90 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
+                  {/* Premium overlay gradients with micro animations */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/90 via-background/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  
+                  {/* Enhanced floating action buttons */}
+                  <div className="absolute top-4 right-4 flex space-x-2 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-x-4 group-hover:translate-x-0">
+                    <button 
+                      className="bg-background/10 backdrop-blur-md rounded-full p-3 border border-primary/30 hover:border-primary/60 hover:bg-primary/20 transition-all duration-300 hover:scale-110"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        window.open(project.projectLink, '_blank');
+                      }}
+                      aria-label={`Open ${project.title} project in new tab`}
+                    >
+                      <ExternalLink className="w-4 h-4 text-primary" />
+                    </button>
+                  </div>
+                  
+                  {/* Enhanced bottom project info overlay */}
+                  <div className="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-background/95 via-background/80 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0">
                     <div className="flex items-center justify-between">
-                      <div className="bg-primary/20 backdrop-blur-sm rounded-full px-3 py-1">
-                        <span className="text-primary text-xs font-medium">{project.tools}</span>
+                      <div className="bg-primary/20 backdrop-blur-sm rounded-full px-4 py-2 border border-primary/30">
+                        <span className="text-primary text-xs font-semibold">{project.tools}</span>
                       </div>
                       <div className="flex space-x-2">
                         <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
@@ -350,51 +403,90 @@ const Index = () => {
                 </div>
                 
                 <div className="p-8 relative">
-                  {/* Premium content background */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 rounded-b-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  {/* Premium content background with animated gradients */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-secondary/8 rounded-b-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
+                  <div className="absolute inset-0 bg-gradient-to-tr from-secondary/5 via-transparent to-primary/5 rounded-b-3xl opacity-0 group-hover:opacity-80 transition-all duration-700"></div>
                   
                   <div className="relative z-10">
-                    <div className="mb-4">
-                      <h3 className="text-2xl font-bold mb-2 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent group-hover:from-secondary group-hover:via-primary group-hover:to-secondary transition-all duration-700">{project.title}</h3>
-                      <h4 className="text-lg text-foreground/90 font-medium">{project.subtitle}</h4>
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent group-hover:from-secondary group-hover:via-primary group-hover:to-secondary transition-all duration-700">
+                        {project.title}
+                      </h3>
+                      <h4 className="text-lg text-foreground/90 font-medium mb-2">{project.subtitle}</h4>
+                      <div className="h-px w-16 bg-gradient-to-r from-primary to-secondary opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                     </div>
                     
-                    <p className="text-muted-foreground mb-6 leading-relaxed text-sm">{project.description}</p>
+                    <p className="text-muted-foreground mb-8 leading-relaxed text-sm group-hover:text-foreground/80 transition-colors duration-300">
+                      {project.description}
+                    </p>
                     
-                    {/* Enhanced tools badge */}
-                    <div className="mb-6">
-                      <div className="inline-flex items-center bg-gradient-to-r from-primary/10 to-secondary/10 text-primary px-4 py-2 rounded-full text-xs font-medium border border-primary/20 backdrop-blur-sm">
-                        <div className="w-2 h-2 bg-primary rounded-full mr-2 animate-pulse"></div>
-                        {project.tools}
+                    {/* Enhanced tools badge with premium styling */}
+                    <div className="mb-8">
+                      <div className="inline-flex items-center bg-gradient-to-r from-primary/15 to-secondary/15 text-primary px-4 py-2 rounded-full text-xs font-semibold border border-primary/30 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 group-hover:scale-105">
+                        <div className="w-2 h-2 bg-primary rounded-full mr-3 animate-pulse"></div>
+                        <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{project.tools}</span>
                       </div>
                     </div>
                     
-                    {/* Premium button layout */}
-                    <div className="flex flex-col gap-3">
+                    {/* Premium button layout with enhanced interactions */}
+                    <div className="flex flex-col gap-4">
                       <Button 
                         variant="outline" 
                         size="sm" 
-                        className="bg-gradient-to-r from-primary/10 to-primary/5 border-primary/30 text-primary hover:bg-gradient-to-r hover:from-primary hover:to-primary/90 hover:text-primary-foreground hover:shadow-[0_8px_24px_hsl(var(--primary)/0.35)] hover:border-primary/60 transition-all duration-500 backdrop-blur-sm group-hover:scale-105" 
-                        onClick={() => window.open(project.projectLink, '_blank')}
+                        className="relative overflow-hidden bg-gradient-to-r from-primary/15 to-primary/10 border-primary/40 text-primary hover:bg-gradient-to-r hover:from-primary hover:to-primary/90 hover:text-primary-foreground hover:shadow-[0_12px_32px_hsl(var(--primary)/0.40)] hover:border-primary/70 transition-all duration-500 backdrop-blur-sm group-hover:scale-105 focus:ring-2 focus:ring-primary/50 focus:ring-offset-2" 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          window.open(project.projectLink, '_blank');
+                        }}
+                        aria-label={`View ${project.title} project details`}
                       >
-                        <span className="relative z-10">View Project</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-md"></div>
+                        <span className="relative z-10 flex items-center">
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          View Project
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                       </Button>
                       
                       <Button 
                         variant="outline" 
                         size="sm" 
-                        className="bg-gradient-to-r from-secondary/10 to-secondary/5 border-secondary/30 text-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-secondary/90 hover:text-secondary-foreground hover:shadow-[0_8px_24px_hsl(var(--secondary)/0.35)] hover:border-secondary/60 transition-all duration-500 backdrop-blur-sm group-hover:scale-105" 
-                        onClick={() => project.caseStudyLink !== "#" && window.open(project.caseStudyLink, '_blank')} 
+                        className="relative overflow-hidden bg-gradient-to-r from-secondary/15 to-secondary/10 border-secondary/40 text-secondary hover:bg-gradient-to-r hover:from-secondary hover:to-secondary/90 hover:text-secondary-foreground hover:shadow-[0_12px_32px_hsl(var(--secondary)/0.40)] hover:border-secondary/70 transition-all duration-500 backdrop-blur-sm group-hover:scale-105 focus:ring-2 focus:ring-secondary/50 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100" 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (project.caseStudyLink !== "#") {
+                            window.open(project.caseStudyLink, '_blank');
+                          }
+                        }} 
                         disabled={project.caseStudyLink === "#"}
+                        aria-label={project.caseStudyLink === "#" ? "Case study coming soon" : `View ${project.title} case study`}
                       >
-                        <span className="relative z-10">Case Study</span>
-                        <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-md"></div>
+                        <span className="relative z-10 flex items-center">
+                          <FileText className="w-4 h-4 mr-2" />
+                          {project.caseStudyLink === "#" ? "Case Study Soon" : "Case Study"}
+                        </span>
+                        <div className="absolute inset-0 bg-gradient-to-r from-secondary to-primary opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                       </Button>
                     </div>
                   </div>
                 </div>
-              </div>)}
+              </article>
+            ))}
+          </div>
+          
+          {/* Premium call-to-action */}
+          <div className="text-center mt-16">
+            <div className="inline-flex items-center justify-center p-6 bg-gradient-to-r from-primary/10 via-secondary/10 to-primary/10 backdrop-blur-sm rounded-2xl border border-primary/20 hover:border-primary/40 transition-all duration-500 group cursor-pointer" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+              <div className="text-center">
+                <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  Have a project in mind?
+                </h3>
+                <p className="text-muted-foreground mb-4">Let's create something amazing together</p>
+                <div className="inline-flex items-center text-primary font-medium group-hover:text-secondary transition-colors duration-300">
+                  <span>Get in touch</span>
+                  <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-300" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
