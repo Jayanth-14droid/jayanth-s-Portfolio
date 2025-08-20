@@ -296,10 +296,10 @@ const Index = () => {
       {/* Projects Section */}
       <section id="projects" className="py-20 px-4 bg-gradient-to-b from-muted/30 via-muted/50 to-background relative overflow-hidden mx-0" aria-labelledby="projects-heading">
         {/* Premium animated background patterns */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5 animate-pulse"></div>
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
-        <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-2xl animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-transparent to-secondary/5"></div>
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-secondary/10 rounded-full blur-3xl"></div>
+        <div className="absolute top-1/2 left-0 w-64 h-64 bg-primary/5 rounded-full blur-2xl"></div>
         
         <div className="max-w-7xl mx-auto">
           <div ref={projectsAnimation.ref} className={`text-center mb-20 transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
@@ -337,7 +337,7 @@ const Index = () => {
                 }}
               >
                 {/* Premium floating background effects */}
-                <div className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-primary rounded-3xl blur-xl opacity-0 group-hover:opacity-40 transition-all duration-700 animate-pulse"></div>
+                <div className="absolute -inset-2 bg-gradient-to-r from-primary via-secondary to-primary rounded-3xl blur-xl opacity-0 group-hover:opacity-40 transition-all duration-700"></div>
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 rounded-3xl opacity-0 group-hover:opacity-100 transition-all duration-500"></div>
                 <div className="absolute inset-0 bg-gradient-to-tl from-secondary/10 via-transparent to-primary/10 rounded-3xl opacity-0 group-hover:opacity-80 transition-all duration-700"></div>
                 
@@ -355,7 +355,7 @@ const Index = () => {
                 <div className="absolute top-6 right-6 z-30 opacity-0 group-hover:opacity-100 transition-all duration-500">
                   <div className="bg-gradient-to-r from-green-500/20 to-emerald-500/20 backdrop-blur-md rounded-full px-3 py-1 border border-green-500/30">
                     <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                       <span className="text-green-400 text-xs font-medium">Live</span>
                     </div>
                   </div>
@@ -394,9 +394,9 @@ const Index = () => {
                         <span className="text-primary text-xs font-semibold">{project.tools}</span>
                       </div>
                       <div className="flex space-x-2">
-                        <div className="w-2 h-2 bg-primary rounded-full animate-pulse"></div>
-                        <div className="w-2 h-2 bg-secondary rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-                        <div className="w-2 h-2 bg-primary rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
+                        <div className="w-2 h-2 bg-secondary rounded-full"></div>
+                        <div className="w-2 h-2 bg-primary rounded-full"></div>
                       </div>
                     </div>
                   </div>
@@ -420,10 +420,10 @@ const Index = () => {
                       {project.description}
                     </p>
                     
-                    {/* Enhanced tools badge with premium styling */}
+                     {/* Enhanced tools badge with premium styling */}
                     <div className="mb-8">
                       <div className="inline-flex items-center bg-gradient-to-r from-primary/15 to-secondary/15 text-primary px-4 py-2 rounded-full text-xs font-semibold border border-primary/30 backdrop-blur-sm hover:border-primary/50 transition-all duration-300 group-hover:scale-105">
-                        <div className="w-2 h-2 bg-primary rounded-full mr-3 animate-pulse"></div>
+                        <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
                         <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">{project.tools}</span>
                       </div>
                     </div>
