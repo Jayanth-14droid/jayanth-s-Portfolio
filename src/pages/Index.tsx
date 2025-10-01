@@ -11,7 +11,7 @@ import { ThemeToggle } from '@/components/ThemeToggle';
 import { FloatingShapes3D } from '@/components/FloatingShapes3D';
 import { ParticleField } from '@/components/ParticleField';
 import emailjs from '@emailjs/browser';
-import CV from '../../Jayanth Kotapati__UIUX.pdf';
+import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
 
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
