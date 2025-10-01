@@ -95,14 +95,6 @@ const Index = () => {
   };
 
   const projects = [{
-    title: "SHUTTER SEARCH",
-    subtitle: "Photographer Discovery Platform",
-    description: "Website for finding photographers - capture every movement with professionals who bring passion and precision to every shot.",
-    tools: "UI/UX Design, Web Design, Prototyping",
-    image: "/lovable-uploads/shutter-search.jpg",
-    projectLink: "https://www.figma.com/proto/BRp61RM9VQJ6LGLeaFXDDj/Responsive--Designs?node-id=90-566&t=oMOnXaArQ41ntfLb-1",
-    caseStudyLink: "#"
-  }, {
     title: "COMFORT WEAR",
     subtitle: "Mobile E-Commerce App",
     description: "Keep yourself in style by purchasing product from 'comfort wear'",
@@ -149,6 +141,14 @@ const Index = () => {
     tools: "UI/UX Design, Wireframing",
     image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
     projectLink: "https://www.figma.com/proto/xP8Vr0T8VDP5bUo9j73AV4/NIKE?page-id=0%3A1&node-id=1-254&starting-point-node-id=81%3A100&t=hw1eFjUB446gOPip-1",
+    caseStudyLink: "#"
+  }, {
+    title: "SHUTTER SEARCH",
+    subtitle: "Photographer Discovery Platform",
+    description: "Website for finding photographers - capture every movement with professionals who bring passion and precision to every shot.",
+    tools: "UI/UX Design, Web Design, Prototyping",
+    image: "/lovable-uploads/shutter-search.jpg",
+    projectLink: "https://www.figma.com/proto/BRp61RM9VQJ6LGLeaFXDDj/Responsive--Designs?node-id=90-566&t=oMOnXaArQ41ntfLb-1",
     caseStudyLink: "#"
   }];
 
