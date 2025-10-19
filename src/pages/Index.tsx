@@ -111,6 +111,14 @@ const Index = () => {
     projectLink: "https://www.figma.com/proto/Y8lve28Tl1xh2cGNUiXDKj/Course-online--Learning?node-id=0-1&t=pFtA5ZSBwInYw6L4-1",
     caseStudyLink: "https://www.behance.net/gallery/230532382/Course-online-case-study"
   }, {
+    title: "MIND EASE",
+    subtitle: "Mental Health Mobile Application",
+    description: "Mobile application focused on balancing mental health for working professionals and students aged 22-30, providing personalized tools and resources for mental wellness.",
+    tools: "UI/UX Design, Mobile App Design, User Research",
+    image: "/lovable-uploads/mind-ease.jpg",
+    projectLink: "https://www.figma.com/proto/egBIHWTMDchGBScVi8XSUy/Mindease?page-id=0%3A1&node-id=18-598&p=f&viewport=-613%2C184%2C0.42&t=1rANrqBYeNCTlLuR-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=18%3A598",
+    caseStudyLink: "https://www.behance.net/gallery/236845155/Mind-ease"
+  }, {
     title: "BURGER HUNT",
     subtitle: "Food Delivery App with Parallax",
     description: "Modern food delivery application featuring stunning parallax effects and intuitive user experience. Crunchy meat all day makes the pain go away.",
