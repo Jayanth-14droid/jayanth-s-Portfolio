@@ -457,71 +457,175 @@ const Index = () => {
       </section>
 
       {/* Education & Skills Section */}
-      <section id="education" className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            {/* Education */}
-            <div ref={educationAnimation.ref} className={`transition-all duration-1000 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <h2 className="text-4xl font-bold mb-12 text-center lg:text-left">
+      <section id="education" className="py-32 px-4 relative overflow-hidden bg-gradient-to-b from-background via-muted/10 to-background">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Education Section */}
+          <div ref={educationAnimation.ref} className={`mb-32 transition-all duration-1000 ${educationAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="mb-16">
+              <div className="inline-flex items-center gap-3 mb-6">
+                <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary"></div>
+                <span className="text-primary text-sm font-medium tracking-wider uppercase">Background</span>
+                <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary"></div>
+              </div>
+              <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
                 <span className="text-primary">Education</span>
               </h2>
+              <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
+                Academic journey and qualifications that shaped my design expertise
+              </p>
+            </div>
+            
+            <div className="relative">
+              {/* Timeline Line */}
+              <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-primary/50 to-transparent hidden md:block"></div>
+              
               <div className="space-y-8">
-                <div className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-colors duration-300">
-                  <h3 className="text-xl font-bold text-primary mb-2">Bachelor of Computer Science (CSE)</h3>
-                  <p className="text-foreground mb-2">Eluru College of Engineering and Technology</p>
-                  <p className="text-muted-foreground text-sm mb-2">CGPA: 7.07/10</p>
-                  <p className="text-muted-foreground/70 text-sm">2020 - 2024</p>
+                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{ transitionDelay: '200ms' }}>
+                  <div className="md:ml-20 group">
+                    {/* Timeline Dot */}
+                    <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
+                    
+                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5">
+                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                        <div>
+                          <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                            Bachelor of Computer Science (CSE)
+                          </h3>
+                          <p className="text-foreground/80 text-lg mb-2">Eluru College of Engineering and Technology</p>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm whitespace-nowrap">
+                          2020 - 2024
+                        </div>
+                      </div>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 border border-border/50 text-sm font-medium text-foreground">
+                        CGPA: 7.07/10
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 
-                <div className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-colors duration-300">
-                  <h3 className="text-xl font-bold text-primary mb-2">Intermediate (M.P.C)</h3>
-                  <p className="text-foreground mb-2">Vidya Vikas Junior College</p>
-                  <p className="text-muted-foreground text-sm mb-2">Percentage: 7/10</p>
-                  <p className="text-muted-foreground/70 text-sm">2018 - 2020</p>
+                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{ transitionDelay: '400ms' }}>
+                  <div className="md:ml-20 group">
+                    <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
+                    
+                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5">
+                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                        <div>
+                          <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                            Intermediate (M.P.C)
+                          </h3>
+                          <p className="text-foreground/80 text-lg mb-2">Vidya Vikas Junior College</p>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm whitespace-nowrap">
+                          2018 - 2020
+                        </div>
+                      </div>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 border border-border/50 text-sm font-medium text-foreground">
+                        Percentage: 7/10
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-colors duration-300">
-                  <h3 className="text-xl font-bold text-primary mb-2">S.S.C</h3>
-                  <p className="text-foreground mb-2">Vidya Vikas High School</p>
-                  <p className="text-muted-foreground text-sm mb-2">CGPA: 9.2/10</p>
-                  <p className="text-muted-foreground/70 text-sm">2017 - 2018</p>
+                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{ transitionDelay: '600ms' }}>
+                  <div className="md:ml-20 group">
+                    <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
+                    
+                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5">
+                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
+                        <div>
+                          <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
+                            S.S.C
+                          </h3>
+                          <p className="text-foreground/80 text-lg mb-2">Vidya Vikas High School</p>
+                        </div>
+                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm whitespace-nowrap">
+                          2017 - 2018
+                        </div>
+                      </div>
+                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 border border-border/50 text-sm font-medium text-foreground">
+                        CGPA: 9.2/10
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-
-            {/* Skills */}
-            <div id="skills" ref={skillsAnimation.ref} className={`transition-all duration-1000 ${skillsAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <h2 className="text-4xl font-bold mb-12 text-center lg:text-left">
-                <span className="text-primary">Skills</span>
-              </h2>
-              <div className="space-y-6">
-                {skills.map((skill, index) => <div key={index} className={`group hover:-translate-y-2 transition-all duration-1000 bg-card p-6 rounded-xl border border-border hover:border-primary/50 ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
-                transitionDelay: skillsAnimation.isVisible ? `${index * 150}ms` : '0ms'
-              }}>
-                    <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors text-center">
-                      {skill}
-                    </h3>
-                  </div>)}
               </div>
             </div>
           </div>
 
-          {/* Technologies & Tools Section */}
-          <div ref={techAnimation.ref} className={`w-full max-w-4xl mx-auto mt-20 transition-all duration-1000 ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-4xl font-bold mb-12 text-center">Technologies & <span className="text-primary">Tools</span></h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {technologies.map((tech, index) => <div key={index} className={`group bg-card p-6 rounded-xl border border-border hover:border-primary/50 transition-all duration-1000 hover:-translate-y-2 ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
-              transitionDelay: techAnimation.isVisible ? `${index * 200 + 300}ms` : '0ms'
-            }}>
-                  <div className="flex flex-col items-center space-y-4">
-                    {tech.icon ? <tech.icon className="w-12 h-12 text-primary group-hover:scale-110 transition-transform duration-300" /> : <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                        <span className="text-primary font-bold text-lg">{tech.name.charAt(0)}</span>
-                      </div>}
-                    <h4 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                      {tech.name}
-                    </h4>
+          {/* Skills Section */}
+          <div id="skills" ref={skillsAnimation.ref} className={`transition-all duration-1000 ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <div className="mb-16">
+              <div className="inline-flex items-center gap-3 mb-6">
+                <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary"></div>
+                <span className="text-primary text-sm font-medium tracking-wider uppercase">Expertise</span>
+                <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary"></div>
+              </div>
+              <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
+                <span className="text-primary">Skills</span> & Tools
+              </h2>
+              <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
+                Core competencies and technologies I work with to bring ideas to life
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {skills.map((skill, index) => (
+                <div 
+                  key={index} 
+                  className={`group relative bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5 ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                  style={{
+                    transitionDelay: skillsAnimation.isVisible ? `${index * 100}ms` : '0ms'
+                  }}
+                >
+                  <div className="relative z-10">
+                    <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 text-center">
+                      {skill}
+                    </h3>
                   </div>
-                </div>)}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                </div>
+              ))}
+            </div>
+
+            {/* Technologies & Tools */}
+            <div ref={techAnimation.ref} className={`mt-24 transition-all duration-1000 ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <div className="mb-12 text-center">
+                <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+                  Design <span className="text-primary">Tools</span>
+                </h3>
+                <p className="text-muted-foreground text-lg">
+                  Primary software I use for creating exceptional designs
+                </p>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                {technologies.map((tech, index) => (
+                  <div 
+                    key={index} 
+                    className={`group relative bg-card/50 backdrop-blur-sm p-10 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                    style={{
+                      transitionDelay: techAnimation.isVisible ? `${index * 150}ms` : '0ms'
+                    }}
+                  >
+                    <div className="flex flex-col items-center space-y-6 relative z-10">
+                      {tech.icon ? (
+                        <tech.icon className="w-16 h-16 text-primary group-hover:scale-110 transition-transform duration-300" />
+                      ) : (
+                        <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                          <span className="text-primary font-bold text-2xl">{tech.name.charAt(0)}</span>
+                        </div>
+                      )}
+                      <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
+                        {tech.name}
+                      </h4>
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
