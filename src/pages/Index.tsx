@@ -8,8 +8,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import { FloatingShapes3D } from '@/components/FloatingShapes3D';
-import { ParticleField } from '@/components/ParticleField';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
 
@@ -173,9 +171,6 @@ const Index = () => {
   }];
 
   return <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
-      {/* 3D Background Elements */}
-      <ParticleField />
-      
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm z-50 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -231,11 +226,6 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/3 to-transparent"></div>
         
-        {/* 3D Floating Shapes */}
-        <div className="absolute inset-0 w-full h-full pointer-events-none">
-          <FloatingShapes3D />
-        </div>
-        
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="animate-fade-in backdrop-blur-sm bg-background/20 p-8 rounded-2xl border border-primary/10 shadow-2xl">
             <p className="text-primary mb-4 my-[33px] text-left mx-[6px] font-bold text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Hi, I'm JAYANTH KOTAPATI</p>
@@ -267,22 +257,12 @@ const Index = () => {
           </div>
           <div className="relative animate-fade-in animation-delay-300">
             <div className="w-80 h-80 mx-auto rounded-full overflow-hidden relative group">
-              {/* Premium layered background effects */}
-              <div className="absolute inset-0 bg-gradient-to-r from-primary/40 via-secondary/40 to-primary/40 blur-3xl rounded-full transform scale-110 animate-pulse"></div>
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-transparent blur-2xl rounded-full transform scale-125"></div>
-              <div className="absolute inset-0 bg-gradient-to-tl from-secondary/30 to-transparent blur-xl rounded-full transform scale-105"></div>
-              
-              {/* Floating border effect */}
-              <div className="absolute inset-0 rounded-full border-2 border-gradient-to-r from-primary via-secondary to-primary opacity-60 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div className="absolute inset-2 rounded-full border border-primary/30 opacity-40"></div>
-              
               <img 
                 alt="Profile" 
                 src="/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png" 
-                className="w-full h-full object-fill relative z-10 rounded-full shadow-[0_0_120px_hsl(var(--primary)/0.9),0_0_240px_hsl(var(--primary)/0.5),0_0_360px_hsl(var(--primary)/0.3)] hover:shadow-[0_0_180px_hsl(var(--primary)/1),0_0_300px_hsl(var(--primary)/0.7),0_0_420px_hsl(var(--primary)/0.4)] group-hover:scale-105 transition-all duration-700" 
+                className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105" 
               />
             </div>
-            
           </div>
         </div>
       </section>
