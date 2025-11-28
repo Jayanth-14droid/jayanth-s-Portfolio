@@ -259,12 +259,15 @@ const Index = () => {
             </div>
           </div>
           <div className="relative animate-fade-in animation-delay-300">
-            <div className="w-[500px] h-[500px] mx-auto rounded-full overflow-hidden relative group">
-              <img 
-                alt="Profile" 
-                src="/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png" 
-                className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105" 
-              />
+            {/* Gradient border wrapper */}
+            <div className="w-[500px] h-[500px] mx-auto rounded-full p-1 bg-gradient-to-br from-primary/40 via-secondary/30 to-primary/40">
+              <div className="w-full h-full rounded-full overflow-hidden relative group bg-background">
+                <img 
+                  alt="Profile" 
+                  src="/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png" 
+                  className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105" 
+                />
+              </div>
             </div>
           </div>
         </div>
