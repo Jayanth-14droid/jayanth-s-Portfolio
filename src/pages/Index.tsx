@@ -227,7 +227,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/3 to-transparent"></div>
         
         {/* Glassy Background Overlay */}
-        <div className="absolute inset-0 backdrop-blur-md bg-background/30"></div>
+        <div className="absolute inset-0 backdrop-blur-lg bg-background/10"></div>
         
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="animate-fade-in">
