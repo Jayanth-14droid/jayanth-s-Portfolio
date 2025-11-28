@@ -226,6 +226,9 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"></div>
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/3 to-transparent"></div>
         
+        {/* Glassy Background Overlay */}
+        <div className="absolute inset-0 backdrop-blur-md bg-background/30"></div>
+        
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
           <div className="animate-fade-in">
             <p className="text-primary mb-4 my-[33px] text-left mx-[6px] font-bold text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Hi, I'm JAYANTH KOTAPATI</p>
@@ -256,7 +259,7 @@ const Index = () => {
             </div>
           </div>
           <div className="relative animate-fade-in animation-delay-300">
-            <div className="w-80 h-80 mx-auto rounded-full overflow-hidden relative group">
+            <div className="w-[500px] h-[500px] mx-auto rounded-full overflow-hidden relative group">
               <img 
                 alt="Profile" 
                 src="/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png" 
