@@ -227,7 +227,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/3 to-transparent"></div>
         
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-          <div className="animate-fade-in backdrop-blur-sm bg-background/20 p-8 rounded-2xl border border-primary/10 shadow-2xl">
+          <div className="animate-fade-in">
             <p className="text-primary mb-4 my-[33px] text-left mx-[6px] font-bold text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Hi, I'm JAYANTH KOTAPATI</p>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               I'M A UI/UX
