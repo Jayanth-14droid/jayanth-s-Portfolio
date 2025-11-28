@@ -7,6 +7,7 @@ import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { useParallax } from '@/hooks/useParallax';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
@@ -30,6 +31,12 @@ const Index = () => {
   const skillsAnimation = useScrollAnimation(0.2);
   const techAnimation = useScrollAnimation(0.2);
   const contactAnimation = useScrollAnimation(0.2);
+
+  // Parallax effects for different sections
+  const heroParallax = useParallax(0.3);
+  const aboutParallax = useParallax(0.4);
+  const projectsParallax = useParallax(0.2);
+  const skillsParallax = useParallax(0.35);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -223,8 +230,15 @@ const Index = () => {
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden">
         {/* Premium Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/3 to-transparent"></div>
+        <div 
+          ref={heroParallax.ref}
+          className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"
+          style={{ transform: `translateY(${heroParallax.offset * 0.5}px)` }}
+        ></div>
+        <div 
+          className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/3 to-transparent"
+          style={{ transform: `translateY(${heroParallax.offset * -0.3}px)` }}
+        ></div>
         
         {/* Glassy Background Overlay */}
         <div className="absolute inset-0 backdrop-blur-lg bg-background/10"></div>
@@ -274,8 +288,12 @@ const Index = () => {
       </section>
 
       {/* About Section */}
-      <section id="about" className="py-20 px-4">
-        <div className="max-w-7xl mx-auto">
+      <section id="about" className="py-20 px-4 relative">
+        <div 
+          ref={aboutParallax.ref}
+          className="max-w-7xl mx-auto"
+          style={{ transform: `translateY(${aboutParallax.offset * 0.2}px)` }}
+        >
           <div ref={aboutAnimation.ref} className={`text-center mb-16 transition-all duration-1000 ${aboutAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">About <span className="text-primary">Me</span></h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -298,10 +316,17 @@ const Index = () => {
       {/* Projects Section */}
       <section id="projects" className="py-32 px-4 relative overflow-hidden" aria-labelledby="projects-heading">
         {/* Modern gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background"></div>
+        <div 
+          ref={projectsParallax.ref}
+          className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background"
+          style={{ transform: `translateY(${projectsParallax.offset * 0.3}px)` }}
+        ></div>
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
         
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div 
+          className="max-w-7xl mx-auto relative z-10"
+          style={{ transform: `translateY(${projectsParallax.offset * -0.1}px)` }}
+        >
           {/* Header */}
           <div ref={projectsAnimation.ref} className={`mb-24 transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="inline-flex items-center gap-3 mb-6">
@@ -542,7 +567,16 @@ const Index = () => {
           </div>
 
           {/* Skills Section */}
-          <div id="skills" ref={skillsAnimation.ref} className={`transition-all duration-1000 ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          <div 
+            ref={skillsParallax.ref}
+            className="relative"
+          >
+            <div 
+              id="skills" 
+              ref={skillsAnimation.ref} 
+              className={`transition-all duration-1000 ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+              style={{ transform: `translateY(${skillsParallax.offset * 0.15}px)` }}
+            >
             <div className="mb-16">
               <div className="inline-flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary"></div>
@@ -613,6 +647,7 @@ const Index = () => {
                 ))}
               </div>
             </div>
+          </div>
           </div>
         </div>
       </section>
