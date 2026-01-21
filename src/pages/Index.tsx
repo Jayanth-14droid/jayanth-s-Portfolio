@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from 'react';
 import { ArrowDown, Download, Mail, ExternalLink, Instagram, Linkedin, Menu, X, Figma, FileText, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -8,6 +6,8 @@ import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useParallax } from '@/hooks/useParallax';
+import { useMagneticEffect } from '@/hooks/useMagneticEffect';
+import MagneticWrapper from '@/components/MagneticWrapper';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
@@ -193,12 +193,14 @@ const Index = () => {
 
           <div className="hidden md:flex items-center space-x-4 ml-8">
               <ThemeToggle />
-              <a href={CV} download="Jayanth Kotapati__UIUX.pdf">
-                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                  <Download className="w-4 h-4 mr-2" />
-                  Download CV
-                </Button>
-              </a>
+              <MagneticWrapper strength={0.2} radius={80}>
+                <a href={CV} download="Jayanth Kotapati__UIUX.pdf">
+                  <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                    <Download className="w-4 h-4 mr-2" />
+                    Download CV
+                  </Button>
+                </a>
+              </MagneticWrapper>
             </div>
 
             {/* Mobile menu button */}
@@ -257,18 +259,26 @@ const Index = () => {
             <div className="flex flex-col sm:flex-row gap-4 mb-8">
               
               <div className="flex space-x-4">
-                <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
-                  <Linkedin className="w-5 h-5" />
-                </Button>
-                <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
-                  <Instagram className="w-5 h-5" />
-                </Button>
-                <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
-                  <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />
-                </Button>
-                <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com', '_blank')}>
-                  <Mail className="w-5 h-5" />
-                </Button>
+                <MagneticWrapper strength={0.3} radius={60}>
+                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
+                    <Linkedin className="w-5 h-5" />
+                  </Button>
+                </MagneticWrapper>
+                <MagneticWrapper strength={0.3} radius={60}>
+                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
+                    <Instagram className="w-5 h-5" />
+                  </Button>
+                </MagneticWrapper>
+                <MagneticWrapper strength={0.3} radius={60}>
+                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
+                    <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />
+                  </Button>
+                </MagneticWrapper>
+                <MagneticWrapper strength={0.3} radius={60}>
+                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com', '_blank')}>
+                    <Mail className="w-5 h-5" />
+                  </Button>
+                </MagneticWrapper>
               </div>
             </div>
           </div>
@@ -451,18 +461,20 @@ const Index = () => {
           
           {/* CTA Section */}
           <div className={`mt-24 text-center transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="inline-flex items-center justify-center p-8 bg-gradient-to-r from-primary/5 via-muted/50 to-primary/5 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 group cursor-pointer" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-              <div className="text-center">
-                <h3 className="text-2xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
-                  Have a project in mind?
-                </h3>
-                <p className="text-muted-foreground mb-4">Let's create something amazing together</p>
-                <div className="inline-flex items-center text-primary font-medium group-hover:gap-3 gap-2 transition-all duration-300">
-                  <span>Get in touch</span>
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            <MagneticWrapper strength={0.15} radius={150}>
+              <div className="inline-flex items-center justify-center p-8 bg-gradient-to-r from-primary/5 via-muted/50 to-primary/5 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 group cursor-pointer" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+                <div className="text-center">
+                  <h3 className="text-2xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
+                    Have a project in mind?
+                  </h3>
+                  <p className="text-muted-foreground mb-4">Let's create something amazing together</p>
+                  <div className="inline-flex items-center text-primary font-medium group-hover:gap-3 gap-2 transition-all duration-300">
+                    <span>Get in touch</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                  </div>
                 </div>
               </div>
-            </div>
+            </MagneticWrapper>
           </div>
         </div>
       </section>
@@ -741,13 +753,15 @@ const Index = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
                 
-                <Button 
-                  type="submit" 
-                  size="lg" 
-                  className="w-full bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 font-semibold"
-                >
-                  Send Message
-                </Button>
+                <MagneticWrapper strength={0.15} radius={100}>
+                  <Button 
+                    type="submit" 
+                    size="lg" 
+                    className="w-full bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 font-semibold"
+                  >
+                    Send Message
+                  </Button>
+                </MagneticWrapper>
               </form>
             </div>
           </div>
