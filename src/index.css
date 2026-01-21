@@ -174,11 +174,6 @@
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
-  cursor: none;
-}
-
-a, button, input, textarea, select, [role="button"] {
-  cursor: none;
 }
 
 /* Custom scrollbar */
