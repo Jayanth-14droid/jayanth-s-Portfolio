@@ -363,7 +363,7 @@ const Index = () => {
                 }}
               >
                 {/* Card Container */}
-                <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5">
+                <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-lg">
                   
                   {/* Image Container */}
                   <div className="relative aspect-[16/10] overflow-hidden bg-muted/30">
