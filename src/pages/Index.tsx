@@ -488,7 +488,7 @@ const Index = () => {
                 transitionDelay: '400ms'
               }}>
                   <div className="md:ml-20 group">
-                    <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
+                    <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300 shadow-none"></div>
                     
                     <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02]">
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
