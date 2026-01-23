@@ -623,7 +623,7 @@ const Index = () => {
               
               <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 p-4 sm:p-6 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/10">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 flex-shrink-0">
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary to-secondary flex items-center justify-center hover:scale-110 transition-transform duration-300 flex-shrink-0 shadow-none rounded-xl">
                     <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-white shadow-none" />
                   </div>
                   <div className="flex-1 min-w-0">
