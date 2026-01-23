@@ -510,7 +510,7 @@ const Index = () => {
                     {/* Timeline Dot */}
                     <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
                     
-                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5">
+                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02]">
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                         <div>
                           <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
@@ -533,7 +533,7 @@ const Index = () => {
                   <div className="md:ml-20 group">
                     <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
                     
-                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5">
+                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02]">
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                         <div>
                           <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
@@ -556,7 +556,7 @@ const Index = () => {
                   <div className="md:ml-20 group">
                     <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
                     
-                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5">
+                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02]">
                       <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
                         <div>
                           <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
@@ -607,7 +607,7 @@ const Index = () => {
               {skills.map((skill, index) => (
                 <div 
                   key={index} 
-                  className={`group relative bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-xl hover:shadow-primary/5 ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                  className={`group relative bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                   style={{
                     transitionDelay: skillsAnimation.isVisible ? `${index * 100}ms` : '0ms'
                   }}
@@ -637,7 +637,7 @@ const Index = () => {
                 {technologies.map((tech, index) => (
                   <div 
                     key={index} 
-                    className={`group relative bg-card/50 backdrop-blur-sm p-10 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-2xl hover:shadow-primary/5 ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+                    className={`group relative bg-card/50 backdrop-blur-sm p-10 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
                     style={{
                       transitionDelay: techAnimation.isVisible ? `${index * 150}ms` : '0ms'
                     }}
@@ -678,7 +678,7 @@ const Index = () => {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className={`transition-all duration-1000 delay-300 backdrop-blur-sm bg-card/40 p-8 rounded-2xl border border-primary/10 shadow-2xl hover:shadow-primary/10 ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+            <div className={`transition-all duration-1000 delay-300 backdrop-blur-sm bg-card/40 p-8 rounded-2xl border border-primary/10 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
               <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Let's Connect</h3>
               <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
                 What's next? Feel free to reach out to me if you're looking for a UI/UX Designer, have a query, or simply want to connect.
@@ -711,7 +711,7 @@ const Index = () => {
               </div>
             </div>
 
-            <div className={`transition-all duration-1000 delay-500 backdrop-blur-sm bg-card/40 p-8 rounded-2xl border border-primary/10 shadow-2xl hover:shadow-primary/10 ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+            <div className={`transition-all duration-1000 delay-500 backdrop-blur-sm bg-card/40 p-8 rounded-2xl border border-primary/10 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
               <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Send a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="relative group">
