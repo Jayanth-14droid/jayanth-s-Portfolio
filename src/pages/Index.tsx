@@ -11,7 +11,6 @@ import MagneticWrapper from '@/components/MagneticWrapper';
 import { ThemeToggle } from '@/components/ThemeToggle';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
-
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -37,7 +36,6 @@ const Index = () => {
   const aboutParallax = useParallax(0.4);
   const projectsParallax = useParallax(0.2);
   const skillsParallax = useParallax(0.35);
-
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'projects', 'education', 'skills', 'contact'];
@@ -54,7 +52,6 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({
@@ -62,7 +59,6 @@ const Index = () => {
     });
     setIsMenuOpen(false);
   };
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -91,14 +87,12 @@ const Index = () => {
       });
     }
   };
-
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
-
   const projects = [{
     title: "COMFORT WEAR",
     subtitle: "Mobile E-Commerce App",
@@ -164,7 +158,6 @@ const Index = () => {
     projectLink: "https://www.figma.com/proto/BRp61RM9VQJ6LGLeaFXDDj/Responsive--Designs?node-id=90-566&t=oMOnXaArQ41ntfLb-1",
     caseStudyLink: "#"
   }];
-
   const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
   const technologies = [{
     name: "Figma",
@@ -176,7 +169,6 @@ const Index = () => {
     name: "Canva",
     icon: null
   }];
-
   return <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm z-50 border-b border-border">
@@ -232,15 +224,12 @@ const Index = () => {
       {/* Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden">
         {/* Premium Gradient Background */}
-        <div 
-          ref={heroParallax.ref}
-          className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5"
-          style={{ transform: `translateY(${heroParallax.offset * 0.5}px)` }}
-        ></div>
-        <div 
-          className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/3 to-transparent"
-          style={{ transform: `translateY(${heroParallax.offset * -0.3}px)` }}
-        ></div>
+        <div ref={heroParallax.ref} className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" style={{
+        transform: `translateY(${heroParallax.offset * 0.5}px)`
+      }}></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/3 to-transparent" style={{
+        transform: `translateY(${heroParallax.offset * -0.3}px)`
+      }}></div>
         
         {/* Glassy Background Overlay */}
         <div className="absolute inset-0 backdrop-blur-lg bg-background/10"></div>
@@ -286,11 +275,7 @@ const Index = () => {
             {/* Gradient border wrapper */}
             <div className="w-[500px] h-[500px] mx-auto rounded-full p-1 bg-gradient-to-br from-primary/40 via-secondary/30 to-primary/40">
               <div className="w-full h-full rounded-full overflow-hidden relative group bg-background">
-                <img 
-                  alt="Profile" 
-                  src="/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png" 
-                  className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105" 
-                />
+                <img alt="Profile" src="/lovable-uploads/aab91a2e-c541-4dc7-9660-efea419a82e8.png" className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105" />
               </div>
             </div>
           </div>
@@ -299,11 +284,9 @@ const Index = () => {
 
       {/* About Section */}
       <section id="about" className="py-20 px-4 relative">
-        <div 
-          ref={aboutParallax.ref}
-          className="max-w-7xl mx-auto"
-          style={{ transform: `translateY(${aboutParallax.offset * 0.2}px)` }}
-        >
+        <div ref={aboutParallax.ref} className="max-w-7xl mx-auto" style={{
+        transform: `translateY(${aboutParallax.offset * 0.2}px)`
+      }}>
           <div ref={aboutAnimation.ref} className={`text-center mb-16 transition-all duration-1000 ${aboutAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-4xl md:text-5xl font-bold mb-4">About <span className="text-primary">Me</span></h2>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
@@ -326,17 +309,14 @@ const Index = () => {
       {/* Projects Section */}
       <section id="projects" className="py-32 px-4 relative overflow-hidden" aria-labelledby="projects-heading">
         {/* Modern gradient background */}
-        <div 
-          ref={projectsParallax.ref}
-          className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background"
-          style={{ transform: `translateY(${projectsParallax.offset * 0.3}px)` }}
-        ></div>
+        <div ref={projectsParallax.ref} className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" style={{
+        transform: `translateY(${projectsParallax.offset * 0.3}px)`
+      }}></div>
         <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
         
-        <div 
-          className="max-w-7xl mx-auto relative z-10"
-          style={{ transform: `translateY(${projectsParallax.offset * -0.1}px)` }}
-        >
+        <div className="max-w-7xl mx-auto relative z-10" style={{
+        transform: `translateY(${projectsParallax.offset * -0.1}px)`
+      }}>
           {/* Header */}
           <div ref={projectsAnimation.ref} className={`mb-24 transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="inline-flex items-center gap-3 mb-6">
@@ -354,25 +334,15 @@ const Index = () => {
 
           {/* Projects Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {projects.map((project, index) => (
-              <article 
-                key={index} 
-                className={`group relative transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{
-                  transitionDelay: projectsAnimation.isVisible ? `${index * 150}ms` : '0ms'
-                }}
-              >
+            {projects.map((project, index) => <article key={index} className={`group relative transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
+            transitionDelay: projectsAnimation.isVisible ? `${index * 150}ms` : '0ms'
+          }}>
                 {/* Card Container */}
                 <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02]">
                   
                   {/* Image Container */}
                   <div className="relative aspect-[16/10] overflow-hidden bg-muted/30">
-                    <img 
-                      src={project.image} 
-                      alt={`${project.title} - ${project.subtitle}`} 
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" 
-                      loading="lazy"
-                    />
+                    <img src={project.image} alt={`${project.title} - ${project.subtitle}`} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" loading="lazy" />
                     
                     {/* Gradient Overlay */}
                     <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500"></div>
@@ -386,28 +356,18 @@ const Index = () => {
 
                     {/* Action Buttons */}
                     <div className="absolute top-6 right-6 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
-                      <button 
-                        className="flex items-center justify-center w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border/50 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          window.open(project.projectLink, '_blank');
-                        }}
-                        aria-label={`View ${project.title} project`}
-                      >
+                      <button className="flex items-center justify-center w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border/50 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300" onClick={e => {
+                    e.stopPropagation();
+                    window.open(project.projectLink, '_blank');
+                  }} aria-label={`View ${project.title} project`}>
                         <ExternalLink className="w-4 h-4" />
                       </button>
-                      {project.caseStudyLink && project.caseStudyLink !== "#" && (
-                        <button 
-                          className="flex items-center justify-center w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border/50 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            window.open(project.caseStudyLink, '_blank');
-                          }}
-                          aria-label={`View ${project.title} case study`}
-                        >
+                      {project.caseStudyLink && project.caseStudyLink !== "#" && <button className="flex items-center justify-center w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border/50 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300" onClick={e => {
+                    e.stopPropagation();
+                    window.open(project.caseStudyLink, '_blank');
+                  }} aria-label={`View ${project.title} case study`}>
                           <FileText className="w-4 h-4" />
-                        </button>
-                      )}
+                        </button>}
                     </div>
 
                     {/* Bottom Info Overlay */}
@@ -434,35 +394,28 @@ const Index = () => {
 
                     {/* CTA */}
                     <div className="flex items-center gap-4">
-                      <button
-                        onClick={() => window.open(project.projectLink, '_blank')}
-                        className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors duration-300 group/btn"
-                      >
+                      <button onClick={() => window.open(project.projectLink, '_blank')} className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors duration-300 group/btn">
                         <span>View Project</span>
                         <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
                       </button>
-                      {project.caseStudyLink && project.caseStudyLink !== "#" && (
-                        <>
+                      {project.caseStudyLink && project.caseStudyLink !== "#" && <>
                           <div className="w-px h-4 bg-border"></div>
-                          <button
-                            onClick={() => window.open(project.caseStudyLink, '_blank')}
-                            className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
-                          >
+                          <button onClick={() => window.open(project.caseStudyLink, '_blank')} className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300">
                             Case Study
                           </button>
-                        </>
-                      )}
+                        </>}
                     </div>
                   </div>
                 </div>
-              </article>
-            ))}
+              </article>)}
           </div>
           
           {/* CTA Section */}
           <div className={`mt-24 text-center transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <MagneticWrapper strength={0.15} radius={150}>
-              <div className="inline-flex items-center justify-center p-8 bg-gradient-to-r from-primary/5 via-muted/50 to-primary/5 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 group cursor-pointer" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+              <div className="inline-flex items-center justify-center p-8 bg-gradient-to-r from-primary/5 via-muted/50 to-primary/5 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 group cursor-pointer" onClick={() => document.getElementById('contact')?.scrollIntoView({
+              behavior: 'smooth'
+            })}>
                 <div className="text-center">
                   <h3 className="text-2xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
                     Have a project in mind?
@@ -505,7 +458,9 @@ const Index = () => {
               <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-primary/50 to-transparent hidden md:block"></div>
               
               <div className="space-y-8">
-                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{ transitionDelay: '200ms' }}>
+                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{
+                transitionDelay: '200ms'
+              }}>
                   <div className="md:ml-20 group">
                     {/* Timeline Dot */}
                     <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
@@ -529,7 +484,9 @@ const Index = () => {
                   </div>
                 </div>
                 
-                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{ transitionDelay: '400ms' }}>
+                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{
+                transitionDelay: '400ms'
+              }}>
                   <div className="md:ml-20 group">
                     <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
                     
@@ -552,7 +509,9 @@ const Index = () => {
                   </div>
                 </div>
 
-                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{ transitionDelay: '600ms' }}>
+                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{
+                transitionDelay: '600ms'
+              }}>
                   <div className="md:ml-20 group">
                     <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background shadow-lg -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300"></div>
                     
@@ -579,16 +538,10 @@ const Index = () => {
           </div>
 
           {/* Skills Section */}
-          <div 
-            ref={skillsParallax.ref}
-            className="relative"
-          >
-            <div 
-              id="skills" 
-              ref={skillsAnimation.ref} 
-              className={`transition-all duration-1000 ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-              style={{ transform: `translateY(${skillsParallax.offset * 0.15}px)` }}
-            >
+          <div ref={skillsParallax.ref} className="relative">
+            <div id="skills" ref={skillsAnimation.ref} className={`transition-all duration-1000 ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
+            transform: `translateY(${skillsParallax.offset * 0.15}px)`
+          }}>
             <div className="mb-16">
               <div className="inline-flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary"></div>
@@ -604,22 +557,16 @@ const Index = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {skills.map((skill, index) => (
-                <div 
-                  key={index} 
-                  className={`group relative bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                  style={{
-                    transitionDelay: skillsAnimation.isVisible ? `${index * 100}ms` : '0ms'
-                  }}
-                >
+              {skills.map((skill, index) => <div key={index} className={`group relative bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
+                transitionDelay: skillsAnimation.isVisible ? `${index * 100}ms` : '0ms'
+              }}>
                   <div className="relative z-10">
                     <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 text-center">
                       {skill}
                     </h3>
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>
-              ))}
+                </div>)}
             </div>
 
             {/* Technologies & Tools */}
@@ -634,29 +581,19 @@ const Index = () => {
               </div>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                {technologies.map((tech, index) => (
-                  <div 
-                    key={index} 
-                    className={`group relative bg-card/50 backdrop-blur-sm p-10 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                    style={{
-                      transitionDelay: techAnimation.isVisible ? `${index * 150}ms` : '0ms'
-                    }}
-                  >
+                {technologies.map((tech, index) => <div key={index} className={`group relative bg-card/50 backdrop-blur-sm p-10 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
+                  transitionDelay: techAnimation.isVisible ? `${index * 150}ms` : '0ms'
+                }}>
                     <div className="flex flex-col items-center space-y-6 relative z-10">
-                      {tech.icon ? (
-                        <tech.icon className="w-16 h-16 text-primary group-hover:scale-110 transition-transform duration-300" />
-                      ) : (
-                        <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      {tech.icon ? <tech.icon className="w-16 h-16 text-primary group-hover:scale-110 transition-transform duration-300" /> : <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                           <span className="text-primary font-bold text-2xl">{tech.name.charAt(0)}</span>
-                        </div>
-                      )}
+                        </div>}
                       <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
                         {tech.name}
                       </h4>
                     </div>
                     <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>
-                ))}
+                  </div>)}
               </div>
             </div>
           </div>
@@ -687,7 +624,7 @@ const Index = () => {
               <div className="space-y-6">
                 <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 p-4 sm:p-6 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/10">
                   <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary to-secondary rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform duration-300 flex-shrink-0">
-                    <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                    <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-white shadow-none" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <label className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-1 block">Email</label>
@@ -715,50 +652,22 @@ const Index = () => {
               <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Send a Message</h3>
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="relative group">
-                  <Input 
-                    type="text" 
-                    name="name" 
-                    placeholder="Your Name" 
-                    value={formData.name} 
-                    onChange={handleInputChange} 
-                    required 
-                    className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40" 
-                  />
+                  <Input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40" />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
                 
                 <div className="relative group">
-                  <Input 
-                    type="email" 
-                    name="email" 
-                    placeholder="Your Email" 
-                    value={formData.email} 
-                    onChange={handleInputChange} 
-                    required 
-                    className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40" 
-                  />
+                  <Input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleInputChange} required className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40" />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
                 
                 <div className="relative group">
-                  <Textarea 
-                    name="message" 
-                    placeholder="Your Message" 
-                    value={formData.message} 
-                    onChange={handleInputChange} 
-                    required 
-                    rows={5} 
-                    className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40 resize-none" 
-                  />
+                  <Textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleInputChange} required rows={5} className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40 resize-none" />
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
                 
                 <MagneticWrapper strength={0.15} radius={100}>
-                  <Button 
-                    type="submit" 
-                    size="lg" 
-                    className="w-full bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 font-semibold"
-                  >
+                  <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 font-semibold">
                     Send Message
                   </Button>
                 </MagneticWrapper>
@@ -778,6 +687,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;
-
