@@ -37,7 +37,7 @@
     --input: 0 0% 0%;
     --ring: 0 0% 0%;
 
-    --radius: 0rem;
+    --radius: 0.5rem;
 
     /* Brand colors */
     --brand-green: 158 100% 35%;
@@ -121,7 +121,7 @@
     --chart-4: 280 65% 60%;
     --chart-5: 340 75% 55%;
     --sidebar: 0 0% 5%;
-    --radius: 0rem;
+    --radius: 0.5rem;
     --shadow-2xs: 1px 1px 0px 0px #ffffff;
     --shadow-xs: 2px 2px 0px 0px #ffffff;
     --shadow-sm: 3px 3px 0px 0px #ffffff;
