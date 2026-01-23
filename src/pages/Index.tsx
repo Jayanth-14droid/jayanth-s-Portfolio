@@ -667,7 +667,7 @@ const Index = () => {
                 </div>
                 
                 <MagneticWrapper strength={0.15} radius={100}>
-                  <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/20 font-semibold">
+                  <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-primary to-secondary text-white hover:from-primary/90 hover:to-secondary/90 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-primary/20 font-semibold shadow-none">
                     Send Message
                   </Button>
                 </MagneticWrapper>
