@@ -635,13 +635,13 @@ const Index = () => {
                 </div>
                 
                 <div className="flex space-x-4">
-                  <Button variant="outline" size="icon" className="border-primary/20 bg-gradient-to-br from-primary/10 to-primary/5 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
+                  <Button variant="outline" size="icon" className="border-primary/20 bg-gradient-to-br from-primary/10 to-primary/5 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-primary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm shadow-none" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
                     <Linkedin className="w-5 h-5" />
                   </Button>
-                  <Button variant="outline" size="icon" className="border-secondary/20 bg-gradient-to-br from-secondary/10 to-secondary/5 text-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-lg hover:shadow-secondary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
+                  <Button variant="outline" size="icon" className="border-secondary/20 bg-gradient-to-br from-secondary/10 to-secondary/5 text-secondary hover:bg-secondary hover:text-secondary-foreground hover:shadow-secondary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm shadow-none" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
                     <Instagram className="w-5 h-5" />
                   </Button>
-                  <Button variant="outline" size="icon" className="border-primary/20 bg-gradient-to-br from-primary/10 to-secondary/10 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
+                  <Button variant="outline" size="icon" className="border-primary/20 bg-gradient-to-br from-primary/10 to-secondary/10 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-primary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm shadow-none" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
                     <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />
                   </Button>
                 </div>
