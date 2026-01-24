@@ -9,6 +9,7 @@ import { useParallax } from '@/hooks/useParallax';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
 import MagneticWrapper from '@/components/MagneticWrapper';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import ScrollCompanion from '@/components/ScrollCompanion';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
 const Index = () => {
@@ -685,6 +686,7 @@ const Index = () => {
           </p>
         </div>
       </footer>
+      <ScrollCompanion />
     </div>;
 };
 export default Index;
