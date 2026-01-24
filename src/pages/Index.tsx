@@ -9,10 +9,13 @@ import { useParallax } from '@/hooks/useParallax';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
 import MagneticWrapper from '@/components/MagneticWrapper';
 import { ThemeToggle } from '@/components/ThemeToggle';
-import ScrollCompanion from '@/components/ScrollCompanion';
+import AnimeCompanion3D from '@/components/AnimeCompanion3D';
+import LoadingScreen from '@/components/LoadingScreen';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
+
 const Index = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const {
@@ -170,6 +173,10 @@ const Index = () => {
     name: "Canva",
     icon: null
   }];
+  if (isLoading) {
+    return <LoadingScreen onComplete={() => setIsLoading(false)} />;
+  }
+
   return <div className="min-h-screen bg-background text-foreground overflow-x-hidden relative">
       {/* Navigation */}
       <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm z-50 border-b border-border">
@@ -686,7 +693,7 @@ const Index = () => {
           </p>
         </div>
       </footer>
-      <ScrollCompanion />
+      <AnimeCompanion3D />
     </div>;
 };
 export default Index;
