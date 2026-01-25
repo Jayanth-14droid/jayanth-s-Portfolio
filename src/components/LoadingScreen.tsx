@@ -7,6 +7,7 @@ interface LoadingScreenProps {
 
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
+  const [shouldHide, setShouldHide] = useState(false);
 
   useEffect(() => {
     const duration = 2500;
@@ -18,7 +19,6 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         const next = prev + increment + Math.random() * 0.5;
         if (next >= 100) {
           clearInterval(timer);
-          setTimeout(onComplete, 300);
           return 100;
         }
         return next;
@@ -26,15 +26,43 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
     }, interval);
 
     return () => clearInterval(timer);
-  }, [onComplete]);
+  }, []);
+
+  // Trigger hide and complete when progress reaches 100
+  useEffect(() => {
+    if (progress >= 100 && !shouldHide) {
+      setShouldHide(true);
+      const timeout = setTimeout(() => {
+        onComplete();
+      }, 400);
+      return () => clearTimeout(timeout);
+    }
+  }, [progress, shouldHide, onComplete]);
+
+  if (shouldHide) {
+    return (
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0, y: -50 }}
+        transition={{ duration: 0.4, ease: 'easeInOut' }}
+        className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background pointer-events-none"
+      >
+        <div className="text-7xl md:text-9xl font-bold tabular-nums"
+          style={{
+            background: 'linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)))',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
+          }}
+        >
+          100%
+        </div>
+      </motion.div>
+    );
+  }
 
   return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      animate={{ opacity: progress >= 100 ? 0 : 1, y: progress >= 100 ? -50 : 0 }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background"
-    >
+    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-background">
       {/* Animated background gradient */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div
@@ -127,7 +155,7 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         animate={{ opacity: 1, x: 0, y: 0 }}
         transition={{ delay: 0.2 }}
       />
-    </motion.div>
+    </div>
   );
 };
 
