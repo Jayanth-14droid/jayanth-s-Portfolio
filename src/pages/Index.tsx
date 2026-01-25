@@ -176,8 +176,8 @@ const Index = () => {
   return (
     <>
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-      <div className={`min-h-screen bg-background text-foreground overflow-x-hidden relative ${isLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`} style={{ transition: 'opacity 0.5s ease-in-out' }}>
-      {/* Navigation */}
+      <div className={`min-h-screen bg-background text-foreground overflow-x-hidden relative transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+        {/* Navigation */}
       <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm z-50 border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
