@@ -23,21 +23,11 @@ const CompanionContainer = () => {
     getSpeechBubbleMessage,
   } = useCompanionLogic();
 
-  // Detect low-end devices
+  // Detect low-end devices (only check reduced motion preference)
   useEffect(() => {
     const checkPerformance = () => {
-      // Check for reduced motion preference
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      
-      // Check device memory (if available)
-      const deviceMemory = (navigator as any).deviceMemory;
-      const isLowMemory = deviceMemory && deviceMemory < 4;
-      
-      // Check hardware concurrency
-      const cores = navigator.hardwareConcurrency;
-      const isLowCores = cores && cores < 4;
-      
-      setIsLowEnd(prefersReducedMotion || isLowMemory || isLowCores);
+      setIsLowEnd(prefersReducedMotion);
     };
     
     checkPerformance();
@@ -59,21 +49,28 @@ const CompanionContainer = () => {
     setInteractionState('idle');
   };
 
-  // Don't render on mobile or low-end devices
-  if (isMobile || isLowEnd) {
+  // Don't render on low-end devices with reduced motion preference
+  if (isLowEnd) {
     return null;
   }
+
+  // Mobile-specific sizing and positioning
+  const containerSize = isMobile 
+    ? { width: '100px', height: '130px' } 
+    : { width: '140px', height: '180px' };
+  
+  const mobilePosition = isMobile ? 80 + (verticalPosition - 120) * 0.6 : verticalPosition;
 
   return (
     <motion.div
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5, delay: 0.5 }}
-      className="fixed right-4 z-40 md:right-6 lg:right-8"
+      className={`fixed z-40 ${isMobile ? 'right-1' : 'right-4 md:right-6 lg:right-8'}`}
       style={{
-        top: `${verticalPosition}px`,
-        width: '140px',
-        height: '180px',
+        top: `${mobilePosition}px`,
+        width: containerSize.width,
+        height: containerSize.height,
         pointerEvents: 'auto',
       }}
     >
@@ -83,6 +80,7 @@ const CompanionContainer = () => {
         interactionState={interactionState}
         onNavigate={handleNavigate}
         onClose={handleClose}
+        isMobile={isMobile}
       />
 
       {/* 3D Character Canvas */}
@@ -99,20 +97,20 @@ const CompanionContainer = () => {
         }}
       >
         <Canvas
-          camera={{ position: [0, 0, 3.2], fov: 45 }}
+          camera={{ position: [0, 0, isMobile ? 3.8 : 3.2], fov: 45 }}
           style={{ background: 'transparent' }}
           gl={{ 
             alpha: true, 
-            antialias: true,
-            powerPreference: 'high-performance',
+            antialias: !isMobile,
+            powerPreference: isMobile ? 'low-power' : 'high-performance',
           }}
-          dpr={[1, 1.5]}
+          dpr={isMobile ? [1, 1] : [1, 1.5]}
         >
           <Suspense fallback={null}>
             <ambientLight intensity={0.7} />
             <directionalLight position={[5, 5, 5]} intensity={1.2} />
             <pointLight position={[-5, 5, 5]} intensity={0.6} color="#10b981" />
-            <pointLight position={[0, -3, 3]} intensity={0.3} color="#6366f1" />
+            {!isMobile && <pointLight position={[0, -3, 3]} intensity={0.3} color="#6366f1" />}
             
             <AnimeCharacter3D
               idleState={idleState}
@@ -127,7 +125,7 @@ const CompanionContainer = () => {
       </div>
 
       {/* Scroll indicator when moving */}
-      {isScrolling && (
+      {isScrolling && !isMobile && (
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
