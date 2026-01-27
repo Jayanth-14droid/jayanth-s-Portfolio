@@ -37,7 +37,7 @@ const SpeechBubble = ({
       duration: 0.2,
       ease: 'easeOut'
     }} className={`absolute ${bubblePosition} ${bubbleWidth}`}>
-          <div className="bg-card/95 backdrop-blur-md border border-border overflow-hidden shadow-none rounded-none opacity-0">
+          <div className="bg-card/95 backdrop-blur-md border border-border overflow-hidden shadow-none rounded-none">
             {showMenu ? <div className={isMobile ? 'p-1.5' : 'p-2'}>
                 <p className={`font-medium text-foreground px-2 py-1 mb-0.5 ${isMobile ? 'text-[10px]' : 'text-xs'}`}>
                   What do you need?
