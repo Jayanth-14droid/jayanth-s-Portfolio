@@ -8,7 +8,6 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useParallax } from '@/hooks/useParallax';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
 import MagneticWrapper from '@/components/MagneticWrapper';
-import { ThemeToggle } from '@/components/ThemeToggle';
 import AnimeCompanion3D from '@/components/AnimeCompanion3D';
 import LoadingScreen from '@/components/LoadingScreen';
 import emailjs from '@emailjs/browser';
@@ -191,8 +190,7 @@ const Index = () => {
                 </button>)}
             </div>
 
-          <div className="hidden md:flex items-center space-x-4 ml-8">
-              <ThemeToggle />
+            <div className="hidden md:flex items-center space-x-4 ml-8">
               <MagneticWrapper strength={0.2} radius={80}>
                 <a href={CV} download="Jayanth Kotapati__UIUX.pdf">
                   <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
@@ -216,7 +214,6 @@ const Index = () => {
                     {item}
                   </button>)}
                 <div className="pt-4 border-t border-border flex flex-col gap-2">
-                  <ThemeToggle />
                   <a href={CV} download="Jayanth Kotapati__UIUX.pdf" className="w-full">
                     <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full">
                       <Download className="w-4 h-4 mr-2" />
