@@ -283,7 +283,7 @@ const Index = () => {
             {/* Gradient border wrapper */}
             <div className="w-[500px] h-[500px] mx-auto rounded-full p-1 bg-gradient-to-br from-primary/40 via-secondary/30 to-primary/40">
               <div className="w-full h-full rounded-full overflow-hidden relative group bg-background">
-                <img alt="Profile" src={profileImg} className="w-full h-full object-cover rounded-full transition-transform duration-500 group-hover:scale-105" />
+                <img alt="Profile" src={profileImg} className="w-full h-full object-cover object-top rounded-full transition-transform duration-500 group-hover:scale-105" />
               </div>
             </div>
           </div>
