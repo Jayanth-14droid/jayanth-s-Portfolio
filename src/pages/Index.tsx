@@ -191,8 +191,7 @@ const Index = () => {
                 </button>)}
             </div>
 
-          <div className="hidden md:flex items-center space-x-4 ml-8">
-              <ThemeToggle />
+            <div className="hidden md:flex items-center space-x-4 ml-8">
               <MagneticWrapper strength={0.2} radius={80}>
                 <a href={CV} download="Jayanth Kotapati__UIUX.pdf">
                   <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
