@@ -26,9 +26,9 @@ export const useCompanionLogic = (): UseCompanionLogicReturn => {
   const [currentSection, setCurrentSection] = useState('home');
   const [isPointing, setIsPointing] = useState(false);
 
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
-  const idleInterval = useRef<NodeJS.Timeout | null>(null);
-  const scrollStopTimeout = useRef<NodeJS.Timeout | null>(null);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const idleInterval = useRef<ReturnType<typeof setInterval> | null>(null);
+  const scrollStopTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const lastScrollY = useRef(0);
 
   // Detect current section
