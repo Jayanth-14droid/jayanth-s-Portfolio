@@ -7,8 +7,8 @@ const ScrollCompanion = () => {
   const [isScrolling, setIsScrolling] = useState(false);
   const [idleState, setIdleState] = useState<IdleState>('waiting');
   const [facingRight, setFacingRight] = useState(true);
-  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
-  const idleInterval = useRef<NodeJS.Timeout | null>(null);
+  const scrollTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const idleInterval = useRef<ReturnType<typeof setInterval> | null>(null);
   const lastScrollY = useRef(0);
 
   useEffect(() => {
