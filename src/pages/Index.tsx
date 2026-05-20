@@ -230,7 +230,7 @@ const Index = () => {
       </nav>
 
       {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 relative overflow-hidden">
+      <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 relative overflow-hidden">
         {/* Premium Gradient Background */}
         <div ref={heroParallax.ref} className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" style={{
         transform: `translateY(${heroParallax.offset * 0.5}px)`
@@ -242,7 +242,7 @@ const Index = () => {
         {/* Glassy Background Overlay */}
         <div className="absolute inset-0 backdrop-blur-lg bg-background/10"></div>
         
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
           <div className="animate-fade-in">
             <p className="text-primary mb-4 my-[33px] text-left mx-[6px] font-bold text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Hi, I'm JAYANTH KOTAPATI</p>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
@@ -279,7 +279,7 @@ const Index = () => {
               </div>
             </div>
           </div>
-          <div className="relative animate-fade-in animation-delay-300 flex justify-center order-first lg:order-last">
+          <div className="relative animate-fade-in animation-delay-300 flex justify-center order-first lg:order-last mt-4 lg:mt-0">
             {/* Gradient border wrapper */}
             <div className="w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-[420px] md:h-[420px] lg:w-[500px] lg:h-[500px] rounded-full p-1 bg-gradient-to-br from-primary/40 via-secondary/30 to-primary/40">
               <div className="w-full h-full rounded-full overflow-hidden relative group bg-background">
