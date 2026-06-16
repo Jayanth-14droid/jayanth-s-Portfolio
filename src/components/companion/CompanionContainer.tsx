@@ -69,14 +69,6 @@ const CompanionContainer = () => {
         transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         whileHover={{ scale: 1.04 }}
       >
-        {/* Soft purple glow */}
-        <div
-          className="absolute inset-0 rounded-full blur-2xl opacity-60"
-          style={{
-            background:
-              'radial-gradient(circle at 50% 60%, hsl(var(--primary) / 0.45), transparent 65%)',
-          }}
-        />
         <img
           src={companionImage}
           alt="Portfolio guide"
