@@ -65,8 +65,6 @@ const CompanionContainer = () => {
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') handleClick();
         }}
-        animate={{ y: [0, -6, 0] }}
-        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
         whileHover={{ scale: 1.04 }}
       >
         <img
