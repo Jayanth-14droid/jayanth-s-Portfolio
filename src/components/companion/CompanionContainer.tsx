@@ -1,71 +1,45 @@
-import { Suspense, useState, useEffect } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import AnimeCharacter3D from './AnimeCharacter3D';
 import SpeechBubble from './SpeechBubble';
 import { useCompanionLogic } from './useCompanionLogic';
 import { useIsMobile } from '@/hooks/use-mobile';
+import companionImage from '@/assets/companion-character.png';
 
 const CompanionContainer = () => {
   const isMobile = useIsMobile();
   const [isLowEnd, setIsLowEnd] = useState(false);
-  
+
   const {
     isScrolling,
-    idleState,
-    facingRight,
-    cursorPosition,
     interactionState,
     setInteractionState,
-    isPointing,
     verticalPosition,
     scrollToSection,
     getSpeechBubbleMessage,
   } = useCompanionLogic();
 
-  // Detect low-end devices (only check reduced motion preference)
   useEffect(() => {
-    const checkPerformance = () => {
-      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      setIsLowEnd(prefersReducedMotion);
-    };
-    
-    checkPerformance();
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    setIsLowEnd(prefersReducedMotion);
   }, []);
 
   const handleClick = () => {
-    if (interactionState === 'menu-open') {
-      setInteractionState('idle');
-    } else {
-      setInteractionState('menu-open');
-    }
+    setInteractionState(interactionState === 'menu-open' ? 'idle' : 'menu-open');
   };
 
-  const handleNavigate = (sectionId: string) => {
-    scrollToSection(sectionId);
-  };
+  if (isLowEnd) return null;
 
-  const handleClose = () => {
-    setInteractionState('idle');
-  };
+  const containerSize = isMobile
+    ? { width: '90px', height: '140px' }
+    : { width: '130px', height: '200px' };
 
-  // Don't render on low-end devices with reduced motion preference
-  if (isLowEnd) {
-    return null;
-  }
-
-  // Mobile-specific sizing and positioning
-  const containerSize = isMobile 
-    ? { width: '100px', height: '130px' } 
-    : { width: '140px', height: '180px' };
-  
   const mobilePosition = isMobile ? 80 + (verticalPosition - 120) * 0.6 : verticalPosition;
 
   return (
     <motion.div
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.5, delay: 0.5 }}
+      transition={{ duration: 0.6, delay: 0.5 }}
       className={`fixed z-40 ${isMobile ? 'right-1' : 'right-4 md:right-6 lg:right-8'}`}
       style={{
         top: `${mobilePosition}px`,
@@ -74,57 +48,46 @@ const CompanionContainer = () => {
         pointerEvents: 'auto',
       }}
     >
-      {/* Speech Bubble */}
       <SpeechBubble
         message={getSpeechBubbleMessage()}
         interactionState={interactionState}
-        onNavigate={handleNavigate}
-        onClose={handleClose}
+        onNavigate={scrollToSection}
+        onClose={() => setInteractionState('idle')}
         isMobile={isMobile}
       />
 
-      {/* 3D Character Canvas */}
-      <div
+      <motion.div
         onClick={handleClick}
-        className="w-full h-full cursor-pointer"
+        className="w-full h-full cursor-pointer relative"
         role="button"
-        aria-label="Interactive guide character - click to open navigation menu"
+        aria-label="Interactive guide - click to open navigation menu"
         tabIndex={0}
         onKeyDown={(e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleClick();
-          }
+          if (e.key === 'Enter' || e.key === ' ') handleClick();
         }}
+        animate={{ y: [0, -6, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+        whileHover={{ scale: 1.04 }}
       >
-        <Canvas
-          camera={{ position: [0, 0, isMobile ? 3.8 : 3.2], fov: 45 }}
-          style={{ background: 'transparent' }}
-          gl={{ 
-            alpha: true, 
-            antialias: !isMobile,
-            powerPreference: isMobile ? 'low-power' : 'high-performance',
+        {/* Soft purple glow */}
+        <div
+          className="absolute inset-0 rounded-full blur-2xl opacity-60"
+          style={{
+            background:
+              'radial-gradient(circle at 50% 60%, hsl(var(--primary) / 0.45), transparent 65%)',
           }}
-          dpr={isMobile ? [1, 1] : [1, 1.5]}
-        >
-          <Suspense fallback={null}>
-            <ambientLight intensity={0.7} />
-            <directionalLight position={[5, 5, 5]} intensity={1.2} />
-            <pointLight position={[-5, 5, 5]} intensity={0.6} color="#10b981" />
-            {!isMobile && <pointLight position={[0, -3, 3]} intensity={0.3} color="#6366f1" />}
-            
-            <AnimeCharacter3D
-              idleState={idleState}
-              isScrolling={isScrolling}
-              facingRight={facingRight}
-              cursorPosition={cursorPosition}
-              interactionState={interactionState}
-              isPointing={isPointing}
-            />
-          </Suspense>
-        </Canvas>
-      </div>
+        />
+        <img
+          src={companionImage}
+          alt="Portfolio guide"
+          loading="lazy"
+          width={1024}
+          height={1536}
+          className="relative w-full h-full object-contain drop-shadow-[0_10px_25px_rgba(139,92,246,0.35)] select-none pointer-events-none"
+          draggable={false}
+        />
+      </motion.div>
 
-      {/* Scroll indicator when moving */}
       {isScrolling && !isMobile && (
         <motion.div
           initial={{ opacity: 0 }}
