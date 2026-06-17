@@ -8,7 +8,6 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { useParallax } from '@/hooks/useParallax';
 import { useMagneticEffect } from '@/hooks/useMagneticEffect';
 import MagneticWrapper from '@/components/MagneticWrapper';
-import AnimeCompanion3D from '@/components/AnimeCompanion3D';
 import LoadingScreen from '@/components/LoadingScreen';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
@@ -690,7 +689,6 @@ const Index = () => {
           </p>
         </div>
       </footer>
-      <AnimeCompanion3D />
       </div>
     </>
   );
