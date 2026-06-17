@@ -689,7 +689,6 @@ const Index = () => {
           </p>
         </div>
       </footer>
-      <AnimeCompanion3D />
       </div>
     </>
   );
