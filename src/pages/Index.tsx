@@ -203,7 +203,7 @@ const Hero = () => {
   const item = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } } };
 
   return (
-    <section ref={ref} id="home" className="min-h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 relative overflow-hidden">
+    <section ref={ref} id="home" className="h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 sticky top-0 left-0 w-full overflow-hidden z-0 bg-background">
       {/* Layer 1 – slowest bg blobs */}
       <motion.div style={{ y: yBg, x: mx }} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 -left-24 w-[420px] h-[420px] rounded-full bg-primary/20 blur-[120px]" />
@@ -684,16 +684,18 @@ const Index = () => {
         <div className={`min-h-screen bg-background text-foreground overflow-x-hidden relative transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
           <Navbar active={activeSection} onNavigate={scrollToSection} />
           <Hero />
-          <About />
-          <Projects />
-          <Experience />
-          <Skills />
-          <Contact onSubmit={handleSubmit} formData={formData} onChange={handleInputChange} />
-          <footer className="py-8 px-4 border-t border-border">
-            <div className="max-w-7xl mx-auto text-center">
-              <p className="text-muted-foreground">© 2024 Jayanti Kotapati. All rights reserved.</p>
-            </div>
-          </footer>
+          <div className="relative z-10 bg-background">
+            <About />
+            <Projects />
+            <Experience />
+            <Skills />
+            <Contact onSubmit={handleSubmit} formData={formData} onChange={handleInputChange} />
+            <footer className="py-8 px-4 border-t border-border">
+              <div className="max-w-7xl mx-auto text-center">
+                <p className="text-muted-foreground">© 2024 Jayanti Kotapati. All rights reserved.</p>
+              </div>
+            </footer>
+          </div>
         </div>
       </SmoothScroll>
     </>
