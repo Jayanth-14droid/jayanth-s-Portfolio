@@ -368,10 +368,10 @@ const Projects = () => {
         </Reveal>
       </div>
 
-      <div ref={wrapRef} className="lg:h-screen lg:overflow-hidden">
+      <div ref={wrapRef} className="h-screen overflow-hidden">
         <div
           ref={trackRef}
-          className="flex flex-col lg:flex-row gap-8 px-4 lg:px-16 lg:h-full lg:items-center"
+          className="flex flex-row gap-8 px-4 lg:px-16 h-full items-center"
         >
           {projects.map((p, i) => (
             <motion.div
