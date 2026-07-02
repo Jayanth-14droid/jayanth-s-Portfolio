@@ -288,7 +288,7 @@ const Reveal = ({ children, delay = 0, x = 0, className = '' }: { children: Reac
 const About = () => {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const yImg = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  
   const yText = useTransform(scrollYProgress, [0, 1], [-20, 20]);
 
   return (
@@ -303,14 +303,7 @@ const About = () => {
           <h2 className="text-5xl md:text-6xl font-bold tracking-tight">About <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Me</span></h2>
         </Reveal>
 
-        <div className="grid lg:grid-cols-2 gap-14 items-center mb-20">
-          <motion.div style={{ y: yImg }} className="relative mx-auto">
-            <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden border border-border/50 shadow-[0_20px_80px_hsl(var(--primary)/0.15)]">
-              <img src={profileImg} alt="Jayanth" className="w-full h-full object-cover object-top" />
-            </div>
-            <div className="absolute -z-10 -inset-6 rounded-3xl bg-gradient-to-br from-primary/20 to-secondary/20 blur-2xl" />
-          </motion.div>
-
+        <div className="max-w-3xl mx-auto mb-20">
           <motion.div style={{ y: yText }}>
             <Reveal>
               <h3 className="text-3xl md:text-4xl font-bold mb-6">Creating Digital Solutions</h3>
