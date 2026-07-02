@@ -288,7 +288,7 @@ const Reveal = ({ children, delay = 0, x = 0, className = '' }: { children: Reac
 const About = () => {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
-  const yImg = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  
   const yText = useTransform(scrollYProgress, [0, 1], [-20, 20]);
 
   return (
