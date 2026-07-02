@@ -684,16 +684,18 @@ const Index = () => {
         <div className={`min-h-screen bg-background text-foreground overflow-x-hidden relative transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
           <Navbar active={activeSection} onNavigate={scrollToSection} />
           <Hero />
-          <About />
-          <Projects />
-          <Experience />
-          <Skills />
-          <Contact onSubmit={handleSubmit} formData={formData} onChange={handleInputChange} />
-          <footer className="py-8 px-4 border-t border-border">
-            <div className="max-w-7xl mx-auto text-center">
-              <p className="text-muted-foreground">© 2024 Jayanti Kotapati. All rights reserved.</p>
-            </div>
-          </footer>
+          <div className="relative z-10 bg-background">
+            <About />
+            <Projects />
+            <Experience />
+            <Skills />
+            <Contact onSubmit={handleSubmit} formData={formData} onChange={handleInputChange} />
+            <footer className="py-8 px-4 border-t border-border">
+              <div className="max-w-7xl mx-auto text-center">
+                <p className="text-muted-foreground">© 2024 Jayanti Kotapati. All rights reserved.</p>
+              </div>
+            </footer>
+          </div>
         </div>
       </SmoothScroll>
     </>
