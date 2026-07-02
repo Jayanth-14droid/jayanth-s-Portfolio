@@ -380,7 +380,7 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.7, delay: (i % 4) * 0.08 }}
-              className="w-full lg:w-[520px] lg:flex-shrink-0"
+              className="w-[85vw] sm:w-[400px] md:w-[480px] lg:w-[520px] flex-shrink-0"
             >
               <TiltCard className="group relative bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 overflow-hidden hover:border-primary/40 transition-colors">
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted/30">
