@@ -223,7 +223,7 @@ const Hero = () => {
           </motion.p>
           <motion.h1 variants={item} className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
             I'M A UI/UX<br />
-            <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">DESIGNER</span>
+            <span>DESIGNER</span>
           </motion.h1>
           <motion.p variants={item} className="text-muted-foreground text-lg mb-8 max-w-md leading-relaxed">
             I am a passionate UI/UX designer with a love for creating beautiful and functional user experiences. I have strong foundation in UI/UX design.
