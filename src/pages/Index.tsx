@@ -329,9 +329,7 @@ const Projects = () => {
   const reduced = useReducedMotion();
 
   useEffect(() => {
-    if (reduced) return;
-    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
-    if (!isDesktop || !wrapRef.current || !trackRef.current) return;
+    if (reduced || !wrapRef.current || !trackRef.current) return;
 
     const ctx = gsap.context(() => {
       const track = trackRef.current!;
