@@ -1,696 +1,724 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ArrowDown, Download, Mail, ExternalLink, Instagram, Linkedin, Menu, X, Figma, FileText, ArrowRight } from 'lucide-react';
+import { motion, useScroll, useTransform, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-import { useParallax } from '@/hooks/useParallax';
-import { useMagneticEffect } from '@/hooks/useMagneticEffect';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 import MagneticWrapper from '@/components/MagneticWrapper';
 import LoadingScreen from '@/components/LoadingScreen';
+import { SmoothScroll } from '@/components/SmoothScroll';
+import { TiltCard } from '@/components/TiltCard';
+import { CountUp } from '@/components/CountUp';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
 import profileImg from '@/assets/profile.png';
 
+gsap.registerPlugin(ScrollTrigger);
+
+const NAV_ITEMS = ['Home', 'About', 'Projects', 'Experience', 'Skills', 'Contact'];
+
+const projects = [{
+  title: "COMFORT WEAR", subtitle: "Mobile E-Commerce App",
+  description: "Keep yourself in style by purchasing product from 'comfort wear'",
+  tools: "UI/UX Design, Prototyping",
+  image: "/lovable-uploads/d7a8394a-de60-472f-a442-a4a00fb85a6d.png",
+  projectLink: "https://www.figma.com/proto/FJ3Qk2lOf1IdK3hTwJtFT8/E-commerces--website?node-id=0-1&t=AS6M5J5ddNFiF2YQ-1",
+  caseStudyLink: "https://www.behance.net/gallery/227358245/Comfort-Wear-case-study"
+}, {
+  title: "COURSE-ONLINE", subtitle: "Learning Platform App",
+  description: "Modern online learning platform designed to provide seamless educational experiences with intuitive course navigation and engaging user interface for students and mentors.",
+  tools: "UI/UX Design, Mobile App Design, User Research",
+  image: "/lovable-uploads/389d16d0-93cb-443e-b3dc-653543ff3a3e.png",
+  projectLink: "https://www.figma.com/proto/Y8lve28Tl1xh2cGNUiXDKj/Course-online--Learning?node-id=0-1&t=pFtA5ZSBwInYw6L4-1",
+  caseStudyLink: "https://www.behance.net/gallery/230532382/Course-online-case-study"
+}, {
+  title: "MIND EASE", subtitle: "Mental Health Mobile Application",
+  description: "Mobile application focused on balancing mental health for working professionals and students aged 22-30, providing personalized tools and resources for mental wellness.",
+  tools: "UI/UX Design, Mobile App Design, User Research",
+  image: "/lovable-uploads/mind-ease.jpg",
+  projectLink: "https://www.figma.com/proto/egBIHWTMDchGBScVi8XSUy/Mindease?page-id=0%3A1&node-id=18-598&p=f&viewport=-613%2C184%2C0.42&t=1rANrqBYeNCTlLuR-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=18%3A598",
+  caseStudyLink: "https://www.behance.net/gallery/236845155/Mind-ease"
+}, {
+  title: "BURGER HUNT", subtitle: "Food Delivery App with Parallax",
+  description: "Modern food delivery application featuring stunning parallax effects and intuitive user experience. Crunchy meat all day makes the pain go away.",
+  tools: "UI/UX Design, Parallax Effects, Prototyping",
+  image: "/lovable-uploads/b61558b7-dd40-4118-84e0-ae2951483f27.png",
+  projectLink: "https://www.figma.com/proto/tvmtFRMvBELvrbyr95bXh5/Untitled?node-id=12-4&t=NTL4kx4Ioeq8iFFv-1",
+  caseStudyLink: "#"
+}, {
+  title: "CLASSIC CARS MUSTANG", subtitle: "Automotive Showcase with Parallax",
+  description: "Elegant automotive showcase featuring the iconic Mustang 1954 with smooth parallax scrolling effects and premium design aesthetics.",
+  tools: "UI/UX Design, Parallax Design, Visual Design",
+  image: "/lovable-uploads/f5c380d6-db4d-48a6-9b61-0eaf4e978ff4.png",
+  projectLink: "https://www.figma.com/proto/tvmtFRMvBELvrbyr95bXh5/Untitled?node-id=75-831&t=30jv7tUduRR6vyRF-1",
+  caseStudyLink: "#"
+}, {
+  title: "FOOD RE-DESIGN", subtitle: "Web Application Design",
+  description: "Modern food application with intuitive user experience and real-time data visualization",
+  tools: "UI/UX Design, User Research",
+  image: "/lovable-uploads/c4af3f37-96b8-4dbd-8237-f997d6f6d458.png",
+  projectLink: "https://www.figma.com/proto/anL4j8dj13EGFYcUifEZ4y/food?node-id=0-1&t=Ddw3t1jlgVxW9JOn-1",
+  caseStudyLink: "#"
+}, {
+  title: "NIKE RE-DESIGN", subtitle: "Web Application",
+  description: "Modern shoe web application with intuitive user experience",
+  tools: "UI/UX Design, Wireframing",
+  image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
+  projectLink: "https://www.figma.com/proto/xP8Vr0T8VDP5bUo9j73AV4/NIKE?page-id=0%3A1&node-id=1-254&starting-point-node-id=81%3A100&t=hw1eFjUB446gOPip-1",
+  caseStudyLink: "#"
+}, {
+  title: "SHUTTER SEARCH", subtitle: "Photographer Discovery Platform",
+  description: "Website for finding photographers - capture every movement with professionals who bring passion and precision to every shot.",
+  tools: "UI/UX Design, Web Design, Prototyping",
+  image: "/lovable-uploads/shutter-search.jpg",
+  projectLink: "https://www.figma.com/proto/BRp61RM9VQJ6LGLeaFXDDj/Responsive--Designs?node-id=90-566&t=oMOnXaArQ41ntfLb-1",
+  caseStudyLink: "#"
+}];
+
+const skills = [
+  { category: 'Design', items: ['UI/UX Design', 'Web Designing', 'Wireframing', 'Prototyping'] },
+  { category: 'Tech', items: ['Front-End Basics', 'HTML/CSS', 'Responsive Design'] },
+  { category: 'Tools', items: ['Figma', 'Photoshop', 'Canva'] },
+  { category: 'Craft', items: ['User Research', 'Design Systems', 'Editing & Design'] },
+];
+
+const timeline = [
+  { year: '2020 - 2024', title: 'Bachelor of Computer Science (CSE)', place: 'Eluru College of Engineering and Technology', meta: 'CGPA: 7.07/10' },
+  { year: '2018 - 2020', title: 'Intermediate (M.P.C)', place: 'Vidya Vikas Junior College', meta: 'Percentage: 7/10' },
+  { year: '2017 - 2018', title: 'S.S.C', place: 'Vidya Vikas High School', meta: 'CGPA: 9.2/10' },
+];
+
+const stats = [
+  { end: 8, suffix: '+', label: 'Projects Shipped' },
+  { end: 3, suffix: '+', label: 'Years Practicing' },
+  { end: 20, suffix: '+', label: 'Design Explorations' },
+  { end: 100, suffix: '%', label: 'Passion' },
+];
+
+// -------------------- Navbar --------------------
+const Navbar = ({ active, onNavigate }: { active: string; onNavigate: (id: string) => void }) => {
+  const { scrollY } = useScroll();
+  const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => scrollY.on('change', (v) => setScrolled(v > 80)), [scrollY]);
+
+  return (
+    <motion.nav
+      animate={{ height: scrolled ? 60 : 76 }}
+      transition={{ duration: 0.3 }}
+      className={`fixed top-0 w-full z-50 transition-colors duration-300 ${scrolled ? 'bg-background/70 backdrop-blur-xl border-b border-border/40' : 'bg-transparent'}`}
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full flex justify-between items-center">
+        <motion.div
+          initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
+          className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent"
+        >JK</motion.div>
+
+        <div className="hidden md:flex space-x-8">
+          {NAV_ITEMS.map((item) => {
+            const id = item.toLowerCase();
+            const isActive = active === id;
+            return (
+              <button key={item} onClick={() => onNavigate(id)}
+                className={`relative text-sm font-medium transition-colors hover:text-primary ${isActive ? 'text-primary' : 'text-muted-foreground'}`}>
+                {item}
+                {isActive && <motion.span layoutId="nav-underline" className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary rounded-full" />}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="hidden md:flex items-center">
+          <MagneticWrapper strength={0.25} radius={80}>
+            <a href={CV} download="Jayanth Kotapati__UIUX.pdf">
+              <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
+                <Download className="w-4 h-4 mr-2" /> Download CV
+              </Button>
+            </a>
+          </MagneticWrapper>
+        </div>
+
+        <button className="md:hidden text-foreground" onClick={() => setOpen(!open)} aria-label="Toggle menu">
+          {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+            className="md:hidden bg-background/95 backdrop-blur-xl border-b border-border">
+            <div className="px-4 py-6 space-y-4">
+              {NAV_ITEMS.map((item) => (
+                <button key={item} onClick={() => { onNavigate(item.toLowerCase()); setOpen(false); }}
+                  className="block w-full text-left text-muted-foreground hover:text-primary transition-colors">
+                  {item}
+                </button>
+              ))}
+              <a href={CV} download="Jayanth Kotapati__UIUX.pdf" className="block pt-4 border-t border-border">
+                <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full">
+                  <Download className="w-4 h-4 mr-2" /> Download CV
+                </Button>
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
+  );
+};
+
+// -------------------- Hero --------------------
+const Hero = () => {
+  const ref = useRef<HTMLElement>(null);
+  const reduced = useReducedMotion();
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] });
+  const yBg = useTransform(scrollYProgress, [0, 1], ['0%', '40%']);
+  const yMid = useTransform(scrollYProgress, [0, 1], ['0%', '25%']);
+  const yFg = useTransform(scrollYProgress, [0, 1], ['0%', '10%']);
+  const opacityScroll = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const mx = useSpring(mouseX, { stiffness: 60, damping: 20 });
+  const my = useSpring(mouseY, { stiffness: 60, damping: 20 });
+
+  useEffect(() => {
+    if (reduced) return;
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    if (!isDesktop) return;
+    const handle = (e: MouseEvent) => {
+      mouseX.set((e.clientX / window.innerWidth - 0.5) * 40);
+      mouseY.set((e.clientY / window.innerHeight - 0.5) * 40);
+    };
+    window.addEventListener('mousemove', handle);
+    return () => window.removeEventListener('mousemove', handle);
+  }, [reduced, mouseX, mouseY]);
+
+  const container = { hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } } };
+  const item = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } } };
+
+  return (
+    <section ref={ref} id="home" className="min-h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 relative overflow-hidden">
+      {/* Layer 1 – slowest bg blobs */}
+      <motion.div style={{ y: yBg, x: mx }} className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 -left-24 w-[420px] h-[420px] rounded-full bg-primary/20 blur-[120px]" />
+        <div className="absolute bottom-10 -right-20 w-[500px] h-[500px] rounded-full bg-secondary/20 blur-[130px]" />
+      </motion.div>
+      {/* Layer 2 – mid ground grid */}
+      <motion.div style={{ y: yMid, x: useTransform(mx, (v) => v * 0.5) }} className="absolute inset-0 opacity-40 pointer-events-none"
+        aria-hidden>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,hsl(var(--primary)/0.15),transparent_50%)]" />
+      </motion.div>
+
+      {/* Foreground */}
+      <motion.div style={{ y: yFg }} className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
+        <motion.div variants={container} initial="hidden" animate="visible">
+          <motion.p variants={item} className="mb-4 my-[24px] text-left font-bold text-3xl md:text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            Hi, I'm JAYANTH KOTAPATI
+          </motion.p>
+          <motion.h1 variants={item} className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
+            I'M A UI/UX<br />
+            <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">DESIGNER</span>
+          </motion.h1>
+          <motion.p variants={item} className="text-muted-foreground text-lg mb-8 max-w-md leading-relaxed">
+            I am a passionate UI/UX designer with a love for creating beautiful and functional user experiences. I have strong foundation in UI/UX design.
+          </motion.p>
+          <motion.div variants={item} className="flex space-x-4">
+            {[
+              { icon: <Linkedin className="w-5 h-5" />, href: 'https://www.linkedin.com/in/jayanth-kotapati-800b88288/' },
+              { icon: <Instagram className="w-5 h-5" />, href: 'https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==' },
+              { icon: <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />, href: 'https://www.behance.net/jayanthkotapati' },
+              { icon: <Mail className="w-5 h-5" />, href: 'mailto:jayanthkotapati14@gmail.com' },
+            ].map((s, i) => (
+              <MagneticWrapper key={i} strength={0.3} radius={60}>
+                <Button variant="outline" size="icon"
+                  className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+                  onClick={() => window.open(s.href, '_blank')}>
+                  {s.icon}
+                </Button>
+              </MagneticWrapper>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          style={{ x: useTransform(mx, (v) => v * -0.3), y: useTransform(my, (v) => v * -0.3) }}
+          className="relative flex justify-center order-first lg:order-last mt-4 lg:mt-0"
+        >
+          <div className="w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-[420px] md:h-[420px] lg:w-[500px] lg:h-[500px] rounded-full p-1 bg-gradient-to-br from-primary/40 via-secondary/30 to-primary/40 shadow-[0_0_80px_hsl(var(--primary)/0.25)]">
+            <div className="w-full h-full rounded-full overflow-hidden relative group bg-background">
+              <img alt="Profile" src={profileImg} className="w-full h-full object-cover object-top rounded-full transition-transform duration-700 group-hover:scale-105" />
+            </div>
+          </div>
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll indicator */}
+      <motion.div style={{ opacity: opacityScroll }} className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-muted-foreground">
+        <span className="text-xs tracking-widest uppercase">Scroll</span>
+        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
+          <ArrowDown className="w-5 h-5" />
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+};
+
+// -------------------- Reveal wrapper --------------------
+const Reveal = ({ children, delay = 0, x = 0, className = '' }: { children: React.ReactNode; delay?: number; x?: number; className?: string }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 40, x }}
+    whileInView={{ opacity: 1, y: 0, x: 0 }}
+    viewport={{ once: true, amount: 0.2 }}
+    transition={{ duration: 0.8, delay, ease: [0.22, 1, 0.36, 1] }}
+    className={className}
+  >
+    {children}
+  </motion.div>
+);
+
+// -------------------- About --------------------
+const About = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
+  const yImg = useTransform(scrollYProgress, [0, 1], [40, -40]);
+  const yText = useTransform(scrollYProgress, [0, 1], [-20, 20]);
+
+  return (
+    <section ref={ref} id="about" className="py-32 px-4 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <Reveal className="text-center mb-16">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
+            <span className="text-primary text-xs font-medium tracking-widest uppercase">About</span>
+            <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary" />
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight">About <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Me</span></h2>
+        </Reveal>
+
+        <div className="grid lg:grid-cols-2 gap-14 items-center mb-20">
+          <motion.div style={{ y: yImg }} className="relative mx-auto">
+            <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden border border-border/50 shadow-[0_20px_80px_hsl(var(--primary)/0.15)]">
+              <img src={profileImg} alt="Jayanth" className="w-full h-full object-cover object-top" />
+            </div>
+            <div className="absolute -z-10 -inset-6 rounded-3xl bg-gradient-to-br from-primary/20 to-secondary/20 blur-2xl" />
+          </motion.div>
+
+          <motion.div style={{ y: yText }}>
+            <Reveal>
+              <h3 className="text-3xl md:text-4xl font-bold mb-6">Creating Digital Solutions</h3>
+              <p className="text-muted-foreground text-lg mb-4 leading-relaxed">
+                I'm a UI/UX designer specializing in intuitive, engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that look great and function seamlessly.
+              </p>
+              <p className="text-muted-foreground text-lg leading-relaxed">
+                I believe in the power of good design to transform businesses and improve people's lives. Every project is a chance to learn, grow, and craft something meaningful.
+              </p>
+            </Reveal>
+          </motion.div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {stats.map((s, i) => (
+            <Reveal key={s.label} delay={i * 0.08}>
+              <div className="text-center p-6 rounded-2xl bg-card/40 backdrop-blur-sm border border-border/50 hover:border-primary/40 transition-colors">
+                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                  <CountUp end={s.end} suffix={s.suffix} />
+                </div>
+                <div className="text-xs md:text-sm text-muted-foreground mt-2 uppercase tracking-wider">{s.label}</div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// -------------------- Projects (horizontal on desktop) --------------------
+const Projects = () => {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+
+  useEffect(() => {
+    if (reduced) return;
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
+    if (!isDesktop || !wrapRef.current || !trackRef.current) return;
+
+    const ctx = gsap.context(() => {
+      const track = trackRef.current!;
+      const distance = () => track.scrollWidth - window.innerWidth + 120;
+      const tween = gsap.to(track, {
+        x: () => -distance(),
+        ease: 'none',
+        scrollTrigger: {
+          trigger: wrapRef.current,
+          start: 'top top',
+          end: () => `+=${distance()}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+      return () => tween.kill();
+    }, wrapRef);
+    return () => ctx.revert();
+  }, [reduced]);
+
+  return (
+    <section id="projects" className="relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 pt-32 pb-12">
+        <Reveal className="mb-12">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
+            <span className="text-primary text-xs font-medium tracking-widest uppercase">Portfolio</span>
+          </div>
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tight">
+            Featured <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Works</span>
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mt-4">
+            A curated selection of design projects showcasing innovative solutions and thoughtful user experiences.
+          </p>
+        </Reveal>
+      </div>
+
+      <div ref={wrapRef} className="lg:h-screen lg:overflow-hidden">
+        <div
+          ref={trackRef}
+          className="flex flex-col lg:flex-row gap-8 px-4 lg:px-16 lg:h-full lg:items-center"
+        >
+          {projects.map((p, i) => (
+            <motion.div
+              key={p.title}
+              initial={{ opacity: 0, y: 60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.7, delay: (i % 4) * 0.08 }}
+              className="w-full lg:w-[520px] lg:flex-shrink-0"
+            >
+              <TiltCard className="group relative bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 overflow-hidden hover:border-primary/40 transition-colors">
+                <div className="relative aspect-[16/10] overflow-hidden bg-muted/30">
+                  <motion.img
+                    src={p.image} alt={p.title} loading="lazy"
+                    className="w-full h-full object-cover"
+                    initial={{ scale: 1.15, clipPath: 'inset(20% round 24px)' }}
+                    whileInView={{ scale: 1, clipPath: 'inset(0% round 0px)' }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/30 to-transparent opacity-60 group-hover:opacity-90 transition-opacity" />
+                  <div className="absolute top-5 left-5 flex items-center justify-center w-12 h-12 rounded-full bg-background/80 backdrop-blur-md border border-border/50 text-foreground font-bold">
+                    {String(i + 1).padStart(2, '0')}
+                  </div>
+                  <div className="absolute top-5 right-5 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <button onClick={(e) => { e.stopPropagation(); window.open(p.projectLink, '_blank'); }}
+                      className="flex items-center justify-center w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border/50 hover:bg-primary hover:text-primary-foreground transition-colors">
+                      <ExternalLink className="w-4 h-4" />
+                    </button>
+                    {p.caseStudyLink !== '#' && (
+                      <button onClick={(e) => { e.stopPropagation(); window.open(p.caseStudyLink, '_blank'); }}
+                        className="flex items-center justify-center w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border/50 hover:bg-primary hover:text-primary-foreground transition-colors">
+                        <FileText className="w-4 h-4" />
+                      </button>
+                    )}
+                  </div>
+                </div>
+                <div className="p-7">
+                  <div className="text-xs text-muted-foreground uppercase tracking-widest mb-2">{p.subtitle}</div>
+                  <h3 className="text-2xl font-bold mb-3 group-hover:text-primary transition-colors">{p.title}</h3>
+                  <p className="text-muted-foreground leading-relaxed mb-4 text-sm">{p.description}</p>
+                  <div className="flex items-center gap-4">
+                    <button onClick={() => window.open(p.projectLink, '_blank')} className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary group/btn">
+                      View Project <ArrowRight className="w-4 h-4 transition-transform group-hover/btn:translate-x-1" />
+                    </button>
+                    {p.caseStudyLink !== '#' && (
+                      <>
+                        <div className="w-px h-4 bg-border" />
+                        <button onClick={() => window.open(p.caseStudyLink, '_blank')} className="text-sm text-muted-foreground hover:text-primary">Case Study</button>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </TiltCard>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// -------------------- Experience / Timeline --------------------
+const Experience = () => {
+  const ref = useRef<HTMLDivElement>(null);
+  const pathRef = useRef<SVGPathElement>(null);
+  const reduced = useReducedMotion();
+
+  useEffect(() => {
+    if (reduced || !pathRef.current || !ref.current) return;
+    const length = pathRef.current.getTotalLength();
+    pathRef.current.style.strokeDasharray = `${length}`;
+    pathRef.current.style.strokeDashoffset = `${length}`;
+    const st = ScrollTrigger.create({
+      trigger: ref.current,
+      start: 'top 70%',
+      end: 'bottom 70%',
+      scrub: 0.6,
+      onUpdate: (self) => {
+        if (pathRef.current) pathRef.current.style.strokeDashoffset = `${length * (1 - self.progress)}`;
+      },
+    });
+    return () => st.kill();
+  }, [reduced]);
+
+  return (
+    <section id="experience" className="py-32 px-4 relative overflow-hidden bg-gradient-to-b from-background via-muted/10 to-background">
+      <div className="max-w-5xl mx-auto">
+        <Reveal className="mb-20 text-center">
+          <div className="inline-flex items-center gap-3 mb-4">
+            <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
+            <span className="text-primary text-xs font-medium tracking-widest uppercase">Journey</span>
+            <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary" />
+          </div>
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
+            Education & <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Experience</span>
+          </h2>
+        </Reveal>
+
+        <div ref={ref} className="relative">
+          {/* SVG progress line */}
+          <svg className="absolute left-4 md:left-8 top-0 h-full w-4 overflow-visible pointer-events-none" preserveAspectRatio="none">
+            <path ref={pathRef} d="M 8 0 L 8 10000" stroke="url(#lineGrad)" strokeWidth="2" fill="none" strokeLinecap="round" />
+            <defs>
+              <linearGradient id="lineGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stopColor="hsl(var(--primary))" />
+                <stop offset="100%" stopColor="hsl(var(--secondary))" />
+              </linearGradient>
+            </defs>
+          </svg>
+          {/* Faint track */}
+          <div className="absolute left-4 md:left-8 top-0 bottom-0 w-px bg-border/40" />
+
+          <div className="space-y-10">
+            {timeline.map((t, i) => (
+              <motion.div
+                key={t.title}
+                initial={{ opacity: 0, x: -40 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, amount: 0.4 }}
+                transition={{ duration: 0.7, delay: i * 0.08 }}
+                className="relative pl-14 md:pl-24"
+              >
+                <div className="absolute left-4 md:left-8 top-6 w-3 h-3 -translate-x-[5px] rounded-full bg-primary ring-4 ring-background shadow-[0_0_20px_hsl(var(--primary)/0.6)]" />
+                <div className="bg-card/50 backdrop-blur-sm p-6 md:p-8 rounded-2xl border border-border/50 hover:border-primary/40 transition-colors">
+                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-3 mb-3">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-bold mb-1">{t.title}</h3>
+                      <p className="text-muted-foreground">{t.place}</p>
+                    </div>
+                    <div className="px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-sm font-medium whitespace-nowrap">
+                      {t.year}
+                    </div>
+                  </div>
+                  <div className="inline-flex px-3 py-1 rounded-full bg-muted/50 border border-border/50 text-sm">{t.meta}</div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+// -------------------- Skills --------------------
+const Skills = () => (
+  <section id="skills" className="py-32 px-4 relative overflow-hidden">
+    <div className="max-w-6xl mx-auto">
+      <Reveal className="text-center mb-16">
+        <div className="inline-flex items-center gap-3 mb-4">
+          <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
+          <span className="text-primary text-xs font-medium tracking-widest uppercase">Expertise</span>
+          <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary" />
+        </div>
+        <h2 className="text-5xl md:text-6xl font-bold tracking-tight">
+          Skills & <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Tools</span>
+        </h2>
+      </Reveal>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {skills.map((group, gi) => (
+          <Reveal key={group.category} delay={gi * 0.1}>
+            <div className="p-8 rounded-2xl bg-card/40 backdrop-blur-sm border border-border/50">
+              <h3 className="text-xl font-bold mb-6 text-primary">{group.category}</h3>
+              <div className="flex flex-wrap gap-3">
+                {group.items.map((s, i) => (
+                  <motion.span
+                    key={s}
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: i * 0.06 }}
+                    whileHover={{ y: -4, boxShadow: '0 10px 30px hsl(var(--primary) / 0.2)' }}
+                    className="px-4 py-2 rounded-full bg-background/60 border border-border/60 text-sm font-medium hover:border-primary/40 hover:text-primary transition-colors cursor-default"
+                  >
+                    {s}
+                  </motion.span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+// -------------------- Contact --------------------
+const Contact = ({ onSubmit, formData, onChange }: any) => (
+  <section id="contact" className="py-32 px-4 relative overflow-hidden">
+    <motion.div
+      animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+      transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+      className="absolute top-10 left-10 w-96 h-96 rounded-full bg-primary/15 blur-3xl pointer-events-none"
+    />
+    <motion.div
+      animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
+      transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+      className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-secondary/15 blur-3xl pointer-events-none"
+    />
+
+    <div className="max-w-4xl mx-auto relative z-10">
+      <Reveal className="text-center mb-16">
+        <h2 className="text-5xl md:text-7xl font-bold mb-4 tracking-tight">
+          Let's <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Connect</span>
+        </h2>
+        <p className="text-muted-foreground text-lg">Ready to start your next project? Let's create something amazing together.</p>
+      </Reveal>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        <Reveal x={-30}>
+          <div className="backdrop-blur-sm bg-card/40 p-8 rounded-2xl border border-border/50 h-full">
+            <h3 className="text-2xl font-bold mb-6">Get in touch</h3>
+            <p className="text-muted-foreground mb-8 leading-relaxed">
+              Feel free to reach out if you're looking for a UI/UX Designer, have a query, or just want to connect.
+            </p>
+            <div className="p-4 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/10 mb-6 flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary flex items-center justify-center rounded-xl">
+                <Mail className="w-6 h-6 text-white" />
+              </div>
+              <div className="min-w-0">
+                <label className="text-xs text-muted-foreground uppercase tracking-wider">Email</label>
+                <p className="text-foreground font-medium break-all cursor-pointer hover:text-primary" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com')}>
+                  jayanthkotapati14@gmail.com
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-3">
+              {[
+                { icon: <Linkedin className="w-5 h-5" />, href: 'https://www.linkedin.com/in/jayanth-kotapati-800b88288/' },
+                { icon: <Instagram className="w-5 h-5" />, href: 'https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==' },
+                { icon: <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />, href: 'https://www.behance.net/jayanthkotapati' },
+              ].map((s, i) => (
+                <MagneticWrapper key={i} strength={0.35} radius={70}>
+                  <Button variant="outline" size="icon" className="border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground transition-all" onClick={() => window.open(s.href, '_blank')}>
+                    {s.icon}
+                  </Button>
+                </MagneticWrapper>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal x={30}>
+          <div className="backdrop-blur-sm bg-card/40 p-8 rounded-2xl border border-border/50">
+            <h3 className="text-2xl font-bold mb-6">Send a message</h3>
+            <form onSubmit={onSubmit} className="space-y-5">
+              <Input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={onChange} required className="bg-background/50 border-border/60 focus:border-primary" />
+              <Input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={onChange} required className="bg-background/50 border-border/60 focus:border-primary" />
+              <Textarea name="message" placeholder="Your Message" value={formData.message} onChange={onChange} required rows={5} className="bg-background/50 border-border/60 focus:border-primary resize-none" />
+              <MagneticWrapper strength={0.2} radius={100}>
+                <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold">Send Message</Button>
+              </MagneticWrapper>
+            </form>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </section>
+);
+
+// -------------------- Root --------------------
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const {
-    toast
-  } = useToast();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: ''
-  });
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
-  // Scroll animation hooks for different sections
-  const aboutAnimation = useScrollAnimation(0.2);
-  const projectsAnimation = useScrollAnimation(0.1);
-  const educationAnimation = useScrollAnimation(0.2);
-  const skillsAnimation = useScrollAnimation(0.2);
-  const techAnimation = useScrollAnimation(0.2);
-  const contactAnimation = useScrollAnimation(0.2);
-
-  // Parallax effects for different sections
-  const heroParallax = useParallax(0.3);
-  const aboutParallax = useParallax(0.4);
-  const projectsParallax = useParallax(0.2);
-  const skillsParallax = useParallax(0.35);
   useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'projects', 'education', 'skills', 'contact'];
-      const current = sections.find(section => {
-        const element = document.getElementById(section);
-        if (element) {
-          const rect = element.getBoundingClientRect();
-          return rect.top <= 100 && rect.bottom >= 100;
-        }
-        return false;
-      });
-      if (current) setActiveSection(current);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    element?.scrollIntoView({
-      behavior: 'smooth'
+    const ids = NAV_ITEMS.map((n) => n.toLowerCase());
+    const observers: IntersectionObserver[] = [];
+    ids.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const io = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { rootMargin: '-40% 0px -55% 0px', threshold: 0 }
+      );
+      io.observe(el);
+      observers.push(io);
     });
-    setIsMenuOpen(false);
+    return () => observers.forEach((o) => o.disconnect());
+  }, [isLoading]);
+
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
   };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const result = await emailjs.send('service_6r6956i', 'template_c7s8ghz', {
-        from_name: formData.name,
-        from_email: formData.email,
-        message: formData.message,
-        to_name: 'Jayanti Kotapati'
+      await emailjs.send('service_6r6956i', 'template_c7s8ghz', {
+        from_name: formData.name, from_email: formData.email, message: formData.message, to_name: 'Jayanti Kotapati',
       }, 'g1iMpZw27FIrnlHs5');
-      console.log('Email sent successfully:', result);
-      toast({
-        title: "Message sent!",
-        description: "Thank you for reaching out. I'll get back to you soon."
-      });
-      setFormData({
-        name: '',
-        email: '',
-        message: ''
-      });
-    } catch (error) {
-      console.error('Email sending failed:', error);
-      toast({
-        title: "Error sending message",
-        description: "Something went wrong. Please try again later.",
-        variant: "destructive"
-      });
+      toast({ title: 'Message sent!', description: "Thank you for reaching out. I'll get back to you soon." });
+      setFormData({ name: '', email: '', message: '' });
+    } catch {
+      toast({ title: 'Error sending message', description: 'Something went wrong. Please try again later.', variant: 'destructive' });
     }
   };
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-  const projects = [{
-    title: "COMFORT WEAR",
-    subtitle: "Mobile E-Commerce App",
-    description: "Keep yourself in style by purchasing product from 'comfort wear'",
-    tools: "UI/UX Design, Prototyping",
-    image: "/lovable-uploads/d7a8394a-de60-472f-a442-a4a00fb85a6d.png",
-    projectLink: "https://www.figma.com/proto/FJ3Qk2lOf1IdK3hTwJtFT8/E-commerces--website?node-id=0-1&t=AS6M5J5ddNFiF2YQ-1",
-    caseStudyLink: "https://www.behance.net/gallery/227358245/Comfort-Wear-case-study"
-  }, {
-    title: "COURSE-ONLINE",
-    subtitle: "Learning Platform App",
-    description: "Modern online learning platform designed to provide seamless educational experiences with intuitive course navigation and engaging user interface for students and mentors.",
-    tools: "UI/UX Design, Mobile App Design, User Research",
-    image: "/lovable-uploads/389d16d0-93cb-443e-b3dc-653543ff3a3e.png",
-    projectLink: "https://www.figma.com/proto/Y8lve28Tl1xh2cGNUiXDKj/Course-online--Learning?node-id=0-1&t=pFtA5ZSBwInYw6L4-1",
-    caseStudyLink: "https://www.behance.net/gallery/230532382/Course-online-case-study"
-  }, {
-    title: "MIND EASE",
-    subtitle: "Mental Health Mobile Application",
-    description: "Mobile application focused on balancing mental health for working professionals and students aged 22-30, providing personalized tools and resources for mental wellness.",
-    tools: "UI/UX Design, Mobile App Design, User Research",
-    image: "/lovable-uploads/mind-ease.jpg",
-    projectLink: "https://www.figma.com/proto/egBIHWTMDchGBScVi8XSUy/Mindease?page-id=0%3A1&node-id=18-598&p=f&viewport=-613%2C184%2C0.42&t=1rANrqBYeNCTlLuR-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=18%3A598",
-    caseStudyLink: "https://www.behance.net/gallery/236845155/Mind-ease"
-  }, {
-    title: "BURGER HUNT",
-    subtitle: "Food Delivery App with Parallax",
-    description: "Modern food delivery application featuring stunning parallax effects and intuitive user experience. Crunchy meat all day makes the pain go away.",
-    tools: "UI/UX Design, Parallax Effects, Prototyping",
-    image: "/lovable-uploads/b61558b7-dd40-4118-84e0-ae2951483f27.png",
-    projectLink: "https://www.figma.com/proto/tvmtFRMvBELvrbyr95bXh5/Untitled?node-id=12-4&t=NTL4kx4Ioeq8iFFv-1",
-    caseStudyLink: "#"
-  }, {
-    title: "CLASSIC CARS MUSTANG",
-    subtitle: "Automotive Showcase with Parallax",
-    description: "Elegant automotive showcase featuring the iconic Mustang 1954 with smooth parallax scrolling effects and premium design aesthetics.",
-    tools: "UI/UX Design, Parallax Design, Visual Design",
-    image: "/lovable-uploads/f5c380d6-db4d-48a6-9b61-0eaf4e978ff4.png",
-    projectLink: "https://www.figma.com/proto/tvmtFRMvBELvrbyr95bXh5/Untitled?node-id=75-831&t=30jv7tUduRR6vyRF-1",
-    caseStudyLink: "#"
-  }, {
-    title: "FOOD RE-DESIGN",
-    subtitle: "Web Application Design",
-    description: "Modern food application with intuitive user experience and real-time data visualization",
-    tools: "UI/UX Design, User Research",
-    image: "/lovable-uploads/c4af3f37-96b8-4dbd-8237-f997d6f6d458.png",
-    projectLink: "https://www.figma.com/proto/anL4j8dj13EGFYcUifEZ4y/food?node-id=0-1&t=Ddw3t1jlgVxW9JOn-1",
-    caseStudyLink: "#"
-  }, {
-    title: "NIKE RE-DESIGN",
-    subtitle: "Web Application",
-    description: "Modern shoe web application with intuitive user experience",
-    tools: "UI/UX Design, Wireframing",
-    image: "/lovable-uploads/fc9ae2ec-5121-4e32-82de-1a2ff5c13b53.png",
-    projectLink: "https://www.figma.com/proto/xP8Vr0T8VDP5bUo9j73AV4/NIKE?page-id=0%3A1&node-id=1-254&starting-point-node-id=81%3A100&t=hw1eFjUB446gOPip-1",
-    caseStudyLink: "#"
-  }, {
-    title: "SHUTTER SEARCH",
-    subtitle: "Photographer Discovery Platform",
-    description: "Website for finding photographers - capture every movement with professionals who bring passion and precision to every shot.",
-    tools: "UI/UX Design, Web Design, Prototyping",
-    image: "/lovable-uploads/shutter-search.jpg",
-    projectLink: "https://www.figma.com/proto/BRp61RM9VQJ6LGLeaFXDDj/Responsive--Designs?node-id=90-566&t=oMOnXaArQ41ntfLb-1",
-    caseStudyLink: "#"
-  }];
-  const skills = ["Web Designing", "UI/UX Design", "Front-End Technology", "Editing and Design"];
-  const technologies = [{
-    name: "Figma",
-    icon: Figma
-  }, {
-    name: "Photoshop",
-    icon: null
-  }, {
-    name: "Canva",
-    icon: null
-  }];
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+
   return (
     <>
       {isLoading && <LoadingScreen onComplete={() => setIsLoading(false)} />}
-      <div className={`min-h-screen bg-background text-foreground overflow-x-hidden relative transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
-        {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-background/95 backdrop-blur-sm z-50 border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="text-xl font-bold text-primary rounded-sm">JK</div>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
-              {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className={`text-sm font-medium transition-colors hover:text-primary ${activeSection === item.toLowerCase() ? 'text-primary' : 'text-muted-foreground'}`}>
-                  {item}
-                </button>)}
+      <SmoothScroll>
+        <div className={`min-h-screen bg-background text-foreground overflow-x-hidden relative transition-opacity duration-500 ${isLoading ? 'opacity-0' : 'opacity-100'}`}>
+          <Navbar active={activeSection} onNavigate={scrollToSection} />
+          <Hero />
+          <About />
+          <Projects />
+          <Experience />
+          <Skills />
+          <Contact onSubmit={handleSubmit} formData={formData} onChange={handleInputChange} />
+          <footer className="py-8 px-4 border-t border-border">
+            <div className="max-w-7xl mx-auto text-center">
+              <p className="text-muted-foreground">© 2024 Jayanti Kotapati. All rights reserved.</p>
             </div>
-
-            <div className="hidden md:flex items-center space-x-4 ml-8">
-              <MagneticWrapper strength={0.2} radius={80}>
-                <a href={CV} download="Jayanth Kotapati__UIUX.pdf">
-                  <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground">
-                    <Download className="w-4 h-4 mr-2" />
-                    Download CV
-                  </Button>
-                </a>
-              </MagneticWrapper>
-            </div>
-
-            {/* Mobile menu button */}
-            <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-              {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-            </button>
-          </div>
-
-          {/* Mobile Navigation */}
-          {isMenuOpen && <div className="md:hidden absolute top-16 left-0 w-full bg-background border-b border-border">
-              <div className="px-4 py-6 space-y-4">
-                {['Home', 'About', 'Projects', 'Education', 'Skills', 'Contact'].map(item => <button key={item} onClick={() => scrollToSection(item.toLowerCase())} className="block w-full text-left text-muted-foreground hover:text-primary transition-colors">
-                    {item}
-                  </button>)}
-                <div className="pt-4 border-t border-border flex flex-col gap-2">
-                  <a href={CV} download="Jayanth Kotapati__UIUX.pdf" className="w-full">
-                    <Button variant="outline" size="sm" className="border-primary text-primary hover:bg-primary hover:text-primary-foreground w-full">
-                      <Download className="w-4 h-4 mr-2" />
-                      Download CV
-                    </Button>
-                  </a>
-                </div>
-              </div>
-            </div>}
+          </footer>
         </div>
-      </nav>
-
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 relative overflow-hidden">
-        {/* Premium Gradient Background */}
-        <div ref={heroParallax.ref} className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/5" style={{
-        transform: `translateY(${heroParallax.offset * 0.5}px)`
-      }}></div>
-        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/3 to-transparent" style={{
-        transform: `translateY(${heroParallax.offset * -0.3}px)`
-      }}></div>
-        
-        {/* Glassy Background Overlay */}
-        <div className="absolute inset-0 backdrop-blur-lg bg-background/10"></div>
-        
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center relative z-10">
-          <div className="animate-fade-in">
-            <p className="text-primary mb-4 my-[33px] text-left mx-[6px] font-bold text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Hi, I'm JAYANTH KOTAPATI</p>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-              I'M A UI/UX
-              <br />
-              <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent animate-pulse">DESIGNER</span>
-            </h1>
-            <p className="text-muted-foreground text-lg mb-8 max-w-md leading-relaxed">
-              I am a passionate UI/UX designer with a love for creating beautiful and functional user experiences. I have strong foundation in UI/UX design.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              
-              <div className="flex space-x-4">
-                <MagneticWrapper strength={0.3} radius={60}>
-                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
-                    <Linkedin className="w-5 h-5" />
-                  </Button>
-                </MagneticWrapper>
-                <MagneticWrapper strength={0.3} radius={60}>
-                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
-                    <Instagram className="w-5 h-5" />
-                  </Button>
-                </MagneticWrapper>
-                <MagneticWrapper strength={0.3} radius={60}>
-                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
-                    <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />
-                  </Button>
-                </MagneticWrapper>
-                <MagneticWrapper strength={0.3} radius={60}>
-                  <Button variant="outline" size="icon" className="border-primary text-primary bg-card/50 hover:bg-primary hover:text-primary-foreground transition-all duration-300" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com', '_blank')}>
-                    <Mail className="w-5 h-5" />
-                  </Button>
-                </MagneticWrapper>
-              </div>
-            </div>
-          </div>
-          <div className="relative animate-fade-in animation-delay-300 flex justify-center order-first lg:order-last mt-4 lg:mt-0">
-            {/* Gradient border wrapper */}
-            <div className="w-[260px] h-[260px] sm:w-[340px] sm:h-[340px] md:w-[420px] md:h-[420px] lg:w-[500px] lg:h-[500px] rounded-full p-1 bg-gradient-to-br from-primary/40 via-secondary/30 to-primary/40">
-              <div className="w-full h-full rounded-full overflow-hidden relative group bg-background">
-                <img alt="Profile" src={profileImg} className="w-full h-full object-cover object-top rounded-full transition-transform duration-500 group-hover:scale-105" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* About Section */}
-      <section id="about" className="py-20 px-4 relative">
-        <div ref={aboutParallax.ref} className="max-w-7xl mx-auto" style={{
-        transform: `translateY(${aboutParallax.offset * 0.2}px)`
-      }}>
-          <div ref={aboutAnimation.ref} className={`text-center mb-16 transition-all duration-1000 ${aboutAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">About <span className="text-primary">Me</span></h2>
-            <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Passionate about creating meaningful digital experiences that solve real-world problems through thoughtful design and user-centered approaches.
-            </p>
-          </div>
-          
-          <div className={`flex flex-col items-center justify-center text-center transition-all duration-1000 delay-300 ${aboutAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div>
-              <h3 className="text-3xl font-bold mb-6 text-center">Creating Digital Solutions</h3>
-              <p className="text-muted-foreground text-lg mb-6 leading-relaxed text-justify max-w-3xl">I'm an UI/UX designer, I specialize in creating intuitive and engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that not only look great but also function seamlessly.</p>
-              <p className="text-muted-foreground text-lg mb-8 leading-relaxed text-justify max-w-3xl">
-                I believe in the power of good design to transform businesses and improve people's lives. Every project I work on is an opportunity to learn, grow, and create something meaningful.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="py-32 px-4 relative overflow-hidden" aria-labelledby="projects-heading">
-        {/* Modern gradient background */}
-        <div ref={projectsParallax.ref} className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" style={{
-        transform: `translateY(${projectsParallax.offset * 0.3}px)`
-      }}></div>
-        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent"></div>
-        
-        <div className="max-w-7xl mx-auto relative z-10" style={{
-        transform: `translateY(${projectsParallax.offset * -0.1}px)`
-      }}>
-          {/* Header */}
-          <div ref={projectsAnimation.ref} className={`mb-24 transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="inline-flex items-center gap-3 mb-6">
-              <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary"></div>
-              <span className="text-primary text-sm font-medium tracking-wider uppercase">Portfolio</span>
-              <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary"></div>
-            </div>
-            <h2 id="projects-heading" className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-              Featured <span className="text-primary">Works</span>
-            </h2>
-            <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
-              A curated selection of design projects showcasing innovative solutions and thoughtful user experiences
-            </p>
-          </div>
-
-          {/* Projects Grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            {projects.map((project, index) => <article key={index} className={`group relative transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
-            transitionDelay: projectsAnimation.isVisible ? `${index * 150}ms` : '0ms'
-          }}>
-                {/* Card Container */}
-                <div className="relative bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 overflow-hidden hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02]">
-                  
-                  {/* Image Container */}
-                  <div className="relative aspect-[16/10] overflow-hidden bg-muted/30">
-                    <img src={project.image} alt={`${project.title} - ${project.subtitle}`} className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105" loading="lazy" />
-                    
-                    {/* Gradient Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/95 via-background/50 to-transparent opacity-60 group-hover:opacity-90 transition-opacity duration-500"></div>
-                    
-                    {/* Floating Number Badge */}
-                    <div className="absolute top-6 left-6">
-                      <div className="flex items-center justify-center w-12 h-12 rounded-full bg-background/80 backdrop-blur-md border border-border/50 text-foreground font-bold text-lg group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300">
-                        {String(index + 1).padStart(2, '0')}
-                      </div>
-                    </div>
-
-                    {/* Action Buttons */}
-                    <div className="absolute top-6 right-6 flex gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-4 group-hover:translate-x-0">
-                      <button className="flex items-center justify-center w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border/50 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300" onClick={e => {
-                    e.stopPropagation();
-                    window.open(project.projectLink, '_blank');
-                  }} aria-label={`View ${project.title} project`}>
-                        <ExternalLink className="w-4 h-4" />
-                      </button>
-                      {project.caseStudyLink && project.caseStudyLink !== "#" && <button className="flex items-center justify-center w-10 h-10 rounded-full bg-background/80 backdrop-blur-md border border-border/50 hover:bg-primary hover:border-primary hover:text-primary-foreground transition-all duration-300" onClick={e => {
-                    e.stopPropagation();
-                    window.open(project.caseStudyLink, '_blank');
-                  }} aria-label={`View ${project.title} case study`}>
-                          <FileText className="w-4 h-4" />
-                        </button>}
-                    </div>
-
-                    {/* Bottom Info Overlay */}
-                    <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                      <div className="flex items-center gap-3 mb-4">
-                        <div className="px-3 py-1 rounded-full bg-background/60 backdrop-blur-md border border-border/30 text-xs font-medium text-foreground">
-                          {project.tools}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Content */}
-                  <div className="p-8">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
-                      {project.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground font-medium mb-4 tracking-wide uppercase">
-                      {project.subtitle}
-                    </p>
-                    <p className="text-muted-foreground leading-relaxed mb-6">
-                      {project.description}
-                    </p>
-
-                    {/* CTA */}
-                    <div className="flex items-center gap-4">
-                      <button onClick={() => window.open(project.projectLink, '_blank')} className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors duration-300 group/btn">
-                        <span>View Project</span>
-                        <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                      </button>
-                      {project.caseStudyLink && project.caseStudyLink !== "#" && <>
-                          <div className="w-px h-4 bg-border"></div>
-                          <button onClick={() => window.open(project.caseStudyLink, '_blank')} className="flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300">
-                            Case Study
-                          </button>
-                        </>}
-                    </div>
-                  </div>
-                </div>
-              </article>)}
-          </div>
-          
-          {/* CTA Section */}
-          <div className={`mt-24 text-center transition-all duration-1000 ${projectsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <MagneticWrapper strength={0.15} radius={150}>
-              <div className="inline-flex items-center justify-center p-8 bg-gradient-to-r from-primary/5 via-muted/50 to-primary/5 backdrop-blur-sm rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 group cursor-pointer" onClick={() => document.getElementById('contact')?.scrollIntoView({
-              behavior: 'smooth'
-            })}>
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors duration-300">
-                    Have a project in mind?
-                  </h3>
-                  <p className="text-muted-foreground mb-4">Let's create something amazing together</p>
-                  <div className="inline-flex items-center text-primary font-medium group-hover:gap-3 gap-2 transition-all duration-300">
-                    <span>Get in touch</span>
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
-                  </div>
-                </div>
-              </div>
-            </MagneticWrapper>
-          </div>
-        </div>
-      </section>
-
-      {/* Education & Skills Section */}
-      <section id="education" className="py-32 px-4 relative overflow-hidden bg-gradient-to-b from-background via-muted/10 to-background">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5"></div>
-        
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* Education Section */}
-          <div ref={educationAnimation.ref} className={`mb-32 transition-all duration-1000 ${educationAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="mb-16">
-              <div className="inline-flex items-center gap-3 mb-6">
-                <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary"></div>
-                <span className="text-primary text-sm font-medium tracking-wider uppercase">Background</span>
-                <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary"></div>
-              </div>
-              <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-                <span className="text-primary">Education</span>
-              </h2>
-              <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
-                Academic journey and qualifications that shaped my design expertise
-              </p>
-            </div>
-            
-            <div className="relative">
-              {/* Timeline Line */}
-              <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-primary/50 to-transparent hidden md:block"></div>
-              
-              <div className="space-y-8">
-                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{
-                transitionDelay: '200ms'
-              }}>
-                  <div className="md:ml-20 group">
-                    {/* Timeline Dot */}
-                    <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300 shadow-none"></div>
-                    
-                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02]">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                        <div>
-                          <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                            Bachelor of Computer Science (CSE)
-                          </h3>
-                          <p className="text-foreground/80 text-lg mb-2">Eluru College of Engineering and Technology</p>
-                        </div>
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm whitespace-nowrap">
-                          2020 - 2024
-                        </div>
-                      </div>
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 border border-border/50 text-sm font-medium text-foreground">
-                        CGPA: 7.07/10
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{
-                transitionDelay: '400ms'
-              }}>
-                  <div className="md:ml-20 group">
-                    <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300 shadow-none"></div>
-                    
-                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02]">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                        <div>
-                          <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                            Intermediate (M.P.C)
-                          </h3>
-                          <p className="text-foreground/80 text-lg mb-2">Vidya Vikas Junior College</p>
-                        </div>
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm whitespace-nowrap">
-                          2018 - 2020
-                        </div>
-                      </div>
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 border border-border/50 text-sm font-medium text-foreground">
-                        Percentage: 7/10
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className={`relative transition-all duration-700 ${educationAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`} style={{
-                transitionDelay: '600ms'
-              }}>
-                  <div className="md:ml-20 group">
-                    <div className="absolute left-8 w-4 h-4 bg-primary rounded-full border-4 border-background -translate-x-1/2 hidden md:block group-hover:scale-125 transition-transform duration-300 shadow-none"></div>
-                    
-                    <div className="relative bg-card/50 backdrop-blur-sm p-8 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02]">
-                      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4 mb-4">
-                        <div>
-                          <h3 className="text-2xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors duration-300">
-                            S.S.C
-                          </h3>
-                          <p className="text-foreground/80 text-lg mb-2">Vidya Vikas High School</p>
-                        </div>
-                        <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 text-primary font-medium text-sm whitespace-nowrap">
-                          2017 - 2018
-                        </div>
-                      </div>
-                      <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-muted/50 border border-border/50 text-sm font-medium text-foreground">
-                        CGPA: 9.2/10
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Skills Section */}
-          <div ref={skillsParallax.ref} className="relative">
-            <div id="skills" ref={skillsAnimation.ref} className={`transition-all duration-1000 ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
-            transform: `translateY(${skillsParallax.offset * 0.15}px)`
-          }}>
-            <div className="mb-16">
-              <div className="inline-flex items-center gap-3 mb-6">
-                <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary"></div>
-                <span className="text-primary text-sm font-medium tracking-wider uppercase">Expertise</span>
-                <div className="h-px w-8 bg-gradient-to-l from-transparent to-primary"></div>
-              </div>
-              <h2 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">
-                <span className="text-primary">Skills</span> & Tools
-              </h2>
-              <p className="text-muted-foreground text-xl max-w-2xl leading-relaxed">
-                Core competencies and technologies I work with to bring ideas to life
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {skills.map((skill, index) => <div key={index} className={`group relative bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${skillsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
-                transitionDelay: skillsAnimation.isVisible ? `${index * 100}ms` : '0ms'
-              }}>
-                  <div className="relative z-10">
-                    <h3 className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors duration-300 text-center">
-                      {skill}
-                    </h3>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                </div>)}
-            </div>
-
-            {/* Technologies & Tools */}
-            <div ref={techAnimation.ref} className={`mt-24 transition-all duration-1000 ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-              <div className="mb-12 text-center">
-                <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                  Design <span className="text-primary">Tools</span>
-                </h3>
-                <p className="text-muted-foreground text-lg">
-                  Primary software I use for creating exceptional designs
-                </p>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                {technologies.map((tech, index) => <div key={index} className={`group relative bg-card/50 backdrop-blur-sm p-10 rounded-2xl border border-border/50 hover:border-primary/30 transition-all duration-500 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`} style={{
-                  transitionDelay: techAnimation.isVisible ? `${index * 150}ms` : '0ms'
-                }}>
-                    <div className="flex flex-col items-center space-y-6 relative z-10">
-                      {tech.icon ? <tech.icon className="w-16 h-16 text-primary group-hover:scale-110 transition-transform duration-300" /> : <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                          <span className="text-primary font-bold text-2xl">{tech.name.charAt(0)}</span>
-                        </div>}
-                      <h4 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors duration-300">
-                        {tech.name}
-                      </h4>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                  </div>)}
-              </div>
-            </div>
-          </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-primary/5 via-background to-secondary/5 relative overflow-hidden">
-        {/* Premium background elements */}
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-transparent to-secondary/10"></div>
-        <div className="absolute top-0 left-0 w-72 h-72 bg-primary/20 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-0 w-72 h-72 bg-secondary/20 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,hsl(var(--primary)/0.1),transparent_50%)]"></div>
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div ref={contactAnimation.ref} className={`text-center mb-16 transition-all duration-1000 ${contactAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Touch</span></h2>
-            <p className="text-muted-foreground text-lg">Ready to start your next project? Let's create something amazing together.</p>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-            <div className={`transition-all duration-1000 delay-300 backdrop-blur-sm bg-card/40 p-8 rounded-2xl border border-primary/10 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Let's Connect</h3>
-              <p className="text-muted-foreground text-lg mb-8 leading-relaxed">
-                What's next? Feel free to reach out to me if you're looking for a UI/UX Designer, have a query, or simply want to connect.
-              </p>
-              
-              <div className="space-y-6">
-                <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 p-4 sm:p-6 rounded-xl bg-gradient-to-r from-primary/5 to-secondary/5 border border-primary/10">
-                  <div className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-br from-primary to-secondary flex items-center justify-center hover:scale-110 transition-transform duration-300 flex-shrink-0 shadow-none rounded-xl">
-                    <Mail className="w-6 h-6 sm:w-7 sm:h-7 text-white shadow-none" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <label className="text-xs text-muted-foreground uppercase tracking-wide font-medium mb-1 block">Email</label>
-                    <p className="text-foreground font-medium hover:text-primary transition-colors cursor-pointer break-all sm:break-normal text-sm sm:text-base" onClick={() => window.open('mailto:jayanthkotapati14@gmail.com')}>
-                      jayanthkotapati14@gmail.com
-                    </p>
-                  </div>
-                </div>
-                
-                <div className="flex space-x-4">
-                  <Button variant="outline" size="icon" className="border-primary/20 bg-gradient-to-br from-primary/10 to-primary/5 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-primary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm shadow-none" onClick={() => window.open('https://www.linkedin.com/in/jayanth-kotapati-800b88288/', '_blank')}>
-                    <Linkedin className="w-5 h-5" />
-                  </Button>
-                  <Button variant="outline" size="icon" className="border-secondary/20 from-secondary/10 to-secondary/5 hover:shadow-secondary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm shadow-none bg-muted bg-[sidebar-accent-foreground] text-primary" onClick={() => window.open('https://www.instagram.com/j_a_y_a__n_t_h?igsh=MWR2MHJqYmJndjJ0MA==', '_blank')}>
-                    <Instagram className="w-5 h-5" />
-                  </Button>
-                  <Button variant="outline" size="icon" className="border-primary/20 bg-gradient-to-br from-primary/10 to-secondary/10 text-primary hover:bg-primary hover:text-primary-foreground hover:shadow-primary/25 hover:scale-110 transition-all duration-300 backdrop-blur-sm shadow-none" onClick={() => window.open('https://www.behance.net/jayanthkotapati', '_blank')}>
-                    <img src="/lovable-uploads/dde8d7e2-4aa6-4788-908c-37e8229fb9f0.png" alt="Behance" className="w-5 h-5" />
-                  </Button>
-                </div>
-              </div>
-            </div>
-
-            <div className={`transition-all duration-1000 delay-500 backdrop-blur-sm bg-card/40 p-8 rounded-2xl border border-primary/10 hover:shadow-[0_0_40px_hsl(var(--primary)/0.2)] hover:scale-[1.02] ${contactAnimation.isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <h3 className="text-2xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Send a Message</h3>
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="relative group">
-                  <Input type="text" name="name" placeholder="Your Name" value={formData.name} onChange={handleInputChange} required className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                </div>
-                
-                <div className="relative group">
-                  <Input type="email" name="email" placeholder="Your Email" value={formData.email} onChange={handleInputChange} required className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                </div>
-                
-                <div className="relative group">
-                  <Textarea name="message" placeholder="Your Message" value={formData.message} onChange={handleInputChange} required rows={5} className="bg-background/50 backdrop-blur-sm border-primary/20 text-foreground placeholder-muted-foreground focus:border-primary focus:ring-primary/20 focus:shadow-lg focus:shadow-primary/10 transition-all duration-300 hover:border-primary/40 resize-none" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-secondary/5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
-                </div>
-                
-                <MagneticWrapper strength={0.15} radius={100}>
-                  <Button type="submit" size="lg" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 transform hover:scale-[1.02] hover:shadow-primary/20 font-semibold border border-dotted shadow-none">
-                    Send Message
-                  </Button>
-                </MagneticWrapper>
-              </form>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-8 px-4 border-t border-border">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-muted-foreground">
-            © 2024 Jayanti Kotapati. All rights reserved. | Ready to get started?
-          </p>
-        </div>
-      </footer>
-      </div>
+      </SmoothScroll>
     </>
   );
 };
+
 export default Index;
