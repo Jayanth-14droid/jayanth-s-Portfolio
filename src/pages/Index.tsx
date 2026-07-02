@@ -329,9 +329,7 @@ const Projects = () => {
   const reduced = useReducedMotion();
 
   useEffect(() => {
-    if (reduced) return;
-    const isDesktop = window.matchMedia('(min-width: 1024px)').matches;
-    if (!isDesktop || !wrapRef.current || !trackRef.current) return;
+    if (reduced || !wrapRef.current || !trackRef.current) return;
 
     const ctx = gsap.context(() => {
       const track = trackRef.current!;
@@ -370,10 +368,10 @@ const Projects = () => {
         </Reveal>
       </div>
 
-      <div ref={wrapRef} className="lg:h-screen lg:overflow-hidden">
+      <div ref={wrapRef} className="h-screen overflow-hidden">
         <div
           ref={trackRef}
-          className="flex flex-col lg:flex-row gap-8 px-4 lg:px-16 lg:h-full lg:items-center"
+          className="flex flex-row gap-8 px-4 lg:px-16 h-full items-center"
         >
           {projects.map((p, i) => (
             <motion.div
@@ -382,7 +380,7 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.15 }}
               transition={{ duration: 0.7, delay: (i % 4) * 0.08 }}
-              className="w-full lg:w-[520px] lg:flex-shrink-0"
+              className="w-[85vw] sm:w-[400px] md:w-[480px] lg:w-[520px] flex-shrink-0"
             >
               <TiltCard className="group relative bg-card/50 backdrop-blur-sm rounded-2xl border border-border/50 overflow-hidden hover:border-primary/40 transition-colors">
                 <div className="relative aspect-[16/10] overflow-hidden bg-muted/30">
