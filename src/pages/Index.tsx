@@ -324,18 +324,6 @@ const About = () => {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-          {stats.map((s, i) => (
-            <Reveal key={s.label} delay={i * 0.08}>
-              <div className="text-center p-6 rounded-2xl bg-card/40 backdrop-blur-sm border border-border/50 hover:border-primary/40 transition-colors">
-                <div className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  <CountUp end={s.end} suffix={s.suffix} />
-                </div>
-                <div className="text-xs md:text-sm text-muted-foreground mt-2 uppercase tracking-wider">{s.label}</div>
-              </div>
-            </Reveal>
-          ))}
-        </div>
       </div>
     </section>
   );
