@@ -237,7 +237,7 @@ const Hero = () => {
   const container = { hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } } };
   const item = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } } };
 
-  const { text } = useTypewriter(['SOFTWARE', 'UI/UX\nDESIGNER'], 120, 60, 2000);
+  const { text } = useTypewriter(['SOFTWARE\nDEVELOPER', 'UI/UX\nDESIGNER'], 80, 40, 1500);
   const lines = text.split('\n');
 
   return (
