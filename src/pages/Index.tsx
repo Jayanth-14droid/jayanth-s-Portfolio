@@ -703,11 +703,14 @@ const Index = () => {
   }, [isLoading]);
 
   const scrollToSection = (id: string) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-    const offset = 80;
-    const top = el.getBoundingClientRect().top + window.scrollY - offset;
-    window.scrollTo({ top, behavior: 'smooth' });
+    const { getLenisInstance } = await import('@/lib/lenis');
+    const lenis = getLenisInstance();
+    if (lenis) {
+      lenis.scrollTo(`#${id}`, { offset: -80, duration: 1.2 });
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
