@@ -13,6 +13,7 @@ import LoadingScreen from '@/components/LoadingScreen';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { TiltCard } from '@/components/TiltCard';
 import { CountUp } from '@/components/CountUp';
+import { getLenisInstance } from '@/lib/lenis';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
 import profileImg from '@/assets/profile.png';
