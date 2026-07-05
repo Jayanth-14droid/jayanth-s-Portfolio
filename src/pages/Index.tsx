@@ -237,6 +237,9 @@ const Hero = () => {
   const container = { hidden: {}, visible: { transition: { staggerChildren: 0.12, delayChildren: 0.2 } } };
   const item = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } } };
 
+  const { text } = useTypewriter(['SOFTWARE', 'UI/UX\nDESIGNER'], 120, 60, 2000);
+  const lines = text.split('\n');
+
   return (
     <section ref={ref} id="home" className="h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 sticky top-0 left-0 w-full overflow-hidden z-0 bg-background">
       {/* Layer 1 – slowest bg blobs */}
@@ -256,9 +259,18 @@ const Hero = () => {
           <motion.p variants={item} className="mb-4 my-[24px] text-left font-bold text-3xl md:text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Hi, I'm JAYANTH KOTAPATI
           </motion.p>
-          <motion.h1 variants={item} className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
-            I'M A UI/UX<br />
-            <span>DESIGNER</span>
+          <motion.h1 variants={item} className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight min-h-[2.5em]">
+            I'M A{' '}
+            {lines.map((line, i) => (
+              <span key={i}>
+                {line}
+                {i < lines.length - 1 && <br />}
+              </span>
+            ))}
+            <span
+              className="inline-block w-[3px] md:w-[4px] h-[0.85em] bg-primary ml-1 align-middle"
+              style={{ animation: 'cursorBlink 1s step-end infinite' }}
+            />
           </motion.h1>
           <motion.p variants={item} className="text-muted-foreground text-lg mb-8 max-w-md leading-relaxed">
             I am a passionate UI/UX designer with a love for creating beautiful and functional user experiences. I have strong foundation in UI/UX design.
