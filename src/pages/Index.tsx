@@ -354,7 +354,7 @@ const About = () => {
             <Reveal>
               <h3 className="text-3xl md:text-4xl font-bold mb-6">Creating Digital Solutions</h3>
               <p className="text-muted-foreground text-lg mb-4 leading-relaxed">
-                I'm a UI/UX designer specializing in intuitive, engaging digital experiences. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that look great and function seamlessly.
+                I'm a UI/UX designer and software developer specializing in intuitive, engaging digital experiences and robust applications. My approach combines user research, creative design thinking, and technical implementation to deliver solutions that look great and function seamlessly.
               </p>
               <p className="text-muted-foreground text-lg leading-relaxed">
                 I believe in the power of good design to transform businesses and improve people's lives. Every project is a chance to learn, grow, and craft something meaningful.
