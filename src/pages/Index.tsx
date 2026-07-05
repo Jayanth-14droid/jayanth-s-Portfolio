@@ -258,9 +258,9 @@ const Hero = () => {
           <motion.p variants={item} className="mb-4 my-[24px] text-left font-bold text-3xl md:text-4xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Hi, I'm JAYANTH KOTAPATI
           </motion.p>
-          <motion.h1 variants={item} className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight tracking-tight">
+          <motion.h1 variants={item} className="font-bold mb-6 leading-tight tracking-tight text-[clamp(1.75rem,5vw,3.25rem)]">
             <span className="block">I'M A</span>
-            <span className="block min-h-[1.2em]">
+            <span className="block min-h-[1.2em] whitespace-nowrap">
               {text}
               <span
                 className="inline-block w-[3px] md:w-[4px] h-[0.85em] bg-primary ml-1 align-middle"
