@@ -265,13 +265,13 @@ const Hero = () => {
           </motion.p>
           <motion.h1 variants={item} className="font-bold mb-6 leading-tight tracking-tight text-[clamp(1.75rem,5vw,3.25rem)]">
             <span className="block min-h-[1.2em] whitespace-nowrap">
-              I'M A {isSoftwareRole ? 'SOFTWARE' : text}
+              I'M A {firstLineText}
               <span
                 className="inline-block w-[3px] md:w-[4px] h-[0.85em] bg-primary ml-1 align-middle"
                 style={{ animation: 'cursorBlink 1s step-end infinite' }}
               />
             </span>
-            <span className="block min-h-[1.2em]">{softwareText}</span>
+            <span className="block min-h-[1.2em]">{secondLineText}</span>
           </motion.h1>
           <motion.p variants={item} className="text-muted-foreground text-lg mb-8 max-w-md leading-relaxed">
             I am a passionate UI/UX designer and software developer with a love for creating beautiful, functional user experiences and robust applications. I have a strong foundation in both design and development.
