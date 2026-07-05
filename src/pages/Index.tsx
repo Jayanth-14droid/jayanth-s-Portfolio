@@ -13,6 +13,7 @@ import LoadingScreen from '@/components/LoadingScreen';
 import { SmoothScroll } from '@/components/SmoothScroll';
 import { TiltCard } from '@/components/TiltCard';
 import { CountUp } from '@/components/CountUp';
+import { getLenisInstance } from '@/lib/lenis';
 import emailjs from '@emailjs/browser';
 import CV from '../../Jayanth Kotapati UI-UX Resume.pdf';
 import profileImg from '@/assets/profile.png';
@@ -703,7 +704,13 @@ const Index = () => {
   }, [isLoading]);
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+    const lenis = getLenisInstance();
+    if (lenis) {
+      lenis.scrollTo(`#${id}`, { offset: -80, duration: 1.2 });
+    } else {
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

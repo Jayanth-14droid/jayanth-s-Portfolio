@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { setLenisInstance } from '@/lib/lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,6 +17,7 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
+    setLenisInstance(lenis);
 
     const onScroll = () => ScrollTrigger.update();
     lenis.on('scroll', onScroll);
@@ -29,6 +31,7 @@ export const SmoothScroll = ({ children }: { children: React.ReactNode }) => {
     return () => {
       cancelAnimationFrame(id);
       lenis.destroy();
+      setLenisInstance(null);
     };
   }, [reduced]);
 
