@@ -3,6 +3,7 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
+import { setLenisInstance } from '@/lib/lenis';
 
 gsap.registerPlugin(ScrollTrigger);
 
