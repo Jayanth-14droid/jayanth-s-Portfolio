@@ -240,7 +240,9 @@ const Hero = () => {
 
   const { text } = useTypewriter(['SOFTWARE DEVELOPER', 'UI/UX DESIGNER'], 80, 40, 1500);
   const isSoftwareRole = text.startsWith('SOFTWARE');
-  const softwareText = isSoftwareRole ? text.replace('SOFTWARE', '').trimStart() : '';
+  const isUiUxRole = text.startsWith('UI/UX');
+  const firstLineText = isSoftwareRole ? 'SOFTWARE' : isUiUxRole ? 'UI/UX' : text;
+  const secondLineText = isSoftwareRole ? text.replace('SOFTWARE', '').trimStart() : isUiUxRole ? text.replace('UI/UX', '').trimStart() : '';
 
   return (
     <section ref={ref} id="home" className="h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 sticky top-0 left-0 w-full overflow-hidden z-0 bg-background">
