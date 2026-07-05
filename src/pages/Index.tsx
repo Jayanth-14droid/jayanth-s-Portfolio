@@ -172,6 +172,41 @@ const Navbar = ({ active, onNavigate }: { active: string; onNavigate: (id: strin
   );
 };
 
+// -------------------- Typewriter --------------------
+const useTypewriter = (words: string[], typingSpeed = 120, deletingSpeed = 60, pause = 2000) => {
+  const [text, setText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [wordIndex, setWordIndex] = useState(0);
+
+  useEffect(() => {
+    const currentWord = words[wordIndex];
+    let timer: ReturnType<typeof setTimeout>;
+
+    if (isDeleting) {
+      if (text === '') {
+        setIsDeleting(false);
+        setWordIndex((prev) => (prev + 1) % words.length);
+      } else {
+        timer = setTimeout(() => {
+          setText((prev) => prev.slice(0, -1));
+        }, deletingSpeed);
+      }
+    } else {
+      if (text === currentWord) {
+        timer = setTimeout(() => setIsDeleting(true), pause);
+      } else {
+        timer = setTimeout(() => {
+          setText(currentWord.slice(0, text.length + 1));
+        }, typingSpeed);
+      }
+    }
+
+    return () => clearTimeout(timer);
+  }, [text, isDeleting, wordIndex, words, typingSpeed, deletingSpeed, pause]);
+
+  return { text, isDeleting };
+};
+
 // -------------------- Hero --------------------
 const Hero = () => {
   const ref = useRef<HTMLElement>(null);
