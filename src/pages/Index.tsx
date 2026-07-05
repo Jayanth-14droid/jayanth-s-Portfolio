@@ -704,7 +704,6 @@ const Index = () => {
   }, [isLoading]);
 
   const scrollToSection = (id: string) => {
-    const { getLenisInstance } = await import('@/lib/lenis');
     const lenis = getLenisInstance();
     if (lenis) {
       lenis.scrollTo(`#${id}`, { offset: -80, duration: 1.2 });
