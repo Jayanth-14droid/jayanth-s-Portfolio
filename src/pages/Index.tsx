@@ -272,7 +272,7 @@ const Hero = () => {
             <span className="block min-h-[1.2em]">{softwareText}</span>
           </motion.h1>
           <motion.p variants={item} className="text-muted-foreground text-lg mb-8 max-w-md leading-relaxed">
-            I am a passionate UI/UX designer with a love for creating beautiful and functional user experiences. I have strong foundation in UI/UX design.
+            I am a passionate UI/UX designer and software developer with a love for creating beautiful, functional user experiences and robust applications. I have a strong foundation in both design and development.
           </motion.p>
           <motion.div variants={item} className="flex space-x-4">
             {[
