@@ -240,7 +240,9 @@ const Hero = () => {
 
   const { text } = useTypewriter(['SOFTWARE DEVELOPER', 'UI/UX DESIGNER'], 80, 40, 1500);
   const isSoftwareRole = text.startsWith('SOFTWARE');
-  const softwareText = isSoftwareRole ? text.replace('SOFTWARE', '').trimStart() : '';
+  const isUiUxRole = text.startsWith('UI/UX');
+  const firstLineText = isSoftwareRole ? 'SOFTWARE' : isUiUxRole ? 'UI/UX' : text;
+  const secondLineText = isSoftwareRole ? text.replace('SOFTWARE', '').trimStart() : isUiUxRole ? text.replace('UI/UX', '').trimStart() : '';
 
   return (
     <section ref={ref} id="home" className="h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 sticky top-0 left-0 w-full overflow-hidden z-0 bg-background">
@@ -263,13 +265,13 @@ const Hero = () => {
           </motion.p>
           <motion.h1 variants={item} className="font-bold mb-6 leading-tight tracking-tight text-[clamp(1.75rem,5vw,3.25rem)]">
             <span className="block min-h-[1.2em] whitespace-nowrap">
-              I'M A {isSoftwareRole ? 'SOFTWARE' : text}
+              I'M A {firstLineText}
               <span
                 className="inline-block w-[3px] md:w-[4px] h-[0.85em] bg-primary ml-1 align-middle"
                 style={{ animation: 'cursorBlink 1s step-end infinite' }}
               />
             </span>
-            <span className="block min-h-[1.2em]">{softwareText}</span>
+            <span className="block min-h-[1.2em]">{secondLineText}</span>
           </motion.h1>
           <motion.p variants={item} className="text-muted-foreground text-lg mb-8 max-w-md leading-relaxed">
             I am a passionate UI/UX designer and software developer with a love for creating beautiful, functional user experiences and robust applications. I have a strong foundation in both design and development.
