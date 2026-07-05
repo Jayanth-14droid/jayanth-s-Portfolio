@@ -238,6 +238,8 @@ const Hero = () => {
   const item = { hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as const } } };
 
   const { text } = useTypewriter(['SOFTWARE DEVELOPER', 'UI/UX DESIGNER'], 80, 40, 1500);
+  const isSoftwareRole = text.startsWith('SOFTWARE');
+  const softwareText = isSoftwareRole ? text.replace('SOFTWARE', '').trimStart() : '';
 
   return (
     <section ref={ref} id="home" className="h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 sticky top-0 left-0 w-full overflow-hidden z-0 bg-background">
@@ -259,14 +261,14 @@ const Hero = () => {
             Hi, I'm JAYANTH KOTAPATI
           </motion.p>
           <motion.h1 variants={item} className="font-bold mb-6 leading-tight tracking-tight text-[clamp(1.75rem,5vw,3.25rem)]">
-            <span className="block">I'M A</span>
             <span className="block min-h-[1.2em] whitespace-nowrap">
-              {text}
+              I'M A {isSoftwareRole ? 'SOFTWARE' : text}
               <span
                 className="inline-block w-[3px] md:w-[4px] h-[0.85em] bg-primary ml-1 align-middle"
                 style={{ animation: 'cursorBlink 1s step-end infinite' }}
               />
             </span>
+            <span className="block min-h-[1.2em]">{softwareText}</span>
           </motion.h1>
           <motion.p variants={item} className="text-muted-foreground text-lg mb-8 max-w-md leading-relaxed">
             I am a passionate UI/UX designer with a love for creating beautiful and functional user experiences. I have strong foundation in UI/UX design.
