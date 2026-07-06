@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -8,12 +9,17 @@ interface LoadingScreenProps {
 const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
+    if (reduced) {
+      setProgress(100);
+      return;
+    }
     const duration = 2500;
     const interval = 25;
     const increment = 100 / (duration / interval);
-    
+
     const timer = setInterval(() => {
       setProgress(prev => {
         const next = prev + increment + Math.random() * 0.5;
@@ -26,27 +32,27 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
     }, interval);
 
     return () => clearInterval(timer);
-  }, []);
+  }, [reduced]);
 
   // Trigger fade out when progress reaches 100
   useEffect(() => {
     if (progress >= 100) {
       const timeout = setTimeout(() => {
         setIsVisible(false);
-      }, 300);
+      }, reduced ? 0 : 300);
       return () => clearTimeout(timeout);
     }
-  }, [progress]);
+  }, [progress, reduced]);
 
   // Call onComplete after fade out animation
   useEffect(() => {
     if (!isVisible) {
       const timeout = setTimeout(() => {
         onComplete();
-      }, 500);
+      }, reduced ? 0 : 500);
       return () => clearTimeout(timeout);
     }
-  }, [isVisible, onComplete]);
+  }, [isVisible, onComplete, reduced]);
 
   return (
     <AnimatePresence>
