@@ -696,7 +696,8 @@ const Contact = ({ onSubmit, formData, onChange }: any) => {
       </div>
     </div>
   </section>
-);
+  );
+};
 
 // -------------------- Root --------------------
 const Index = () => {
