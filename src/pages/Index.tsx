@@ -411,7 +411,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 pt-32 pb-12">
+      <div className="max-w-7xl mx-auto px-4 pt-16 md:pt-32 pb-12">
         <Reveal className="mb-12">
           <div className="inline-flex items-center gap-3 mb-4">
             <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
