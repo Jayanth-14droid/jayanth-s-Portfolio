@@ -245,7 +245,7 @@ const Hero = () => {
   const secondLineText = isSoftwareRole ? text.replace('SOFTWARE', '').trimStart() : isUiUxRole ? text.replace('UI/UX', '').trimStart() : '';
 
   return (
-    <section ref={ref} id="home" className="min-h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 sticky top-0 left-0 w-full overflow-hidden z-0 bg-background">
+    <section ref={ref} id="home" className="flex items-center justify-center px-4 pt-28 pb-12 lg:min-h-screen lg:pt-16 lg:pb-0 lg:sticky lg:top-0 lg:left-0 w-full overflow-hidden z-0 bg-background">
       {/* Layer 1 – slowest bg blobs */}
       <motion.div style={{ y: yBg, x: mx }} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 -left-24 w-[420px] h-[420px] rounded-full bg-primary/20 blur-[120px]" />
