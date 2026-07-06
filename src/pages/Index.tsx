@@ -245,7 +245,7 @@ const Hero = () => {
   const secondLineText = isSoftwareRole ? text.replace('SOFTWARE', '').trimStart() : isUiUxRole ? text.replace('UI/UX', '').trimStart() : '';
 
   return (
-    <section ref={ref} id="home" className="h-screen flex items-center justify-center px-4 pt-28 pb-12 lg:pt-16 lg:pb-0 sticky top-0 left-0 w-full overflow-hidden z-0 bg-background">
+    <section ref={ref} id="home" className="flex items-center justify-center px-4 pt-28 pb-12 lg:min-h-screen lg:pt-16 lg:pb-0 lg:sticky lg:top-0 lg:left-0 w-full overflow-hidden z-0 bg-background">
       {/* Layer 1 – slowest bg blobs */}
       <motion.div style={{ y: yBg, x: mx }} className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 -left-24 w-[420px] h-[420px] rounded-full bg-primary/20 blur-[120px]" />
@@ -350,7 +350,7 @@ const About = () => {
   const yText = useTransform(scrollYProgress, [0, 1], [-20, 20]);
 
   return (
-    <section ref={ref} id="about" className="py-32 px-4 relative overflow-hidden">
+    <section ref={ref} id="about" className="py-16 md:py-32 px-4 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <Reveal className="text-center mb-16">
           <div className="inline-flex items-center gap-3 mb-4">
@@ -411,7 +411,7 @@ const Projects = () => {
 
   return (
     <section id="projects" className="relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 pt-32 pb-12">
+      <div className="max-w-7xl mx-auto px-4 pt-16 md:pt-32 pb-12">
         <Reveal className="mb-12">
           <div className="inline-flex items-center gap-3 mb-4">
             <div className="h-px w-8 bg-gradient-to-r from-transparent to-primary" />
