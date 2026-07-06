@@ -619,18 +619,24 @@ const Skills = () => (
 );
 
 // -------------------- Contact --------------------
-const Contact = ({ onSubmit, formData, onChange }: any) => (
+const Contact = ({ onSubmit, formData, onChange }: any) => {
+  const reduced = useReducedMotion();
+  return (
   <section id="contact" className="py-32 px-4 relative overflow-hidden">
-    <motion.div
-      animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
-      transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
-      className="absolute top-10 left-10 w-96 h-96 rounded-full bg-primary/15 blur-3xl pointer-events-none"
-    />
-    <motion.div
-      animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
-      transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
-      className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-secondary/15 blur-3xl pointer-events-none"
-    />
+    {!reduced && (
+      <>
+        <motion.div
+          animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
+          transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute top-10 left-10 w-96 h-96 rounded-full bg-primary/15 blur-3xl pointer-events-none"
+        />
+        <motion.div
+          animate={{ x: [0, -30, 0], y: [0, 40, 0] }}
+          transition={{ duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+          className="absolute bottom-0 right-0 w-[500px] h-[500px] rounded-full bg-secondary/15 blur-3xl pointer-events-none"
+        />
+      </>
+    )}
 
     <div className="max-w-4xl mx-auto relative z-10">
       <Reveal className="text-center mb-16">
