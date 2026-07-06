@@ -321,9 +321,12 @@ const Hero = () => {
       {/* Scroll indicator */}
       <motion.div style={{ opacity: opacityScroll }} className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-muted-foreground">
         <span className="text-xs tracking-widest uppercase">Scroll</span>
-        <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
-          <ArrowDown className="w-5 h-5" />
-        </motion.div>
+        {!reduced && (
+          <motion.div animate={{ y: [0, 8, 0] }} transition={{ duration: 1.6, repeat: Infinity }}>
+            <ArrowDown className="w-5 h-5" />
+          </motion.div>
+        )}
+        {reduced && <ArrowDown className="w-5 h-5" />}
       </motion.div>
     </section>
   );
@@ -603,8 +606,7 @@ const Skills = () => (
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: i * 0.06 }}
-                    whileHover={{ y: -4, boxShadow: '0 10px 30px hsl(var(--primary) / 0.2)' }}
-                    className="px-4 py-2 rounded-full bg-background/60 border border-border/60 text-sm font-medium hover:border-primary/40 hover:text-primary transition-colors cursor-default"
+                    className="px-4 py-2 rounded-full bg-background/60 border border-border/60 text-sm font-medium hover:border-primary/40 hover:text-primary transition-colors cursor-default hover:-translate-y-1 hover:shadow-[0_10px_30px_hsl(var(--primary)/0.2)]"
                   >
                     {s}
                   </motion.span>
