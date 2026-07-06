@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useReducedMotion } from '@/hooks/useReducedMotion';
 
 interface Props {
   end: number;
@@ -10,8 +11,13 @@ export const CountUp = ({ end, duration = 1800, suffix = '' }: Props) => {
   const [value, setValue] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const started = useRef(false);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
+    if (reduced) {
+      setValue(end);
+      return;
+    }
     if (!ref.current) return;
     const io = new IntersectionObserver(
       ([entry]) => {
@@ -31,7 +37,7 @@ export const CountUp = ({ end, duration = 1800, suffix = '' }: Props) => {
     );
     io.observe(ref.current);
     return () => io.disconnect();
-  }, [end, duration]);
+  }, [end, duration, reduced]);
 
   return <span ref={ref}>{value}{suffix}</span>;
 };

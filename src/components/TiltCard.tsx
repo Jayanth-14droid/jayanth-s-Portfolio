@@ -19,7 +19,7 @@ export const TiltCard = ({ children, className = '', max = 7 }: Props) => {
     ref.current.style.transform = `perspective(1000px) rotateY(${x * max}deg) rotateX(${-y * max}deg) scale(1.02)`;
   };
   const onLeave = () => {
-    if (!ref.current) return;
+    if (reduced || !ref.current) return;
     ref.current.style.transform = `perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1)`;
   };
 
